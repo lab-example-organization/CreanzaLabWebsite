@@ -11,45 +11,46 @@ import { Person } from '../Classes/person';
 })
 export class PeopleuploadComponent implements OnInit {
 
-  positions:string[] = ['High-schooler', 'Undergraduate', 'Graduate', 'Post-Doc', "PI"];
+  positions: string[] = ['High-schooler', 'Undergraduate', 'Graduate', 'Post-Doc', 'PI'];
   personForm = this.createForm();
-  imageEvent:any;
+  imageEvent: any;
   @ViewChild('image') imageValue: ElementRef;
 
-  constructor(private fb:FormBuilder,
+  constructor(private fb: FormBuilder,
               private firebaseserv: FirebaseService) { }
 
   ngOnInit() {
   }
-  createForm(){
-    const Year = formatDate(new Date, 'yyyy', 'en')
+  createForm() {
+    const Year = formatDate(new Date, 'yyyy', 'en');
     return this.fb.group({
       description: 'Undergraduate',
       endingYear: 'Present',
       name: '',
       project: '',
       startYear: Year,
-      studying:'',
-      pronouns:'',
+      studying: '',
+      pronouns: '',
       portraitLink: ''
-    })
+    });
   }
 
-  onFile(event:any){
+  onFile(event: any) {
     this.imageEvent = event;
   }
 
-  onSubmit(){
-    const newPerson:Person = Object.assign({}, this.personForm.value)
+  onSubmit() {
+    const newPerson: Person = Object.assign({}, this.personForm.value);
     return this.firebaseserv.uploadImage(`Profiles/${newPerson.name}`, this.imageEvent)
-    .then(() => {return this.firebaseserv.returnImage(`Profiles/${newPerson.name}`)
+    .then(() => {
+      return this.firebaseserv.returnImage(`Profiles/${newPerson.name}`).toPromise();
     }).then(link => {
-      //newPerson.portraitLink = link;
-      this.firebaseserv.uploadDocument(newPerson, 'people')
-    }).then(() => this.onReset())    
+      newPerson.portraitLink = link;
+      return this.firebaseserv.uploadDocument(newPerson, 'people');
+    }).then(() => this.onReset());
   }
 
-  onReset(){
+  onReset() {
     this.personForm = this.createForm();
     this.imageEvent = undefined;
     this.imageValue.nativeElement.value = '';

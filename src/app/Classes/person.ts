@@ -3,8 +3,8 @@ export class Person {
     endingYear: string;
     name: string;
     project: string;
-    startYear:number;
-    studying:string;
-    pronouns:string;
-    portraitLink:string;
+    startYear: number;
+    studying: string;
+    pronouns: string;
+    portraitLink: string;
 }
