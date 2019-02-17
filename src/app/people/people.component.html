@@ -4,9 +4,9 @@
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{person.name}}</mat-card-title>
           <mat-card-subtitle>
-            {{person.description}}
-            {{person.pronouns}}
-            {{person.studying}}
+            <p>{{person.description}}</p>
+            <div *ngIf="person.pronouns"><p>{{person.pronouns}}</p></div>
+            <p>{{person.studying}}</p>
           </mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src="https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/234/2018/09/04094403/Alex-Surowiec.png" alt="Photo of Alex Surowiec">
