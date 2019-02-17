@@ -11,4 +11,7 @@ export class PeopleService {
   getPeople(){
     return this.firebaseserv.returnCollect('people')
   }
+  getPortrait(){
+    return this.firebaseserv.returnCollect('images')
+  }
 }
