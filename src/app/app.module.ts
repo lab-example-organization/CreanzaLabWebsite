@@ -15,11 +15,13 @@ import {MatCardModule} from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PeopleComponent } from './people/people.component';
+import { PeopleuploadComponent } from './peopleupload/peopleupload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PeopleComponent
+    PeopleComponent,
+    PeopleuploadComponent
   ],
   imports: [
     BrowserModule,
