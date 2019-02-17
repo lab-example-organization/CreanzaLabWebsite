@@ -1,0 +1,11 @@
+
+<mat-list role="list" *ngIf="publications$ | async as publications">
+  <mat-list-item role="listitem"  *ngFor="let publication of publications">
+    <p>
+      {{ publication.authors.join(", ") }}
+      ({{ publication.publication_year }}). 
+      <a href="{{ publication.publication_link }}">{{ publication.title }}</a>
+      <i> {{ publication.journal }}</i>
+    </p>
+  </mat-list-item>
+</mat-list>
