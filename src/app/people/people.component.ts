@@ -13,7 +13,6 @@ import { Observable } from 'rxjs';
 export class PeopleComponent implements OnInit {
 
   people$:Observable<Person[]>;
-  person: Person;
   //images$:Observable<GroupPhoto[]>;
   //groupPhoto: GroupPhoto;
 
@@ -21,11 +20,5 @@ export class PeopleComponent implements OnInit {
 
   ngOnInit() {
     this.people$ = this.peopleserv.getPeople();
-    this.people$.subscribe(people => {
-      this.person = people[0];
-    })
   }
-
-
-
 }
