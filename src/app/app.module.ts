@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms'
 
 import { AngularFireModule }        from '@angular/fire';
 import { AngularFirestoreModule }   from '@angular/fire/firestore';
@@ -24,6 +25,8 @@ import { PeopleComponent } from './people/people.component';
     BrowserModule,
 
     MatCardModule,
+
+    ReactiveFormsModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
