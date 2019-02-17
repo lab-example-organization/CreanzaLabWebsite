@@ -6,4 +6,5 @@ export class Person {
     startYear:number;
     studying:string;
     pronouns:string;
+    portraitLink:string;
 }
