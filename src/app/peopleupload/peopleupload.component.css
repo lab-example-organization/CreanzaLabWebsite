@@ -1,0 +1,13 @@
+.short{
+    width:60px;
+}
+.medium{
+    width: 120px;
+}
+.long{
+    width: 300px;
+}
+form{
+    border: 2px solid black;
+    padding: 7px;
+}

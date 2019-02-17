@@ -16,12 +16,14 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PeopleComponent } from './people/people.component';
+import { PeopleuploadComponent } from './peopleupload/peopleupload.component';
 import { PublicationsComponent } from './publications/publications.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PeopleComponent,
+    PeopleuploadComponent
     PublicationsComponent
   ],
   imports: [
