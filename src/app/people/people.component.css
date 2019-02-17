@@ -1,0 +1,8 @@
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/234/2018/09/04094403/Alex-Surowiec.png');
+    background-size: cover;
+  }

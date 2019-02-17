@@ -9,24 +9,28 @@ import { AngularFireAuthModule }    from '@angular/fire/auth';
 import { environment }              from '../environments/environment';
 
 
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PeopleComponent } from './people/people.component';
 import { PeopleuploadComponent } from './peopleupload/peopleupload.component';
+import { PublicationsComponent } from './publications/publications.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PeopleComponent,
     PeopleuploadComponent
+    PublicationsComponent
   ],
   imports: [
     BrowserModule,
 
     MatCardModule,
+    MatListModule,
 
     ReactiveFormsModule,
 
@@ -35,7 +39,7 @@ import { PeopleuploadComponent } from './peopleupload/peopleupload.component';
     AngularFireStorageModule, // imports firebase/auth, only needed for auth features,
     AngularFireAuthModule, // imports firebase/storage only needed for storage features
 
-    AppRoutingModule//this should always be LAST!!!
+    AppRoutingModule// this should always be LAST!!!
   ],
   providers: [],
   bootstrap: [AppComponent]

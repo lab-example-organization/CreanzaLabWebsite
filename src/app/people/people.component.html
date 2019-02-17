@@ -1,3 +1,28 @@
-<p>
-  people works!
-</p>
+<div *ngIf="people$ | async as people">
+    <p *ngFor="let person of people">
+        <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{person.name}}</mat-card-title>
+              <mat-card-subtitle>
+                <p>{{person.description}}</p>
+                <div *ngIf="person.pronouns"><p>{{person.pronouns}}</p></div>
+                <p>{{person.studying}}</p>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/234/2018/09/04094403/Alex-Surowiec.png" alt="Photo of Alex Surowiec">
+            <mat-card-content>
+              <p>
+                {{person.startYear}} - {{person.endingYear}}
+              </p>
+              <p>
+                {{person.project}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <!-- <button mat-button>LIKE</button>
+              <button mat-button>SHARE</button> -->
+            </mat-card-actions>
+          </mat-card>
+    </p>    
+</div>
