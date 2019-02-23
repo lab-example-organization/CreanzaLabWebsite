@@ -1,7 +1,12 @@
 export class Publication {
     authors: string[];
-    publication_year: number;
+    year: number;
     title: string;
-    publication_link: string;
     journal: string;
+    doi: string;
+    issue?: number;
+    volume?: number;
+    first_page?: number;
+    last_page?: number;
+    article_number?: number;
 }

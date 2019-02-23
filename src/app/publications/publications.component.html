@@ -1,11 +1,14 @@
 
 <mat-list role="list" *ngIf="publications$ | async as publications">
   <mat-list-item role="listitem"  *ngFor="let publication of publications">
-    <p>
+    <div>
       {{ publication.authors.join(", ") }}
-      ({{ publication.publication_year }}). 
-      <a href="{{ publication.publication_link }}">{{ publication.title }}</a>
-      <i> {{ publication.journal }}</i>
-    </p>
+      ({{ publication.year }}). 
+      {{ publication.title }}
+      <i> {{ publication.journal }} </i>
+      <span *ngIf="publication.issue !== undefined">{{ publication.issue }}</span>
+      <span *ngIf="publication.volume !== undefined">({{ publication.volume }})<span *ngIf="publication.article_number !== undefined">:{{ publication.article_number }}</span></span>
+      DOI: <a href="https://www.doi.org/{{ publication.doi}}">{{ publication.doi }}</a>
+    </div>
   </mat-list-item>
 </mat-list>
