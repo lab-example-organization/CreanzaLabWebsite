@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8-browsers
+      - image: circleci/node:8.11-browsers
 
     working_directory: ~/repo
 
@@ -23,5 +23,4 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeNoSandbox
+      - run: npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI
