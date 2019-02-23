@@ -1,7 +1,6 @@
 <div *ngIf="people$ | async as people">
     <div class="parent">
-        <!-- <div class="child"> -->
-        <p *ngFor="let person of people">
+        <div *ngFor="let person of people">
             
                 <mat-card class="example-card child">
                   <mat-card-header>
@@ -23,23 +22,10 @@
                     </p>
                   </mat-card-content>
                   <mat-card-actions>
-                    <!-- <button mat-button>LIKE</button>
-
-                    DON'T FORGET ABOUT THE LINK TO THE INDIVIDUAL'S PAGE!
-
-                    <button mat-button>SHARE</button> -->
+                    <button mat-button>Personal Page</button>
                   </mat-card-actions>
                 </mat-card>
             
-        </p> 
-      <!-- </div> -->
+              </div> 
     </div>
 </div>
-<!-- <div>
-  <body>
-    <p>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-    </p>
-  </body>
-</div> -->
