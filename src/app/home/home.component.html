@@ -1,12 +1,8 @@
 <div id="outer">
-    <div id="slideshow">
-            <div id="slideshowloop" *ngFor="let image of Images">
-                <img class="slideshow" [src]="image">
-                <span class="slideshow">TEXT! now it is more like a description
-                        now it is more like a description
-                        now it is more like a description
-                        now it is more like a description
-                </span>
+    <div id="slideshow" *ngIf="images$ | async as images">
+            <div id="slideshowloop" *ngFor="let image of images">
+                <img class="slideshow" [src]="image.link">
+                <span class="slideshow">{{ image.caption }}</span>
             </div>
         </div>
         
