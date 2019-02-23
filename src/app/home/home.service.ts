@@ -7,9 +7,9 @@ import { FirebaseService } from '../GlobalServices/firebase.service';
 
 export class HomeService {
 
-  constructor(private firebaseserv:FirebaseService) { }
+  constructor(private firebaseserv: FirebaseService) { }
 
-  getImages(){
-    return this.firebaseserv.returnCollect('images')
+  getImages() {
+    return this.firebaseserv.returnCollect('images');
   }
 }

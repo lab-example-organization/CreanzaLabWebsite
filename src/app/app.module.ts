@@ -48,7 +48,7 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
     MatListModule,
 
     NgxTwitterTimelineModule,
- 
+
     ReactiveFormsModule,
 
     AngularFireModule.initializeApp(environment.firebase),
