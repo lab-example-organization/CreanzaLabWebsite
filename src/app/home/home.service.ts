@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import { FirebaseService } from '../GlobalServices/firebase.service';
+
 @Injectable({
   providedIn: 'root'
 })
 
-export class PeopleService {
+export class HomeService {
 
   constructor(private firebaseserv: FirebaseService) { }
 
-  getPeople() {
-    return this.firebaseserv.returnCollect('people');
-  }
-  getPortrait() {
+  getImages() {
     return this.firebaseserv.returnCollect('images');
   }
 }
