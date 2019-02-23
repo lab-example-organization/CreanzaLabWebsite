@@ -9,6 +9,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 
@@ -41,6 +42,7 @@ import { InteractiveProjectsComponent } from './interactive-projects/interactive
   imports: [
     BrowserModule,
 
+    MatButtonModule,
     MatCardModule,
     MatListModule,
 
