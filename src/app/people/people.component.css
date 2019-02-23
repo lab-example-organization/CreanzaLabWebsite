@@ -6,3 +6,26 @@
     background-image: url('https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/234/2018/09/04094403/Alex-Surowiec.png');
     background-size: cover;
   }
+.container {
+  display: flex;
+
+}
+
+  .parent {
+    display: flex;
+    width: 904px;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    background-color: rgb(232, 232, 247);
+    align-items: flex-start;
+    padding: 10px;
+  }
+  
+  .child {
+    flex: 1;
+    width: 432px;  /* Or whatever */
+    height: 715px; /* Or whatever */
+    margin: 10px;  /* Magic! */
+    background-color: lightblue;
+    align-self: flex-start;
+  }
