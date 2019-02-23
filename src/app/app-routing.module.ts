@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { IndividualComponent } from './individual/individual.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { InteractiveProjectsComponent } from './interactive-projects/interactive-projects.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'admin', component: AdminComponent},
   {path: 'individual', component: IndividualComponent},
   {path: 'userinfo', component: UserInfoComponent},
+  {path: 'interactive', component: InteractiveProjectsComponent},
   {path: 'peopleupload', component: PeopleuploadComponent}
 ];
 
