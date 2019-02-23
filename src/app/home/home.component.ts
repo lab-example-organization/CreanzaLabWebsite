@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 
 export class HomeComponent implements OnInit {
-  images$:Observable<string[]>
+  images$: Observable<string[]>;
 
   constructor(private homeserv: HomeService) { }
 
