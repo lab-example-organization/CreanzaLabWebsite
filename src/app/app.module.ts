@@ -18,13 +18,25 @@ import { AppComponent } from './app.component';
 import { PeopleComponent } from './people/people.component';
 import { PeopleuploadComponent } from './peopleupload/peopleupload.component';
 import { PublicationsComponent } from './publications/publications.component';
+import { HomeComponent } from './home/home.component';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { IndividualComponent } from './individual/individual.component';
+import { InteractiveProjectsComponent } from './interactive-projects/interactive-projects.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PeopleComponent,
     PeopleuploadComponent,
-    PublicationsComponent
+    PublicationsComponent,
+    HomeComponent,
+    AdminComponent,
+    LoginComponent,
+    UserInfoComponent,
+    IndividualComponent,
+    InteractiveProjectsComponent
   ],
   imports: [
     BrowserModule,
