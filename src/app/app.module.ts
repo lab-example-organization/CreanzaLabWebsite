@@ -25,6 +25,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { IndividualComponent } from './individual/individual.component';
 import { InteractiveProjectsComponent } from './interactive-projects/interactive-projects.component';
 
+import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,8 @@ import { InteractiveProjectsComponent } from './interactive-projects/interactive
     MatCardModule,
     MatListModule,
 
+    NgxTwitterTimelineModule,
+ 
     ReactiveFormsModule,
 
     AngularFireModule.initializeApp(environment.firebase),

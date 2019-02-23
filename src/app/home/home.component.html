@@ -1,3 +1,22 @@
-<p>
-  home works!
-</p>
+<div id="outer">
+    <div id="slideshow">
+            <div id="slideshowloop" *ngFor="let image of Images">
+                <img class="slideshow" [src]="image">
+                <span class="slideshow">TEXT! now it is more like a description
+                        now it is more like a description
+                        now it is more like a description
+                        now it is more like a description
+                </span>
+            </div>
+        </div>
+        
+        <div id="containTwitter">
+            <ngx-twitter-timeline 
+            [data]="{sourceType: 'url',
+                        url: 'https://twitter.com/creanzalab?lang=en'}"
+            [opts]="{tweetLimit: 20,
+                        width: 440,
+                        theme: 'dark'}"
+        ></ngx-twitter-timeline>
+        </div>            
+</div>
