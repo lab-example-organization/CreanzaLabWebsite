@@ -22,7 +22,9 @@
                     </p>
                   </mat-card-content>
                   <mat-card-actions>
-                    <button mat-button>Personal Page</button>
+                    <nav>
+                        <a class="navbar" [routerLink]="person.name.split(' ').join('-')">Personal Page</a>
+                    </nav>
                   </mat-card-actions>
                 </mat-card>
             

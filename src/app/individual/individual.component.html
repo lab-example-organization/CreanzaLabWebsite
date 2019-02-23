@@ -1,3 +1,4 @@
-<p>
-  individual works!
-</p>
+<div *ngIf="people$ | async as people">
+  {{people.name}}
+</div>
+{{people.name}}
