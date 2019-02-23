@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 })
 
 export class HomeComponent implements OnInit {
-  run:boolean = false;
   images$:Observable<string[]>
 
   constructor(private homeserv: HomeService) { }
@@ -18,8 +17,4 @@ export class HomeComponent implements OnInit {
     this.images$ = this.homeserv.getImages();
   }
 
-  onStop(){
-    this.run = true;
-    console.log("triggered")
-  }
 }
