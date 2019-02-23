@@ -1,5 +1,7 @@
 # CreanzaLabWebSite
 
+[![CircleCI](https://circleci.com/gh/lab-example-organization/CreanzaLabWebsite.svg?style=shield)](https://circleci.com/gh/lab-example-organization/CreanzaLabWebsite)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
 
 ## Development server
