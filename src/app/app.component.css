@@ -1,0 +1,15 @@
+a.navbar{
+    display: inline-block;
+    border: 1px solid black;
+    background-color: rgb(85, 85, 170);
+    padding: .3em;
+    color: whitesmoke;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    text-decoration:none;
+    margin: .1em;
+    white-space: nowrap;
+}
+hr{
+    border: 2px solid black;
+}
