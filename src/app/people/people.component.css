@@ -13,7 +13,7 @@
 
   .parent {
     display: flex;
-    width: 904px;
+    max-width: 904px;
     flex-flow: row wrap;
     justify-content: space-evenly;
     background-color: rgb(232, 232, 247);
@@ -36,7 +36,7 @@
     padding: .3em;
     color: whitesmoke;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     text-decoration:none;
     margin: .1em;
     white-space: nowrap;
