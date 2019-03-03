@@ -25,6 +25,3 @@ export class IndividualComponent implements OnInit {
   }
 
 }
-
-// this.route.data.subscribe((data: {Story: any[]})=>{
-//   this.story = data.Story})

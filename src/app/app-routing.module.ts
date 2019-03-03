@@ -26,8 +26,6 @@ const routes: Routes = [
   {path: 'peopleupload', component: PeopleuploadComponent}
 ];
 
-// {path: ':StoryID',  component:StorydisplayComponent,
-//       resolve: {person:ResolverService}}
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
