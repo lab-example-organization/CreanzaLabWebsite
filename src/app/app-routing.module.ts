@@ -4,8 +4,6 @@ import { PeopleComponent } from './people/people.component';
 import { PeopleuploadComponent } from './peopleupload/peopleupload.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
 import { IndividualComponent } from './individual/individual.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { InteractiveProjectsComponent } from './interactive-projects/interactive-projects.component';
@@ -14,8 +12,6 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'people', component: PeopleComponent},
   {path: 'publications', component: PublicationsComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'admin', component: AdminComponent},
   {path: 'individual', component: IndividualComponent},
   {path: 'userinfo', component: UserInfoComponent},
   {path: 'interactive', component: InteractiveProjectsComponent},
