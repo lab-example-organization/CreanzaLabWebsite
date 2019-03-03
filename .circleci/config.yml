@@ -44,9 +44,9 @@ jobs:
           name: Building
           command: |
               if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                  npm run build-prod
+                npm run build-prod
               else
-                  npm run build-dev
+                npm run build-dev
               fi
 
       # Cache the dist folder for the deploy job
@@ -60,4 +60,6 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               firebase deploy --token=<< parameters.token >>
+            else
+              echo "Not deploying source to Firebase."
             fi
