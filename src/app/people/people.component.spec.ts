@@ -20,9 +20,9 @@ describe('PeopleComponent', () => {
     {
       description: 'This is the description of a person.',
       endingYear: 'This is the ending year of a person.',
+      name: 'This is the name of a person.',
       email: 'This is the email of a person.',
       publications: 'Publications',
-      name: 'Joey',
       project: 'This is the project of a person.',
       projects: [
         {
@@ -44,9 +44,9 @@ describe('PeopleComponent', () => {
     {
       description: 'This is the description of a person.',
       endingYear: 'This is the ending year of a person.',
+      name: 'This is the name of a person.',
       email: 'This is the email of a person.',
       publications: 'Publications',
-      name: 'Monty',
       project: 'This is the project of a person.',
       projects: [
         {
