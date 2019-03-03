@@ -31,7 +31,6 @@ export class AuthGuard implements CanActivate {
       take(1),
       map((user:User) => {
         if(user){
-            console.log(user.roles[0]);
             if(user.roles[0]){return true};
           }
         this.auth.redirectUrl = url;

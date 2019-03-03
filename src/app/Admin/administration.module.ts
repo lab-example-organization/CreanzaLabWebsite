@@ -9,6 +9,7 @@ import { EditPageComponent } from './edit-page/edit-page.component';
 import { EditResearchComponent } from './edit-research/edit-research.component';
 import { EditMembersComponent } from './edit-members/edit-members.component';
 import { EditPublicationsComponent } from './edit-publications/edit-publications.component';
+import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditPublicationsComponent } from './edit-publications/edit-publications
     EditPageComponent,
     EditResearchComponent,
     EditMembersComponent,
-    EditPublicationsComponent
+    EditPublicationsComponent,
+    UploadPhotoComponent
   ],
   imports: [
     CommonModule,
