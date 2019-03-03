@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PeopleComponent } from './people/people.component';
-import { PeopleuploadComponent } from './peopleupload/peopleupload.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { HomeComponent } from './home/home.component';
 import { IndividualComponent } from './individual/individual.component';
@@ -14,8 +13,7 @@ const routes: Routes = [
   {path: 'publications', component: PublicationsComponent},
   {path: 'individual', component: IndividualComponent},
   {path: 'userinfo', component: UserInfoComponent},
-  {path: 'interactive', component: InteractiveProjectsComponent},
-  {path: 'peopleupload', component: PeopleuploadComponent}
+  {path: 'interactive', component: InteractiveProjectsComponent}
 ];
 
 @NgModule({

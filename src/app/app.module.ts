@@ -17,7 +17,6 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PeopleComponent } from './people/people.component';
-import { PeopleuploadComponent } from './peopleupload/peopleupload.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { HomeComponent } from './home/home.component';
 import { UserInfoComponent } from './user-info/user-info.component';
@@ -31,7 +30,6 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
   declarations: [
     AppComponent,
     PeopleComponent,
-    PeopleuploadComponent,
     PublicationsComponent,
     HomeComponent,
     UserInfoComponent,

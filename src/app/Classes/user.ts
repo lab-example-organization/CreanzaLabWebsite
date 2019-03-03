@@ -1,4 +1,5 @@
 export class User {
     roles: boolean[];
-    name: string;   
+    name: string;
+    email: string; 
 }

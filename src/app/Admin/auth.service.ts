@@ -24,7 +24,6 @@ export class AuthService {
     this.user = this.authorize.authState.pipe(
       switchMap(user => {
         if (user) {
-          this.afs.doc<User>(`Users/${user.uid}`).valueChanges()
           return this.afs.doc<User>(`Users/${user.uid}`).valueChanges()
         } else {
           return of (null)
@@ -48,7 +47,8 @@ export class AuthService {
   private updateUserData(user) {
     const data: User = {
       name: user.name,
-      roles: user.roles
+      roles: user.roles,
+      email: user.email
     }
 
     return data

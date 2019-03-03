@@ -1,0 +1,95 @@
+import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FirebaseService } from 'src/app/GlobalServices/firebase.service';
+import { map } from 'rxjs/operators';
+import { User } from 'src/app/Classes/user';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CRUDService {
+
+
+  constructor(private firebaseserv: FirebaseService) {
+  }
+
+  fetchIndivdualData(user: User) {
+      return this.fetchAllData().pipe(
+        map(members =>
+          members.find(member => 
+            member.email === user.email)
+      ))
+  }
+
+  fetchAllData(){
+    return this.firebaseserv.returnCollectionWithKeys('people');
+  }
+
+  quickAssign(Form:FormGroup, edit:any): FormGroup{
+    Object.keys(Form.controls).forEach(key =>{
+      if(typeof(Form.controls[key].value) !== "object"){
+        if(edit[key] !== undefined){
+          Form.controls[key].patchValue(edit[key]);
+        }else{
+          Form.controls[key].patchValue('');
+        }
+      }});
+    return Form;
+  }
+
+  
+  uploadImages(paths:string[], images:any[]){
+    if(images[0]){
+      let links = new Array<string>(paths.length);
+      return Promise.all(images.map((event,index) => {//upload each image
+        return this.firebaseserv.uploadImage(paths[index], event)
+        .then(() => {return this.firebaseserv.returnImage(paths[index]).toPromise()})//return download link
+        .then(url => {links[index]=url})
+  
+      })).then(() => {return links }) //return all links  
+    }else{
+      return Promise.resolve([undefined])
+    }
+  }
+
+  editImages(paths:string[], newImages:any[], oldImages:any[]){
+    let links = new Array<string>(paths.length);
+    return Promise.all(newImages.map((event,index) => {
+      
+      if(!event){//change nothing!
+        links[index] = oldImages[index];
+
+      }else{//Delete old image and upload new image
+        return this.removeOldImage(oldImages[index])//delete old image
+        .then(() => {return this.firebaseserv.uploadImage(paths[index], event)})//upload new image
+        .then(() => {return this.firebaseserv.returnImage(paths[index]).toPromise()})//return download link
+        .then(url => {links[index]=url})
+      }
+    })).then(() => {return(links)}) //return all links
+  }
+
+  private removeOldImage(link:string){
+    if(link){
+      return this.firebaseserv.deleteImage(link);
+    }else{
+      return Promise.resolve(undefined)
+    }
+  }
+
+  uploadItem(newDoc:any, path:string){
+    return this.firebaseserv.uploadDocument(newDoc, path);
+  }
+
+  editItem(editDoc:any, path:string, docKey:string){
+      return this.firebaseserv.editDocument(editDoc, path, docKey);
+  }
+
+  deleteItem(StorageUrls:string[]=[], docPath:string, docKey:string){
+    return Promise.all(StorageUrls.map(pic =>{
+      return this.firebaseserv.deleteImage(pic)
+    })).then(()=>
+      this.firebaseserv.deleteDocument(docPath, docKey)
+    )
+  }
+
+}

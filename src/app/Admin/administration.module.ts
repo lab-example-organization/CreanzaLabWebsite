@@ -10,6 +10,8 @@ import { EditResearchComponent } from './edit-research/edit-research.component';
 import { EditMembersComponent } from './edit-members/edit-members.component';
 import { EditPublicationsComponent } from './edit-publications/edit-publications.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { PeopleuploadComponent } from './Forms/peopleupload/peopleupload.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,14 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
     EditResearchComponent,
     EditMembersComponent,
     EditPublicationsComponent,
-    UploadPhotoComponent
+    UploadPhotoComponent,
+
+    PeopleuploadComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+
     AdministrationRoutingModule
   ]
 })
