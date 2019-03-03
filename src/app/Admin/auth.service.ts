@@ -24,7 +24,7 @@ export class AuthService {
     this.user = this.authorize.authState.pipe(
       switchMap(user => {
         if (user) {
-          this.afs.doc<User>(`Users/${user.uid}`).valueChanges().subscribe(x => console.log(x))
+          this.afs.doc<User>(`Users/${user.uid}`).valueChanges()
           return this.afs.doc<User>(`Users/${user.uid}`).valueChanges()
         } else {
           return of (null)

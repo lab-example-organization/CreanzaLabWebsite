@@ -8,6 +8,7 @@ import { EditPageComponent } from './edit-page/edit-page.component';
 import { EditMembersComponent } from './edit-members/edit-members.component';
 import { EditResearchComponent } from './edit-research/edit-research.component';
 import { EditPublicationsComponent } from './edit-publications/edit-publications.component';
+import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 
 const adminRoutes: Routes = [
   {path:'users', component: AdminComponent,
@@ -21,7 +22,7 @@ const adminRoutes: Routes = [
         ]},
         {path:'upload', canActivate: [AuthGuard],
         children: [
-          {path: 'labphoto', component: EditPublicationsComponent}
+          {path: 'labphotos', component: UploadPhotoComponent}
         ]},
         {path:'admin', canActivate: [AuthGuard],
         children: [

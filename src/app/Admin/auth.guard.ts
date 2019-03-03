@@ -21,7 +21,6 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> {
     const url: string = state.url;
-    
     return this.checkAdmin(url);
   }
 
@@ -31,10 +30,19 @@ export class AuthGuard implements CanActivate {
       take(1),
       map((user:User) => {
         if(user){
+          const path:string = url.split('/')[2];
+          if(path === "edit"){
             if(user.roles[0]){return true};
+          }else if(path == "upload"){
+            if(user.roles[0]){return true};
+            // change this to 1 once all the backend is prepared
+          }else{
+            if(user.roles[0]){return true};
+            // change this to 2 once all the backend is prepared
           }
+        }
         this.auth.redirectUrl = url;
-            this.router.navigate(['UserProfile'])
+            this.router.navigate(['users'])
             return false;
       })
     );
