@@ -9,10 +9,14 @@ import { AdminComponent } from './admin/admin.component';
 import { IndividualComponent } from './individual/individual.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { InteractiveProjectsComponent } from './interactive-projects/interactive-projects.component';
+import { visitAstChildren } from '@angular/compiler';
+import { ResolverService } from './individual/resolver.service';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'people', component: PeopleComponent},
+  {path: 'people/:individual', component: IndividualComponent,
+  resolve: {person:ResolverService}},
   {path: 'publications', component: PublicationsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminComponent},
@@ -21,6 +25,7 @@ const routes: Routes = [
   {path: 'interactive', component: InteractiveProjectsComponent},
   {path: 'peopleupload', component: PeopleuploadComponent}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

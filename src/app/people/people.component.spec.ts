@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRouteStub } from '../../testing/activated-route-stub';
 
 import { MatCardModule } from '@angular/material/card';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -7,6 +9,8 @@ import { of } from 'rxjs';
 
 import { Person } from '../Classes/person';
 import { PeopleComponent } from './people.component';
+import { RouterModule, ActivatedRoute } from '@angular/router';
+import { LocationStrategy } from '@angular/common';
 
 describe('PeopleComponent', () => {
   let component: PeopleComponent;
@@ -16,7 +20,7 @@ describe('PeopleComponent', () => {
     {
       description: 'This is the description of a person.',
       endingYear: 'This is the ending year of a person.',
-      name: 'This is the name of a person.',
+      name: 'Joey',
       project: 'This is the project of a person.',
       startYear: 2017,
       studying: 'This is the studying of a person.',
@@ -26,7 +30,7 @@ describe('PeopleComponent', () => {
     {
       description: 'This is the description of a person.',
       endingYear: 'This is the ending year of a person.',
-      name: 'This is the name of a person.',
+      name: 'Monty',
       project: 'This is the project of a person.',
       startYear: 2017,
       studying: 'This is the studying of a person.',
@@ -48,10 +52,16 @@ describe('PeopleComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PeopleComponent ],
-      imports: [ MatCardModule ],
+      imports: [
+        MatCardModule,
+        RouterModule,
+        RouterTestingModule
+      ],
       providers: [
         { provide: AngularFirestore, useValue: angularFirestoreStub },
+        { provide: ActivatedRoute, class: ActivatedRouteStub },
         { provide: AngularFireStorage },
+        { provide: LocationStrategy },
       ],
     })
     .compileComponents();
