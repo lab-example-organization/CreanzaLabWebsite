@@ -22,7 +22,7 @@
                     </p>
                   </mat-card-content>
                   <mat-card-actions>
-                    <nav>
+                    <nav *ngIf="person.name">
                         <a class="navbar" [routerLink]="person.name.split(' ').join('-')">Personal Page</a>
                     </nav>
                   </mat-card-actions>
