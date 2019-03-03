@@ -19,7 +19,8 @@
         <div *ngIf="user.roles[0]">
             <!-- change this to 1 once research and members is complete! -->
             <a routerLink='edit/research'>Edit the Research Page</a><br>
-            <a routerLink='edit/members'>Add or remove Members</a><br>
+            <a routerLink='edit/publications'>Edit Publications</a><br>
+            <a routerLink='edit/members'>Edit Member Access</a><br>
         </div><br>
 
         <button (click)="auth.logout()">Logout</button>

@@ -7,6 +7,7 @@ import { EditCardComponent } from './edit-card/edit-card.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import { EditMembersComponent } from './edit-members/edit-members.component';
 import { EditResearchComponent } from './edit-research/edit-research.component';
+import { EditPublicationsComponent } from './edit-publications/edit-publications.component';
 
 const adminRoutes: Routes = [
   {path:'admin', component: AdminComponent,
@@ -18,7 +19,8 @@ const adminRoutes: Routes = [
           {path: 'card', component: EditCardComponent},
           {path: 'page', component: EditPageComponent},
           {path: 'research', component: EditResearchComponent},
-          {path: 'members', component: EditMembersComponent}
+          {path: 'members', component: EditMembersComponent},
+          {path: 'publications', component: EditPublicationsComponent}
         ]}
       ]}
     ]}
