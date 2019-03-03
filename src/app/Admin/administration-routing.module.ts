@@ -11,20 +11,20 @@ import { EditPublicationsComponent } from './edit-publications/edit-publications
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 
 const adminRoutes: Routes = [
-  {path:'users', component: AdminComponent,
+  {path: 'users', component: AdminComponent,
     children: [
       {path: '', component: LoginComponent,
       children: [
-        {path:'edit', canActivate: [AuthGuard],
+        {path: 'edit', canActivate: [AuthGuard],
         children: [
           {path: 'card', component: EditCardComponent},
           {path: 'page', component: EditPageComponent},
         ]},
-        {path:'upload', canActivate: [AuthGuard],
+        {path: 'upload', canActivate: [AuthGuard],
         children: [
           {path: 'labphotos', component: UploadPhotoComponent}
         ]},
-        {path:'admin', canActivate: [AuthGuard],
+        {path: 'admin', canActivate: [AuthGuard],
         children: [
           {path: 'research', component: EditResearchComponent},
           {path: 'members', component: EditMembersComponent},

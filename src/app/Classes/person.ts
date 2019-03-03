@@ -13,7 +13,7 @@ export class Person {
     studying: string;
     pronouns: string;
     portraitLink: string;
-    publications: string;  //should be a JSONstring
+    publications: string;  // should be a JSON string
     projects: Project[];
     cvresume: string;
     awards: string[];
