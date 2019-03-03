@@ -34,8 +34,8 @@ jobs:
           name: Testing
           command: |
             npm run test -- \
-            --watch=false
-            --progress=false
+            --watch=false \
+            --progress=false \
             --browsers=ChromeHeadlessCI
 
       # Build project with different configuration based on
