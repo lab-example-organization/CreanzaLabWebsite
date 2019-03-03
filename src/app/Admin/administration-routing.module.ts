@@ -4,15 +4,25 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth-guard.guard';
 import { EditCardComponent } from './edit-card/edit-card.component';
+import { EditPageComponent } from './edit-page/edit-page.component';
+import { EditMembersComponent } from './edit-members/edit-members.component';
+import { EditResearchComponent } from './edit-research/edit-research.component';
 
 const adminRoutes: Routes = [
   {path:'admin', component: AdminComponent,
     children: [
-      {path: '', component: LoginComponent},
-      {path: 'editPerson', component: EditCardComponent, 
-      canActivate: [AuthGuard]}
+      {path: '', component: LoginComponent,
+      children: [
+        {path:'edit', canActivate: [AuthGuard],
+        children: [
+          {path: 'card', component: EditCardComponent},
+          {path: 'page', component: EditPageComponent},
+          {path: 'research', component: EditResearchComponent},
+          {path: 'members', component: EditMembersComponent}
+        ]}
+      ]}
     ]}
-];
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(adminRoutes)],

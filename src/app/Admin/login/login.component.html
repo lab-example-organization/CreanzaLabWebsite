@@ -13,6 +13,18 @@
     <div *ngIf="auth.user | async as user">
         <h3>Welcome back, {{ user.name }}!</h3>
 
+        What would you like to do today?<br>
+        <a routerLink='edit/card'>Edit my Person Card</a><br>
+        <a routerLink='edit/page'>Edit my User Page</a><br>
+        <div *ngIf="user.roles[0]">
+            <!-- change this to 1 once research and members is complete! -->
+            <a routerLink='edit/research'>Edit the Research Page</a><br>
+            <a routerLink='edit/members'>Add or remove Members</a><br>
+        </div><br>
+
         <button (click)="auth.logout()">Logout</button>
     </div>
+    <hr>
+
+    <router-outlet></router-outlet>
 </ng-template>

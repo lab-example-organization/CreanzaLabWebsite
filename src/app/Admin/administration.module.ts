@@ -5,12 +5,18 @@ import { AdministrationRoutingModule } from './administration-routing.module';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { EditCardComponent } from './edit-card/edit-card.component';
+import { EditPageComponent } from './edit-page/edit-page.component';
+import { EditResearchComponent } from './edit-research/edit-research.component';
+import { EditMembersComponent } from './edit-members/edit-members.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     LoginComponent,
-    EditCardComponent
+    EditCardComponent,
+    EditPageComponent,
+    EditResearchComponent,
+    EditMembersComponent
   ],
   imports: [
     CommonModule,
