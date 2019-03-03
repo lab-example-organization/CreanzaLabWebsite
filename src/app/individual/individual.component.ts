@@ -11,17 +11,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./individual.component.css']
 })
 export class IndividualComponent implements OnInit {
-  
-  people$:Observable<Person>;
-  people:Person;
+
+  people$: Observable<Person>;
+  people: Person;
   constructor(private peopleserv: PeopleService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.people$ = this.peopleserv.getPeople().pipe(
-      map(people=>people[0])
+      map(people => people[0])
     );
-    this.route.data.subscribe((data: {person: any})=> this.people = data.person)
+    this.route.data
+      .subscribe((data: {person: any}) => this.people = data.person);
   }
 
 }

@@ -1,4 +1,10 @@
+export class Project {
+    title: string;
+    mainInfo: string;
+}
+
 export class Person {
+    email: string;
     description: string;
     endingYear: string;
     name: string;
@@ -7,4 +13,8 @@ export class Person {
     studying: string;
     pronouns: string;
     portraitLink: string;
+    publications: string;  // should be a JSON string
+    projects: Project[];
+    cvresume: string;
+    awards: string[];
 }
