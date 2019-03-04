@@ -59,7 +59,7 @@ jobs:
           name: Deploy to Firebase
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              firebase deploy --token=<< parameters.token >>
+              firebase deploy --token=$token
             else
               echo "Not deploying source to Firebase."
             fi
