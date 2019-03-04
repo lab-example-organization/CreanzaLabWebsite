@@ -7,12 +7,12 @@ import { PeopleService } from '../people/people.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ResolverService implements Resolve<any>{
+export class ResolverService implements Resolve<any> {
 
   constructor(private peopleserv: PeopleService,
               private router: Router) { }
 
-  resolve(route: ActivatedRouteSnapshot){
+  resolve(route: ActivatedRouteSnapshot) {
     // const ID = route.url[0].path;
     const ID = route.paramMap.get('individual').split('-').join(' ');
     // return this.generalcollectserv.getMember(ID).pipe(
