@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'people', component: PeopleComponent},
   {path: 'people/:individual', component: IndividualComponent,
-  resolve: {person:ResolverService}},
+  resolve: {person: ResolverService}},
   {path: 'publications', component: PublicationsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminComponent},
