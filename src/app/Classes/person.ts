@@ -7,4 +7,5 @@ export class Person {
     studying: string;
     pronouns: string;
     portraitLink: string;
+    socialMedia: string; // should be a JSON string
 }
