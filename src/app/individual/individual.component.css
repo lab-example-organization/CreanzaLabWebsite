@@ -1,4 +1,4 @@
-.row1 {
+.verticalDivide {
     display: flex;
     flex-flow: row;
     justify-content: space-between;
@@ -18,15 +18,15 @@
   }
   
 .itemOne {
-    flex: 4 1 auto;
+    flex: 1 1 auto;
   } 
 
 .itemTwo {
-    flex: 1 1 auto;
+    flex: 1 2 auto;
   }
   
 .itemThree {
-    flex: 2 1 auto;
+    flex: 0.8 1 auto;
   }
 
 .itemFour {
@@ -47,7 +47,9 @@
   }
 .row2 h4 {
     text-align:center;
+    margin-top:80px;
     font-size:12px;
+
   }
   
 .column2 h1 {
@@ -75,8 +77,8 @@ a:hover {
 
 /* Style all font awesome icons */
 .fa {
-    padding: 15px;
-    font-size: 30px;
+    padding: 10px;
+    font-size: 20px;
     width: 50px;
     text-align: center;
     text-decoration: none;

@@ -4,6 +4,7 @@ import { Person } from '../Classes/person';
 import { PeopleService } from '../people/people.service';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { SocialMedia } from '../Classes/socialMedia';
 
 @Component({
   selector: 'app-individual',
@@ -11,17 +12,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./individual.component.css']
 })
 export class IndividualComponent implements OnInit {
-  
-  people$:Observable<Person>;
-  people:Person;
+  people$: Observable<Person>;
+  people: Person;
+  socialMedia: SocialMedia;
   constructor(private peopleserv: PeopleService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.people$ = this.peopleserv.getPeople().pipe(
-      map(people=>people[0])
-    );
-    this.route.data.subscribe((data: {person: any})=> this.people = data.person)
+    this.route.data.subscribe((data: {person: any}) => {
+      this.people = data.person;
+      this.socialMedia = JSON.parse(this.people.socialMedia);
+    });
   }
 
 }

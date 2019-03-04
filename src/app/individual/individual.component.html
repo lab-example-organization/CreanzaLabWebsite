@@ -1,4 +1,4 @@
-<div class="row1">
+<div class="verticalDivide">
     <div class="column2">
         <div class="row2">
           <div class="itemOne">
@@ -22,6 +22,12 @@
             <h3>
                 {{people.project}}
             </h3>
+            <h4>
+                {{socialMedia.android}}
+                <div *ngIf="socialMedia$ | async as socialMedia">
+                    <div class="parent">
+                        <div *ngFor="let person of people">
+            </h4>
           </div>
         </div>
         <div class="itemThree">
@@ -37,19 +43,8 @@
                     This curious version was written in 1940 by a professor of French named H. L. Chace, 
                     who wanted to show his students that intonation - that is, the melody of a language - 
                     is an integral part of its meaning. The words here are all common English words, but 
-                    not the ones you'd expect to tell the story of Little Red Riding Hood. 
+                    not the ones you'd expect to tell the story of Ladle Rat Rotten Hut. 
                 </p>
-                <!-- Add icon library -->
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-                <!-- Add font awesome icons -->
-                <a href="https://svs.gsfc.nasa.gov/vis/a010000/a010400/a010487/spacebook.00102_print.jpg" class="fa fa-facebook"></a>
-                <a href="https://www.lifewire.com/very-funny-twitter-parody-accounts-3486602" class="fa fa-twitter"></a>
-                <a href="https://www.nytimes.com/2018/10/08/technology/google-plus-security-disclosure.html" class="fa fa-google"></a>
-                <a href="https://techcrunch.com/2018/11/24/linkedin-ireland-data-protection/" class="fa fa-linkedin"></a>
-                <!-- <a href="#" class="fa 
-                use lines 50 & 52 to copy-paste the text surrounding the 'fa-socMedia' text, called from the css file
-                "></a> -->
                 <li><a target="_blank" href="https://xkcd.com/451/">
                   This could be my social media link
                 </a></li>
