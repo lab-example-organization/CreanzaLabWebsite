@@ -12,7 +12,7 @@ import { EditPublicationsComponent } from './edit-publications/edit-publications
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { PeopleuploadComponent } from './Forms/peopleupload/peopleupload.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PublicationuploadComponent } from './forms/publicationupload/publicationupload.component';
+import { PublicationuploadComponent } from './Forms/publicationupload/publicationupload.component';
 
 @NgModule({
   declarations: [
