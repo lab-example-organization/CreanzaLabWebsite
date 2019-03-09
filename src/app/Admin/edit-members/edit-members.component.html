@@ -1,3 +1,18 @@
-<p>
-  edit-members works!
-</p>
+<form [formGroup]="newPersonForm">
+  <br>
+  <b>Name: </b> <input formControlName="name" class="long" type="text"><br><br>
+
+  <b>GMail: </b> <input formControlName="email" class="long" type="text"><br><br>
+
+  <b>Position: </b> <select formControlName="description">
+      <option *ngFor="let position of positions"
+      [value]="position">
+        {{ position }}
+      </option>
+  </select><br><br>
+
+  <button type="submit"
+  [disabled]="!newPersonForm.valid"
+  (click)="onSubmit()">Submit</button>
+  {{ message }}
+</form>
