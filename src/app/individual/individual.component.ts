@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { SocialMedia } from '../Classes/socialMedia';
 
+
 @Component({
   selector: 'app-individual',
   templateUrl: './individual.component.html',

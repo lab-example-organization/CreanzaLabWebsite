@@ -1,0 +1,35 @@
+
+<div *ngIf="auth.user | async; then authenticated else guest">
+    <!-- template will replace this div -->
+</div>
+
+
+<!-- User NOT logged in -->
+<ng-template #guest>
+    <div id="googleBtn" (click)="auth.googleLogin()"></div>
+</ng-template>
+
+<ng-template #authenticated>
+    <div *ngIf="auth.user | async as user">
+        <h3>Welcome back, {{ user.name }}!</h3>
+
+        What would you like to do today?<br>
+        <a routerLink='edit/card'>Edit my Person Card</a><br>
+        <a routerLink='edit/page'>Edit my User Page</a><br>
+        <div *ngIf="user.roles[0]">
+            <!-- change this to 1 once labphotos is complete! -->
+            <a routerLink='upload/labphotos'>Add New Lab Photo</a><br>
+        </div>
+        <div *ngIf="user.roles[0]">
+            <!-- change this to 2 once research, members, and publications is complete! -->
+            <a routerLink='admin/research'>Edit the Research Page</a><br>
+            <a routerLink='admin/publications'>Edit Publications</a><br>
+            <a routerLink='admin/members'>Edit Members</a><br>
+        </div><br>
+
+        <button (click)="auth.logout()">Logout</button>
+    </div>
+    <hr>
+
+    <router-outlet></router-outlet>
+</ng-template>

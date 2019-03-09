@@ -14,6 +14,7 @@ export class ResolverService implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot) {
     const ID = route.paramMap.get('individual').split('-').join(' ');
+
       return this.peopleserv.getPeople().pipe(
         take(1),
         map(people => people.find(person => person.name === ID)),

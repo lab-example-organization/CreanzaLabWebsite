@@ -4,6 +4,16 @@ import { PeopleuploadComponent } from './peopleupload.component';
 import { CommonModule } from '@angular/common';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+
+const angularFireAuthStub = {
+  authState: new BehaviorSubject({}),
+  auth: {
+      signInWithPopup: jasmine.createSpy('signInWithPopup')
+  },
+};
 
 describe('PeopleuploadComponent', () => {
   let component: PeopleuploadComponent;
@@ -22,7 +32,9 @@ describe('PeopleuploadComponent', () => {
       providers: [
         { provide: AngularFirestore },
         { provide: AngularFireStorage },
-        { provide: FormBuilder, useValue: fb }
+        { provide: FormBuilder, useValue: fb },
+        { provide: AngularFireAuth, useValue: angularFireAuthStub },
+        { provide: Router },
       ]
     })
     .compileComponents();

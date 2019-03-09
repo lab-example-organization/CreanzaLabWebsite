@@ -1,3 +1,4 @@
+
 .verticalDivide {
     display: flex;
     flex-flow: row;
@@ -66,6 +67,7 @@ p#SocialMedia {
   font-size:16px;
 }
 
+
 .column2 h1 {
     text-align:center;
     font-size:32px;
@@ -87,7 +89,6 @@ a {
 a:hover {
     color:purple;
   }
-  
 
 /* Style all font awesome icons */
 .fa {

@@ -10,6 +10,7 @@ import { IndividualComponent } from './individual.component';
 import { of } from 'rxjs';
 import { SocialMedia } from '../Classes/socialMedia';
 
+
 describe('IndividualComponent', () => {
   let component: IndividualComponent;
   let fixture: ComponentFixture<IndividualComponent>;
@@ -17,6 +18,7 @@ describe('IndividualComponent', () => {
 
   const expectedPerson: Person = {
     description: 'This is the description of a person.',
+
     endingYear: 'This is the ending year of a person.',
     name: 'Joey',
     project: 'This is the project of a person.',
