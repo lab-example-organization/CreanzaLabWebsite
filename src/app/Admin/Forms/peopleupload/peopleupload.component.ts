@@ -13,12 +13,13 @@ import { Subscription } from 'rxjs';
 export class PeopleuploadComponent implements OnInit, OnDestroy {
 
   @Input() existingPerson;
-  positions: string[] = ['High-schooler', 'Undergraduate', 'Graduate', 'Post-Doc', 'PI', 'Alumni'];
+  positions: string[] = ['High-schooler', 'Undergraduate Student', 'Graduate Student', 'Post-Doc', 'PI', 'Alumni'];
   personForm = this.createForm();
   imageEvent: any;
   @ViewChild('image') imageValue: ElementRef;
-  message: string;
-  OldInfo: any;
+  message:string;
+  OldInfo:any;
+
   stream: Subscription;
 
   constructor(private fb: FormBuilder,

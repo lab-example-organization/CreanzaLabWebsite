@@ -1,0 +1,37 @@
+
+<form [formGroup]="publicationForm">
+
+<div formArrayName="authors">
+  <p *ngFor="let group of publicationForm.get('authors').controls, let i = index"
+  [formGroupName]="i">
+      Author {{ i+1 }}: <input formControlName="name" type="text">
+  </p>
+
+</div>
+
+<button type="button" (click)="addAuthor(true)">+</button>
+<button type="button" (click)="addAuthor(false)">-</button>
+
+<p> Year: <input formControlName="year" type="number"> </p>
+
+<p> Title: <input formControlName="title" type="text"></p>
+
+<p> Journal: <input formControlName="journal" type="text"></p>
+
+<p> DOI: <input formControlName="doi" type="text"></p>
+
+<p> Issue: <input formControlName="issue" type="number" ></p>
+
+<p> Volume: <input formControlName="volume" type="number"></p>
+
+<p> First Page: <input formControlName="first_page" type="number"></p>
+
+<p> Last Page: <input formControlName="last_page" type="number"></p>
+
+<p> Article Number: <input formControlName="article_number" type="number"></p>
+
+<button type="submit"
+[disabled]="!publicationForm.valid"
+(click)="onSubmit()">Submit</button> {{ message }}
+</form>
+

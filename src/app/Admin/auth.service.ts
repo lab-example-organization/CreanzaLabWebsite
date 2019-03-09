@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 
 export class AuthService {
 
-  redirectUrl: string;
+redirectUrl: string;
 
   user: Observable<User>;
 

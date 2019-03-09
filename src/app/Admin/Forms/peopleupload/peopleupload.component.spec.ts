@@ -15,6 +15,7 @@ const angularFireAuthStub = {
   },
 };
 
+
 describe('PeopleuploadComponent', () => {
   let component: PeopleuploadComponent;
   let fixture: ComponentFixture<PeopleuploadComponent>;
