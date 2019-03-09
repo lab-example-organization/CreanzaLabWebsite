@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { CRUDService } from '../crud.service';
 import { AuthService } from '../../auth.service';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class PeopleuploadComponent implements OnInit, OnDestroy {
 
   @Input() existingPerson;
-  positions: string[] = ['High-schooler', 'Undergraduate Student', 'Graduate Student', 'Post-Doc', 'PI', 'Alumni'];
+  positions: string[] = ['High-schooler', 'Undergraduate Student', 'Graduate Student', 'Post-Doc', 'PI', 'Alumni', 'Rotation Student'];
   personForm = this.createForm();
   imageEvent: any;
   @ViewChild('image') imageValue: ElementRef;
@@ -42,12 +42,12 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
   createForm() {
     const Year = formatDate(new Date, 'yyyy', 'en');
     return this.fb.group({
-      description: 'Undergraduate',
-      endingYear: 'Present',
-      name: '',
+      description: ['Undergraduate', Validators.required],
+      endingYear: ['Present', Validators.required],
+      name: ['', Validators.required],
       project: '',
-      startYear: Year,
-      studying: '',
+      startYear: [Year, Validators.required],
+      studying: ['', Validators.required],
       pronouns: '',
       portraitLink: ''
     });
