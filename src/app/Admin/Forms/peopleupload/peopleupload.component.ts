@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class PeopleuploadComponent implements OnInit, OnDestroy {
 
   @Input() existingPerson;
-  positions: string[] = ['High-schooler', 'Undergraduate', 'Graduate', 'Post-Doc', 'PI', 'Alumni'];
+  positions: string[] = ['High-schooler', 'Undergraduate Student', 'Graduate Student', 'Post-Doc', 'PI', 'Alumni'];
   personForm = this.createForm();
   imageEvent: any;
   @ViewChild('image') imageValue: ElementRef;
@@ -61,8 +61,9 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
     this.message = "processing";
     let editedInfo = this.OldInfo;
     Object.keys(this.personForm.controls).forEach(key =>{
-      editedInfo[key] == this.personForm.controls[key].value
+      editedInfo[key] = this.personForm.controls[key].value
     })
+    console.log(editedInfo)
     return this.CRUD.editImages([`Profiles/${editedInfo.name}`], [this.imageEvent], [this.OldInfo.portraitLink])
     .then(link => {
       editedInfo.portraitLink = link[0];
