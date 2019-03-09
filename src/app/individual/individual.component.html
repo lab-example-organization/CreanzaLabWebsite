@@ -1,27 +1,34 @@
-<div class="row1" *ngIf="people">
+
+<div class="verticalDivide">
     <div class="column2">
-        <div class="row2">
+        <div id="row2">
           <div class="itemOne">
-            <h1>
+            <p id="Name">
                 {{people.name}}
-            </h1>
-            <h2>
+            </p>
+            <p id="Description">
                 {{people.description}}
-            </h2>
-            <h3>
+            </p>
+            <p id="Pronouns">
                 {{people.pronouns}}
-            </h3>
-            <h4>
+            </p>
+            <p id="Year">
                 {{people.startYear}} - {{people.endingYear}}
-            </h4>
+            </p>
           </div>
           <div class="itemTwo">
-            <h2>
+            <p id="Studying">
                 {{people.studying}}  
-            </h2>
-            <h3>
+            </p>
+            <p id="Project">
                 {{people.project}}
-            </h3>
+            </p>
+            <p id="SocialMedia">
+                {{socialMedia.android}}
+                <!-- <div *ngIf="socialMedia$ | async as socialMedia">
+                    <div class="parent">
+                        <div *ngFor="let person of people"> -->
+                        </p>
           </div>
         </div>
         <div class="itemThree">
@@ -37,7 +44,7 @@
                     This curious version was written in 1940 by a professor of French named H. L. Chace, 
                     who wanted to show his students that intonation - that is, the melody of a language - 
                     is an integral part of its meaning. The words here are all common English words, but 
-                    not the ones you'd expect to tell the story of Little Red Riding Hood. 
+                    not the ones you'd expect to tell the story of Ladle Rat Rotten Hut. 
                 </p>
                 <li><a target="_blank" href="https://xkcd.com/451/">
                   This could be my social media link
@@ -52,3 +59,5 @@
     <div class="headshot">
   </div>
 </div>
+
+

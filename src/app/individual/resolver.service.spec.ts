@@ -11,6 +11,10 @@ import { of } from 'rxjs';
 describe('ResolverService', () => {
   const expectedPerson: Person = {
     description: 'This is the description of a person.',
+    startYear: 'This is the starting year of a person',
+    studying: 'This is the studying of a person.',
+    pronouns: 'These are the pronouns of a person',
+    portraitLink: 'This is the portrait link of a person.',
     endingYear: 'This is the ending year of a person.',
     name: 'This is the name of a person.',
     email: 'This is the email of a person.',
@@ -28,10 +32,7 @@ describe('ResolverService', () => {
     ],
     cvresume: 'Link to a CV',
     awards: ['First award', 'Second Award'],
-    startYear: 2017,
-    studying: 'This is the studying of a person.',
-    pronouns: 'These are the pronouns of a person',
-    portraitLink: 'This is the portrait link of a person.'
+    
   };
 
   const data = of(expectedPerson);
