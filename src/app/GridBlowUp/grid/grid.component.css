@@ -4,7 +4,7 @@ div#outer {
     justify-content: space-around;
 }
 
-a.item {
+div.item {
     position: relative;
     display: inline-block;
     flex-flow: column;
@@ -13,11 +13,11 @@ a.item {
     overflow: hidden;
 }
 
-a.item:hover {
+div.item:hover {
     background-color: rgba(140,140,140,.8);
 }
 
-a.item:active {
+div.item:active {
     background-color: rgba(255,255,255,.7);
 }
 
