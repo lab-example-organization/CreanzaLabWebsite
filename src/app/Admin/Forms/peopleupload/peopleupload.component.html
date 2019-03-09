@@ -24,7 +24,9 @@
   <b>Image: </b> <input #image class="long" type="file" (change)="onFile($event)"><br><br>
   <br>
 
-  <button type="submit" (click)="onSubmit()">Submit</button>
+  <button type="submit"
+  [disabled]="!personForm.valid"
+  (click)="onSubmit()">Submit</button>
   {{ message }}
   <br>
 </form>

@@ -26,6 +26,8 @@ import { InteractiveProjectsComponent } from './interactive-projects/interactive
 import { AdministrationModule } from './Admin/administration.module';
 
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
+import { BlowUpComponent } from './GridBlowUp/blow-up/blow-up.component';
+import { BlowUpMasterComponent } from './GridBlowUp/blow-up-master/blow-up-master.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
     HomeComponent,
     UserInfoComponent,
     IndividualComponent,
-    InteractiveProjectsComponent
+    InteractiveProjectsComponent,
+    BlowUpComponent,
+    BlowUpMasterComponent
   ],
   imports: [
     BrowserModule,
