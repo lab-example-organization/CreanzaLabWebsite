@@ -39,7 +39,8 @@ describe('PeopleComponent', () => {
       startYear: 2017,
       studying: 'This is the studying of a person.',
       pronouns: 'These are the pronouns of a person',
-      portraitLink: 'This is the portrait link of a person.'
+      portraitLink: 'This is the portrait link of a person.',
+      socialMedia: 'This is the social media of a person'.
     },
     {
       description: 'This is the description of a person.',
@@ -63,7 +64,8 @@ describe('PeopleComponent', () => {
       startYear: 2017,
       studying: 'This is the studying of a person.',
       pronouns: 'These are the pronouns of a person',
-      portraitLink: 'This is the portrait link of a person.'
+      portraitLink: 'This is the portrait link of a person.',
+      socialMedia: 'This is the social media of a person'.
     },
   ]];
 

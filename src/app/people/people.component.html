@@ -12,7 +12,7 @@
                       <p>{{person.studying}}</p>
                     </mat-card-subtitle>
                   </mat-card-header>
-                  <img mat-card-image src="https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/234/2018/09/04094403/Alex-Surowiec.png" alt="Photo of Alex Surowiec">
+                  <img mat-card-image [src]="person.portraitLink" [alt]="'Photo of ' + person.name">
                   <mat-card-content>
                     <p>
                       {{person.startYear}} - {{person.endingYear}}
