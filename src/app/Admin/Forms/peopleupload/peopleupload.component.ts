@@ -19,6 +19,7 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
   @ViewChild('image') imageValue: ElementRef;
   message:string;
   OldInfo:any;
+
   stream: Subscription;
 
   constructor(private fb: FormBuilder,
@@ -27,15 +28,14 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.stream = this.auth.user.subscribe(user => {
-      this.CRUD.fetchIndivdualData(user).subscribe(user => {
-        this.OldInfo = user;
-        this.personForm = this.CRUD.quickAssign(this.personForm, user);
-      })
-    })
-    
+      this.CRUD.fetchIndivdualData(user).subscribe(u => {
+        this.OldInfo = u;
+        this.personForm = this.CRUD.quickAssign(this.personForm, u);
+      });
+    });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.stream.unsubscribe();
   }
 
@@ -58,24 +58,22 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.message = "processing";
-    let editedInfo = this.OldInfo;
-    Object.keys(this.personForm.controls).forEach(key =>{
-      editedInfo[key] = this.personForm.controls[key].value
-    })
-    console.log(editedInfo)
+    this.message = 'processing';
+    const editedInfo = this.OldInfo;
+    Object.keys(this.personForm.controls).forEach(key => {
+      editedInfo[key] = this.personForm.controls[key].value;
+    });
     return this.CRUD.editImages([`Profiles/${editedInfo.name}`], [this.imageEvent], [this.OldInfo.portraitLink])
     .then(link => {
       editedInfo.portraitLink = link[0];
-      return this.CRUD.editItem(editedInfo, 'people', this.OldInfo.key)
+      return this.CRUD.editItem(editedInfo, 'people', this.OldInfo.key);
     }).then(() => {
-      this.message = "submission successful!";
-      this.onReset()
+      this.message = 'submission successful!';
+      this.onReset();
     });
   }
 
   onReset() {
-    //this.personForm = this.createForm();
     this.imageEvent = undefined;
     this.imageValue.nativeElement.value = '';
   }
