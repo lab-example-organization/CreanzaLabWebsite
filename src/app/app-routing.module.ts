@@ -8,6 +8,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { InteractiveProjectsComponent } from './interactive-projects/interactive-projects.component';
 import { visitAstChildren } from '@angular/compiler';
 import { ResolverService } from './individual/resolver.service';
+import { ResearchComponent } from './research/research.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'publications', component: PublicationsComponent},
   {path: 'individual', component: IndividualComponent},
   {path: 'userinfo', component: UserInfoComponent},
-  {path: 'interactive', component: InteractiveProjectsComponent}
+  {path: 'interactive', component: InteractiveProjectsComponent},
+  {path: 'research', component: ResearchComponent}
 ];
 
 

@@ -26,6 +26,7 @@ import { InteractiveProjectsComponent } from './interactive-projects/interactive
 import { AdministrationModule } from './Admin/administration.module';
 
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
+import { ResearchComponent } from './research/research.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
     HomeComponent,
     UserInfoComponent,
     IndividualComponent,
-    InteractiveProjectsComponent
+    InteractiveProjectsComponent,
+    ResearchComponent
   ],
   imports: [
     BrowserModule,
