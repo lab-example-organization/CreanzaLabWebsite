@@ -24,6 +24,7 @@ describe('PeopleComponent', () => {
       email: 'This is the email of a person.',
       publications: 'Publications',
       project: 'This is the project of a person.',
+      socialMedia: 'This is the social media of a person.',
       projects: [
         {
           title: 'First project title',
@@ -48,6 +49,7 @@ describe('PeopleComponent', () => {
       email: 'This is the email of a person.',
       publications: 'Publications',
       project: 'This is the project of a person.',
+      socialMedia: 'This is the social media of a person.',
       projects: [
         {
           title: 'First project title',
