@@ -30,10 +30,11 @@ export class EditMembersComponent implements OnInit {
     });
   }
 
-  onSubmit(){
-    const newPerson = Object.assign({}, this.newPersonForm.value)
-    newPerson.portraitLink = "https://firebasestorage.googleapis.com/v0/b/creanza-lab-208216.appspot.com/o/Profiles%2FPlaceHolder.jpg?alt=media&token=21990311-773c-41ad-9949-c4a34812db2a"
-    this.CRUD.uploadItem(newPerson, 'people').then(() => this.message = 'successful upload!')
+  onSubmit() {
+    const newPerson = Object.assign({}, this.newPersonForm.value);
+    newPerson.portraitLink = 'https://firebasestorage.googleapis.com/v0/b/creanza-lab-208216.appspot.com' +
+                             '/o/Profiles%2FPlaceHolder.jpg?alt=media&token=21990311-773c-41ad-9949-c4a34812db2a';
+    this.CRUD.uploadItem(newPerson, 'people').then(() => this.message = 'successful upload!');
   }
 
 }

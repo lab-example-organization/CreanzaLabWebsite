@@ -1,13 +1,16 @@
 <div id="outer">
-  <a class="item"
-  *ngFor="let member of collect"
-  [routerLink]="member.Name"
-  role="button">
+  <div class="item"
+  *ngFor="let member of collect, let i = index"
+  role="button"
+  (click)='onPick(i)'>
     <div id="imageholder">
         <img class="thumb" [src]="member.Links[0]" alt=""><br>
     </div>
     <div class="thumbtext">{{ member.Name }}</div>
-  </a> 
+  </div> 
 </div>
 
 <br>
+<div [style.display]="BlowUpVisible?'block':'none'">
+  <app-blow-up></app-blow-up>
+</div>

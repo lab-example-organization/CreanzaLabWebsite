@@ -19,26 +19,26 @@ export class PublicationuploadComponent implements OnInit {
   }
 
   onSubmit() {
-    let newPublications = Object.assign({}, this.publicationForm.value);
-    newPublications.authors = this.formatAuthors(newPublications.authors)
+    const newPublications = Object.assign({}, this.publicationForm.value);
+    newPublications.authors = this.formatAuthors(newPublications.authors);
     console.log(newPublications);
     this.CRUD.uploadItem(newPublications, 'publications')
-    .then(() => this.message = "Success!")
+    .then(() => this.message = 'Success!');
   }
 
   formatAuthors(authors: any[]) {
-    let finalAuthors: string[] = [];
+    const finalAuthors: string[] = [];
     authors.forEach(author => {
       finalAuthors.push(author.name);
-    })
+    });
     return finalAuthors;
   }
   addAuthor(add: boolean) {
-    let authors = <FormArray>this.publicationForm.controls.authors
-    if(add){
-      authors.push(this.fb.group({name: ''}))
-    }else{
-      authors.removeAt(authors.length-1)
+    const authors = <FormArray>this.publicationForm.controls.authors;
+    if (add) {
+      authors.push(this.fb.group({name: ''}));
+    } else {
+      authors.removeAt(authors.length - 1);
     }
   }
   createForm() {
@@ -53,6 +53,6 @@ export class PublicationuploadComponent implements OnInit {
     first_page: '',
     last_page: '',
     article_number: ''
-    })
+    });
   }
 }

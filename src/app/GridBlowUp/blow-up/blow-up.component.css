@@ -1,5 +1,5 @@
 /*blow up image view*/
-nav#biggerouter {
+div#biggerouter {
     height: 100%;
     width: 100%;
     position: fixed;

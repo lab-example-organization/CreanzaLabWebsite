@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
+
 import { PublicationuploadComponent } from './publicationupload.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('PublicationuploadComponent', () => {
   let component: PublicationuploadComponent;
@@ -8,7 +12,15 @@ describe('PublicationuploadComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PublicationuploadComponent ]
+      declarations: [ PublicationuploadComponent ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+      ],
+      providers: [
+        { provide: AngularFirestore },
+        { provide: AngularFireStorage },
+      ],
     })
     .compileComponents();
   }));

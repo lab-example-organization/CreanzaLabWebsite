@@ -27,8 +27,8 @@ import { AdministrationModule } from './Admin/administration.module';
 
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 import { ResearchComponent } from './research/research.component';
-import { BlowUpComponent } from './GridBlowUp/blow-up/blow-up.component';
-import { BlowUpMasterComponent } from './GridBlowUp/blow-up-master/blow-up-master.component';
+import { GridBlowUpModule } from './GridBlowUp/grid-blow-up.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,11 +39,11 @@ import { BlowUpMasterComponent } from './GridBlowUp/blow-up-master/blow-up-maste
     IndividualComponent,
     InteractiveProjectsComponent,
     ResearchComponent
-    BlowUpComponent,
-    BlowUpMasterComponent
   ],
   imports: [
     BrowserModule,
+
+    GridBlowUpModule,
 
     MatButtonModule,
     MatCardModule,
