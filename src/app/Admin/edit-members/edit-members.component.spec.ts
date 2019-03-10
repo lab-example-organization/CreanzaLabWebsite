@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditMembersComponent } from './edit-members.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 describe('EditMembersComponent', () => {
   let component: EditMembersComponent;
@@ -8,7 +11,15 @@ describe('EditMembersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditMembersComponent ]
+      declarations: [ EditMembersComponent ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+      ],
+      providers: [
+        { provide: AngularFirestore },
+        { provide: AngularFireStorage },
+      ],
     })
     .compileComponents();
   }));
