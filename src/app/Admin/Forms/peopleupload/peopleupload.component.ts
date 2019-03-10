@@ -17,8 +17,8 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
   personForm = this.createForm();
   imageEvent: any;
   @ViewChild('image') imageValue: ElementRef;
-  message:string;
-  OldInfo:any;
+  message: string;
+  OldInfo: any;
 
   stream: Subscription;
 
