@@ -13,7 +13,6 @@ import { SocialMedia } from '../Classes/socialMedia';
   styleUrls: ['./individual.component.css']
 })
 export class IndividualComponent implements OnInit {
-  people$: Observable<Person>;
   people: Person;
   socialMedia: SocialMedia;
   constructor(private peopleserv: PeopleService,

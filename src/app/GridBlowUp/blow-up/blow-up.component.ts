@@ -22,17 +22,17 @@ export class BlowUpComponent implements OnInit {
 
   constructor(private router: Router,
               private location: Location,
-              private GridBlowUpService: GridBlowUpService) { }
+              private gridBlowUpService: GridBlowUpService) { }
 
   ngOnInit() {
-    this.GridBlowUpService.index.subscribe(temp => this.index = temp);
-    this.GridBlowUpService.figureArray.subscribe(temp => this.array = temp);
+    this.gridBlowUpService.index.subscribe(temp => this.index = temp);
+    this.gridBlowUpService.figureArray.subscribe(temp => this.array = temp);
     setTimeout(() => { this.onResize(); } , 10);
   }
 
   onResize() {
     this.textHeight = this.bigger.nativeElement.offsetHeight - 60;
-    if(this.textHeight < 400) {
+    if (this.textHeight < 400) {
       this.textHeight = 400;
     }
   }
@@ -63,6 +63,6 @@ export class BlowUpComponent implements OnInit {
     }
   }
   onClickOut() {
-    this.GridBlowUpService.visible.next(false);
+    this.gridBlowUpService.visible.next(false);
   }
 }
