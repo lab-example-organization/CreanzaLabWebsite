@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Person } from '../Classes/person';
 import { PeopleService } from '../people/people.service';
 import { map } from 'rxjs/operators';
@@ -13,15 +13,15 @@ import { SocialMedia } from '../Classes/socialMedia';
   styleUrls: ['./individual.component.css']
 })
 export class IndividualComponent implements OnInit {
-  people: Person;
+  person$: Observable<Person>;
   socialMedia: SocialMedia;
   constructor(private peopleserv: PeopleService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.data.subscribe((data: {person: any}) => {
-      this.people = data.person;
-      this.socialMedia = JSON.parse(this.people.socialMedia);
+    this.route.data.subscribe((data: {person: Person}) => {
+      this.person$ = of(data.person);
+      this.socialMedia = JSON.parse(data.person.socialMedia);
     });
   }
 
