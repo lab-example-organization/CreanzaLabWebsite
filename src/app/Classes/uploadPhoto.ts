@@ -3,5 +3,4 @@ export class UploadPhoto {
     date: string;
     caption: string;
     link: string;
-    
 }

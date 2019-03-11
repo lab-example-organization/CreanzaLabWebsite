@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatListModule, MatList } from '@angular/material/list';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
+
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { EditCardComponent } from './edit-card/edit-card.component';
@@ -11,7 +14,6 @@ import { EditMembersComponent } from './edit-members/edit-members.component';
 import { EditPublicationsComponent } from './edit-publications/edit-publications.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { PeopleuploadComponent } from './Forms/peopleupload/peopleupload.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { PublicationuploadComponent } from './Forms/publicationupload/publicationupload.component';
 
 @NgModule({
@@ -33,6 +35,7 @@ import { PublicationuploadComponent } from './Forms/publicationupload/publicatio
     CommonModule,
     ReactiveFormsModule,
 
+    MatListModule,
     AdministrationRoutingModule
   ]
 })

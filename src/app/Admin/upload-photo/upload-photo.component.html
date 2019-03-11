@@ -1,33 +1,17 @@
 <mat-list role="list" *ngIf="uploadPhotos$ | async as Photos">
-    <mat-list-item role="listitem"  *ngFor="let photo of Photos">
-        <div>
-            {{ photo.name }}
-            {{ photo.date}}
-            {{ photo.caption}}
-        </div>
+  <mat-list-item role="listitem" *ngFor="let photo of Photos">
+    {{ photo.name }}
+    {{ photo.date }}
+    {{ photo.caption }}
   </mat-list-item>
 </mat-list>
 
-
-
-
-
-
-
-
-
-
-  <form [formGroup]="UploadPhotosForm">
-
-  <p> Photo Name: <input formControlName="name" type="text"> </p>
-
+<form [formGroup]="uploadPhotosForm">
+  <p> Photo Name: <input formControlName="name" type="text"></p>
   <p> Date: <input formControlName="date" type="text"></p>
-  
   <p> Caption: <input formControlName="caption" type="text"></p>
-
   <p> Link: <input #link formControlName="link" type="file" (change)="onFile($event)"></p>
-
   <button type="submit"
-  [disabled]="!UploadPhotosForm.valid"
+  [disabled]="!uploadPhotosForm.valid"
   (click)="onSubmit()">Submit</button> {{ message }}
-  </form>
+</form>

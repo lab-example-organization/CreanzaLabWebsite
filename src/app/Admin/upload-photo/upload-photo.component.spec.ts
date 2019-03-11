@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UploadPhotoComponent } from './upload-photo.component';
+import { MatListModule } from '@angular/material/list';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 describe('UploadPhotoComponent', () => {
   let component: UploadPhotoComponent;
@@ -8,7 +12,16 @@ describe('UploadPhotoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UploadPhotoComponent ]
+      declarations: [ UploadPhotoComponent ],
+      imports: [
+        MatListModule,
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      providers: [
+        { provide: AngularFireStorage },
+        { provide: AngularFirestore },
+      ]
     })
     .compileComponents();
   }));
