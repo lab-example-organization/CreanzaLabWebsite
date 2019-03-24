@@ -8,6 +8,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
+// Angular Bootstrap
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -58,6 +60,7 @@ import { GridBlowUpModule } from './GridBlowUp/grid-blow-up.module';
     AngularFireStorageModule, // imports firebase/auth, only needed for auth features,
     AngularFireAuthModule, // imports firebase/storage only needed for storage features
 
+    NgbCarouselModule,
     AdministrationModule,
 
     AppRoutingModule// this should always be LAST!!!
