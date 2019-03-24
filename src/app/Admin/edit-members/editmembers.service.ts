@@ -12,6 +12,8 @@ export class EditmembersService {
 
   userData = new BehaviorSubject<User[]>([new User]);
   personData = new BehaviorSubject<Person[]>([new Person]);
+  activeUser = new BehaviorSubject<User>(new User);
+  activePerson =  new BehaviorSubject<Person>(new Person);
 
   constructor(private CRUD: CRUDService) {
     CRUD.fetchAllData('Users').subscribe( users =>
@@ -39,6 +41,11 @@ export class EditmembersService {
     return this.getAllPeople().pipe(map(people =>
       people.find(person => person.email == email)
     ));
+  }
+
+  updateActive(email: string){
+    this.fetchUser(email).subscribe(user => this.activeUser.next(user));
+    this.fetchPerson(email).subscribe(person => this.activePerson.next(person));
   }
 
 }

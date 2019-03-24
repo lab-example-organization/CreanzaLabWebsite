@@ -17,11 +17,9 @@ export class EditMembersComponent implements OnInit {
   
   users: User[];
   people: Person[];
-  activeUser: User;
-  activePerson: Person;
-  roles = this.createRolesForm();
+  
 
-  constructor(private fb: FormBuilder,
+  constructor(
               private CRUD: CRUDService,
               private editmemberserv: EditmembersService) { }
 
@@ -30,25 +28,9 @@ export class EditMembersComponent implements OnInit {
     this.editmemberserv.personData.subscribe(personData => this.people = personData);
   }
 
-  
-  createRolesForm(){
-    return this.fb.group({
-      User: Boolean,
-      Uploader: Boolean,
-      Admin: Boolean
-    })
-  }
-
-
   onSwitchUser(who: string){
     console.log(who);
-    this.editmemberserv.fetchUser(who).subscribe(user => {
-      this.activeUser = user;
-      this.roles.patchValue({User: this.activeUser.roles[0],
-                            Uploader: this.activeUser.roles[1],
-                            Amind: this.activeUser.roles[2]});
-    });
-    this.editmemberserv.fetchPerson(who).subscribe(person => this.activePerson = person);
+    this.editmemberserv.updateActive(who);
   }
   onEditRoles(){
     //this.CRUD.editItem(editDoc, path, docKey)
