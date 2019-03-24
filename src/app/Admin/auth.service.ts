@@ -47,7 +47,7 @@ redirectUrl: string;
       const newUser:Person = people.find((person:Person) => person.email === token.email)
       if(newUser){
         const newUserData = { email: newUser.email,
-                              name: newUser.name.split(' ')[0],
+                              name: newUser.name,
                               roles: [true, false, false] };
         return this.afs.collection('Users').doc(token.uid).set(newUserData)
         .then(() => { return this.afs.doc<User>(`Users/${token.uid}`).valueChanges() } );

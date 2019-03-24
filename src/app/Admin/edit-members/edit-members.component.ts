@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { CRUDService } from '../Forms/crud.service';
+import { Person } from 'src/app/Classes/person';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/Classes/user';
+import { map, tap } from 'rxjs/operators';
+import { EditmembersService } from './editmembers.service';
 @Component({
   selector: 'app-edit-members',
   templateUrl: './edit-members.component.html',
@@ -9,32 +14,50 @@ import { CRUDService } from '../Forms/crud.service';
 })
 export class EditMembersComponent implements OnInit {
 
-  newPersonForm = this.createForm();
-  message: string;
-  positions: string[] = ['High-schooler', 'Undergraduate Student', 'Graduate Student', 'Post-Doc', 'PI', 'Alumni', 'Rotation Student'];
+  
+  users: User[];
+  people: Person[];
+  activeUser: User;
+  activePerson: Person;
+  roles = this.createRolesForm();
 
   constructor(private fb: FormBuilder,
-              private CRUD: CRUDService) { }
+              private CRUD: CRUDService,
+              private editmemberserv: EditmembersService) { }
 
   ngOnInit() {
+    this.editmemberserv.userData.subscribe(userData => this.users = userData);
+    this.editmemberserv.personData.subscribe(personData => this.people = personData);
   }
 
-  createForm() {
-    const Year = formatDate(new Date, 'yyyy', 'en');
+  
+  createRolesForm(){
     return this.fb.group({
-    email: ['', Validators.required],
-    name: ['', Validators.required],
-    description: ['Undergraduate Student', Validators.required],
-    startYear: Year,
-    endingYear: 'Present'
+      User: Boolean,
+      Uploader: Boolean,
+      Admin: Boolean
+    })
+  }
+
+
+  onSwitchUser(who: string){
+    console.log(who);
+    this.editmemberserv.fetchUser(who).subscribe(user => {
+      this.activeUser = user;
+      this.roles.patchValue({User: this.activeUser.roles[0],
+                            Uploader: this.activeUser.roles[1],
+                            Amind: this.activeUser.roles[2]});
     });
+    this.editmemberserv.fetchPerson(who).subscribe(person => this.activePerson = person);
+  }
+  onEditRoles(){
+    //this.CRUD.editItem(editDoc, path, docKey)
   }
 
-  onSubmit() {
-    const newPerson = Object.assign({}, this.newPersonForm.value);
-    newPerson.portraitLink = 'https://firebasestorage.googleapis.com/v0/b/creanza-lab-208216.appspot.com' +
-                             '/o/Profiles%2FPlaceHolder.jpg?alt=media&token=21990311-773c-41ad-9949-c4a34812db2a';
-    this.CRUD.uploadItem(newPerson, 'people').then(() => this.message = 'successful upload!');
-  }
+  onEditCard(){
 
+  }
+  onEditPage(){
+    
+  }
 }

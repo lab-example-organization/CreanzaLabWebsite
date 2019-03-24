@@ -1,19 +1,16 @@
-<h3>Add New:</h3>
-<form [formGroup]="newPersonForm">
-  <br>
-  <b>Name: </b> <input formControlName="name" class="long" type="text"><br><br>
+<app-new-memeber></app-new-memeber>
 
-  <b>GMail: </b> <input formControlName="email" class="long" type="text"><br><br>
+<h3>Edit Member: </h3>
+<b>User: </b>
+<select
+(change)="onSwitchUser($event.target.value)">
+  <option *ngFor="let user of users" [value]=user.email>
+    {{ user.name }}
+  </option>
+</select> (Users do not show up until they have logged in once!)<br>
 
-  <b>Position: </b> <select formControlName="description">
-      <option *ngFor="let position of positions"
-      [value]="position">
-        {{ position }}
-      </option>
-  </select><br><br>
-
-  <button type="submit"
-  [disabled]="!newPersonForm.valid"
-  (click)="onSubmit()">Submit</button>
-  {{ message }}
-</form>
+<b>Edit Roles:</b><br>
+<hr>
+(Remember that users can edit their own data.  The following sections exist only in case bad things happen.)<br>
+<b>Edit Card:</b><br>
+<b>Edit Page:</b><br>
