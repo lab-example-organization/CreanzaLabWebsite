@@ -8,6 +8,7 @@
 
 <form [formGroup]="uploadPhotosForm">
   <p> Photo Name: <input formControlName="name" type="text" > 
+    <!-- you are on this line of the code for next week -->
     <select name="PhotoName" *ngIf="downloadPhotos$ | async as Photos" (change)="onNameChange($event.target.value)">
       <option value="" selected disabled>Please select an option...</option>
       <option *ngFor="let photo of Photos"
