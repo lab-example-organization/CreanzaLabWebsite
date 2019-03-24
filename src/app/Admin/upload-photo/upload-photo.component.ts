@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, PatchValue } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { CRUDService } from '../Forms/crud.service';
+import { CRUDService, quickAssign } from '../Forms/crud.service';
 import { UploadPhoto } from 'src/app/Classes/uploadPhoto';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-upload-photo',
@@ -10,10 +10,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./upload-photo.component.css']
 })
 export class UploadPhotoComponent implements OnInit {
+
   uploadPhotos$: Observable<UploadPhoto>;
   uploadPhotosForm: FormGroup;
   message: string;
   eventdata: any;
+  downloadPhotos$: Observable<UploadPhoto[]>;
+   
   @ViewChild('link') link: ElementRef;
 
   constructor(private fb: FormBuilder,
@@ -21,11 +24,13 @@ export class UploadPhotoComponent implements OnInit {
 
   ngOnInit() {
     this.uploadPhotosForm = this.createForm();
+    // this.downloadPhotos$ = this.CRUD.fetchAllData('groupPhotos')
+    this.downloadPhotos$ = of([{name: "Fake_pic", 
+                                date: "11/23/19", 
+                                caption: "this is a test", 
+                                link: "thisidjsopk//"}])
   }
 
-  onFile(event: any) {
-    this.eventdata = event;
-  }
 
   onSubmit() {
     const newPhoto = Object.assign({}, this.uploadPhotosForm.value);
@@ -36,6 +41,11 @@ export class UploadPhotoComponent implements OnInit {
         this.CRUD.uploadItem(newPhoto, 'groupPhotos');
       }).then(() => this.message = 'Success!');
   }
+  
+  onNameChange(thisevent: any){
+    console.log(thisevent);
+    this.uploadPhotosForm = this.CRUD.quickAssign(this.uploadPhotosForm, thisevent)
+}
 
   createForm() {
     return this.fb.group({
