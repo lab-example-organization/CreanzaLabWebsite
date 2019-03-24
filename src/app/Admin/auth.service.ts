@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { User } from 'src/app/Classes/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { Person } from '../Classes/person';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,36 @@ redirectUrl: string;
     this.user = this.authorize.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this.afs.doc<User>(`Users/${user.uid}`).valueChanges();
+          return this.afs.doc<User>(`Users/${user.uid}`).valueChanges().pipe(
+            tap(userInfo =>{
+              if(userInfo){
+                return of (userInfo)
+              }else{
+               return this.createNewUser(user)
+              }
+            })
+          );
         } else {
           return of (null);
         }
       })
     );
+
+  }
+
+  createNewUser(token){
+    this.afs.collection<Person>('people').valueChanges().subscribe(people => {
+      const newUser:Person = people.find((person:Person) => person.email === token.email)
+      if(newUser){
+        const newUserData = { email: newUser.email,
+                              name: newUser.name.split(' ')[0],
+                              roles: [true, false, false] };
+        return this.afs.collection('Users').doc(token.uid).set(newUserData)
+        .then(() => { return this.afs.doc<User>(`Users/${token.uid}`).valueChanges() } );
+      }else{
+        return of (null);
+      }
+    });
   }
 
   googleLogin() {
