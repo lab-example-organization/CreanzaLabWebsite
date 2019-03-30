@@ -2,25 +2,27 @@
 <form [formGroup]="rolesForm">
 <b>User: </b>
 <select formControlName="User">
-  <option value="true">true</option>
-  <option value="false">false</option>
+  <option value=true>true</option>
+  <option value=false>false</option>
 </select><br>
 Users have access to Edit My Person Card and Edit My User Page 
 <br><br>
 
 <b>Uploader: </b>
 <select formControlName="Uploader">
-  <option value="true">true</option>
-  <option value="false">false</option>
+  <option value=true>true</option>
+  <option value=false>false</option>
 </select><br>
 Uploaders have access to Edit Lab Photos 
 <br><br>
 
 <b>Admin: </b>
 <select formControlName="Admin">
-  <option value="true">true</option>
-  <option value="false">false</option>
+  <option value=true>true</option>
+  <option value=false>false</option>
 </select><br>
 Admin have access to Edit Publications and Edit Members 
 <br><br>
+
+<button (click)=onEdit()>Edit</button>
 </form>

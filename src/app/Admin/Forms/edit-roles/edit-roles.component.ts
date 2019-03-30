@@ -3,6 +3,7 @@ import { User } from 'src/app/Classes/user';
 import { Person } from 'src/app/Classes/person';
 import { FormBuilder } from '@angular/forms';
 import { EditmembersService } from '../../edit-members/editmembers.service';
+import { CRUDService } from '../crud.service';
 
 @Component({
   selector: 'app-edit-roles',
@@ -11,12 +12,13 @@ import { EditmembersService } from '../../edit-members/editmembers.service';
 })
 export class EditRolesComponent implements OnInit {
 
-  activeUser: User;
+  activeUser: any;
   activePerson: Person;
   rolesForm = this.createForm();
 
   constructor(private fb: FormBuilder,
-              private editmemberserv: EditmembersService) { }
+              private editmemberserv: EditmembersService,
+              private CRUD: CRUDService) { }
 
   ngOnInit() {
     this.editmemberserv.activeUser.subscribe(aUser => {
@@ -45,7 +47,13 @@ export class EditRolesComponent implements OnInit {
   }
 
   onEdit(){
-    this.activeUser.roles = Object.assign({}, this.rolesForm.value)
+    console.log(this.rolesForm.controls.User.value)
+    this.activeUser.roles[0] = this.rolesForm.controls.User.value;
+    this.activeUser.roles[1] = this.rolesForm.controls.Uploader.value;
+    this.activeUser.roles[2] = this.rolesForm.controls.Admin.value;
+    const key = this.activeUser.key;
+    delete(this.activeUser.key);
+    //this.CRUD.editItem(this.activeUser, 'Users', key)
     console.log(this.activeUser)
   }
 }
