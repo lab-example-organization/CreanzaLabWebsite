@@ -40,7 +40,7 @@ import { GridBlowUpModule } from './GridBlowUp/grid-blow-up.module';
     UserInfoComponent,
     IndividualComponent,
     InteractiveProjectsComponent,
-    ResearchComponent
+    ResearchComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,17 +13,18 @@ export class CRUDService {
   constructor(private firebaseserv: FirebaseService) {
   }
 
-  fetchIndivdualData(user: User) {
-      return this.fetchAllData().pipe(
+  fetchIndivdualData(user: User, path: string) {
+      return this.fetchAllData(path).pipe(
         map(members =>
           members.find(member =>
             member.email === user.email)
       ));
   }
 
-  fetchAllData() {
-    return this.firebaseserv.returnCollectionWithKeys('people');
+  fetchAllData(path) {
+    return this.firebaseserv.returnCollectionWithKeys(path);
   }
+  
 
   quickAssign(Form: FormGroup, edit: any): FormGroup {
     Object.keys(Form.controls).forEach(key => {
