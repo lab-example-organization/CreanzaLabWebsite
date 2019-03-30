@@ -47,13 +47,11 @@ export class EditRolesComponent implements OnInit {
   }
 
   onEdit(){
-    console.log(this.rolesForm.controls.User.value)
-    this.activeUser.roles[0] = this.rolesForm.controls.User.value;
-    this.activeUser.roles[1] = this.rolesForm.controls.Uploader.value;
-    this.activeUser.roles[2] = this.rolesForm.controls.Admin.value;
+    this.activeUser.roles[0] = (this.rolesForm.controls.User.value === 'true' || this.rolesForm.controls.User.value === true);
+    this.activeUser.roles[1] = (this.rolesForm.controls.Uploader.value === 'true' || this.rolesForm.controls.Uploader.value === true);
+    this.activeUser.roles[2] = (this.rolesForm.controls.Admin.value === 'true' || this.rolesForm.controls.Admin.value === true);
     const key = this.activeUser.key;
-    delete(this.activeUser.key);
-    //this.CRUD.editItem(this.activeUser, 'Users', key)
-    console.log(this.activeUser)
+    delete(this.activeUser.key);  //THIS IS NOT HOW THIS SHOULD BE DONE!!
+    this.CRUD.editItem(this.activeUser, 'Users', key)
   }
 }
