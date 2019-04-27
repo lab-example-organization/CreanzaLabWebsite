@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 
 export class PeopleComponent implements OnInit {
 
-  position = {PI: 1, PostDoc: 2, GraduateStudent: 3, UndergraduateStudent: 4, HighSchoolStudent: 5, ResearchAssistant: 6, Alumni: 7}
+  position = {PI: 1, PostDoc: 2, GraduateStudent: 3, UndergraduateStudent: 4, HighSchoolStudent: 5, ResearchAssistant: 6, Alumni: 7};
 
   people$: Observable<Person[]>;
 
@@ -23,9 +23,9 @@ export class PeopleComponent implements OnInit {
       map(people => people.sort(
         (a, b) => {
           return this.position[a.description.replace(/[-|\s]/g, '')] <
-            this.position[b.description.replace(/[-|\s]/g, '')] ? -1 :
-            this.position[a.description.replace(/[-|\s]/g, '')] ===
-              this.position[b.description.replace(/[-|\s]/g, '')] ? 0 : 1;
+                 this.position[b.description.replace(/[-|\s]/g, '')] ? -1 :
+                 this.position[a.description.replace(/[-|\s]/g, '')] ===
+                 this.position[b.description.replace(/[-|\s]/g, '')] ? 0 : 1;
         })));
   }
 }

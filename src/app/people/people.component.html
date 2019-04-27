@@ -6,13 +6,16 @@
                   <mat-card-header>
                     <div mat-card-avatar class="example-header-image"></div>
                     <mat-card-title>{{person.name}}</mat-card-title>
-                    <mat-card-subtitle>
-                      <p>{{person.description}}</p>
-                      <div *ngIf="person.pronouns"><p>{{person.pronouns}}</p></div>
-                      <p>{{person.studying}}</p>
+                    <mat-card-subtitle class="ex2">
+                      <div>{{person.description}}</div>
+                      <div *ngIf="person.pronouns">
+                        <div>{{person.pronouns}}</div>
+                      </div>
+                      <div>{{person.studying}}</div>
                     </mat-card-subtitle>
                   </mat-card-header>
-                  <img mat-card-image [src]="person.portraitLink" [alt]="'Photo of ' + person.name">
+                  <p></p>
+                  <img class="ex1" mat-card-image [src]="person.portraitLink" [alt]="'Photo of ' + person.name">
                   <mat-card-content>
                     <p>
                       {{person.startYear}} - {{person.endingYear}}
