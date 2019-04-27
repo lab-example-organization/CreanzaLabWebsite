@@ -18,6 +18,7 @@ export class UploadPhotoComponent implements OnInit {
   downloadPhotos$: Observable<UploadPhoto[]>;
   photovariable: string;
   @ViewChild('link') link: ElementRef;
+  @ViewChild('reset') reset: HTMLSelectElement; 
 
   constructor(private fb: FormBuilder,
               private CRUD: CRUDService) { }
@@ -34,6 +35,7 @@ export class UploadPhotoComponent implements OnInit {
 
   onFile(event: any) {
     this.eventdata = event;
+    this.uploadPhotosForm.patchValue({link: 'stufforsomehting'})
   }
 
   onSubmit() {
@@ -43,7 +45,7 @@ export class UploadPhotoComponent implements OnInit {
       [this.eventdata]).then(url => {
         newPhoto.link = url[0];
         this.CRUD.uploadItem(newPhoto, 'groupPhotos');
-      }).then(() => this.message = 'Success!');
+      }).then(() => {this.message = 'Success!'; this.onReset()});
   }
 
   onUpdate() {
@@ -55,7 +57,7 @@ export class UploadPhotoComponent implements OnInit {
                             return this.CRUD.editItem(newPhoto, 'groupPhotos', this.photovariable);
                           }).then(() => {
                             this.message = 'submission successful!';
-                            // this.onReset();
+                            this.onReset();
                           });
     
 
@@ -72,6 +74,23 @@ export class UploadPhotoComponent implements OnInit {
     )
     console.log(this.uploadPhotosForm.value)
 }
+  onDelete() {
+
+    this.CRUD.deleteItem([this.uploadPhotosForm.controls.link.value],
+      'groupPhotos',this.photovariable).then(() => {this.message = "Delete successful"; this.onReset()})
+    
+
+
+
+  }
+
+  onReset() {
+    this.eventdata = undefined;
+    this.link.nativeElement.value = '';
+    this.uploadPhotosForm = this.createForm();
+    this.photovariable = undefined;
+    // this.reset.selectedIndex = 0;
+  }
 
   createForm() {
     return this.fb.group({

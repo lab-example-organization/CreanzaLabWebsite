@@ -9,7 +9,7 @@
 <form [formGroup]="uploadPhotosForm">
   <p> Photo Name: <input formControlName="name" type="text" > 
     <!-- you are on this line of the code for next week -->
-    <select name="PhotoName" *ngIf="downloadPhotos$ | async as Photos" (change)="onNameChange($event.target.value)">
+    <select #reset name="PhotoName" *ngIf="downloadPhotos$ | async as Photos" (change)="onNameChange($event.target.value)">
       <option value="" selected disabled>Please select an option...</option>
       <option *ngFor="let photo of Photos"
           [value] = photo.name> {{ photo.name}}
@@ -27,11 +27,17 @@
   
 
   <button type="submit"
-  [disabled]="!uploadPhotosForm.valid"
+  [disabled]="(!uploadPhotosForm.valid || (photovariable !== undefined))"
   (click)="onSubmit()">Submit</button> {{ message }}
 
-  <button type="Update" (click)="onUpdate()">Update Pic
-
+  <button type="Update" 
+  (click)="onUpdate()" 
+  [disabled]="photovariable === undefined"
+  >Update Pic
   </button>
   
+  <button type = "Delete" 
+  (click)="onDelete()"
+  [disabled]="photovariable === undefined"
+  > Delete </button> 
 </form>
