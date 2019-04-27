@@ -21,10 +21,11 @@ export class PeopleComponent implements OnInit {
   ngOnInit() {
     this.people$ = this.peopleserv.getPeople().pipe(
       map(people => people.sort(
-        (a,b)=> this.position[a.description.replace(/[-|\s]/g, "")]<
-                this.position[b.description.replace(/[-|\s]/g, "")]?-1:
-
-                this.position[a.description.replace(/[-|\s]/g, "")]===
-                this.position[b.description.replace(/[-|\s]/g, "")]?0:1)))
+        (a, b) => {
+          return this.position[a.description.replace(/[-|\s]/g, '')] <
+            this.position[b.description.replace(/[-|\s]/g, '')] ? -1 :
+            this.position[a.description.replace(/[-|\s]/g, '')] ===
+              this.position[b.description.replace(/[-|\s]/g, '')] ? 0 : 1;
+        })));
   }
 }
