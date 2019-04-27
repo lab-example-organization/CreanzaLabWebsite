@@ -28,7 +28,3 @@ export class PeopleComponent implements OnInit {
                 this.position[b.description.replace(/[-|\s]/g, "")]?0:1)))
   }
 }
-
-// string.replace(/\s/g, "")
-// string.replace(/-/g, "")
-// string.replace(/[-|\s]/g, "")
