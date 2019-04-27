@@ -23,12 +23,15 @@
 
   <p> Date: <input formControlName="date" type="text"></p>
   <p> Caption: <input formControlName="caption" type="text"></p>
-  <p> Link: <input #link formControlName="link" type="file" ></p>
+  <p> Link: <input #link  type="file" (change)="onFile($event)"></p> 
   
 
   <button type="submit"
   [disabled]="!uploadPhotosForm.valid"
   (click)="onSubmit()">Submit</button> {{ message }}
 
-  <button type="Update">Update Pic</button>
+  <button type="Update" (click)="onUpdate()">Update Pic
+
+  </button>
+  
 </form>

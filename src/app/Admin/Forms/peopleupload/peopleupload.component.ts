@@ -28,7 +28,7 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.stream = this.auth.user.subscribe(user => {
-      this.CRUD.fetchIndivdualData(user).subscribe(u => {
+      this.CRUD.fetchIndivdualData(user, 'people').subscribe(u => {
         this.OldInfo = u;
         this.personForm = this.CRUD.quickAssign(this.personForm, u);
       });

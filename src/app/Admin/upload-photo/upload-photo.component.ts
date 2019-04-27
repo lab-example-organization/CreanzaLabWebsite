@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, PatchValue } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { CRUDService, quickAssign } from '../Forms/crud.service';
+import { CRUDService } from '../Forms/crud.service';
 import { UploadPhoto } from 'src/app/Classes/uploadPhoto';
 import { Observable, of } from 'rxjs';
 
@@ -16,7 +16,7 @@ export class UploadPhotoComponent implements OnInit {
   message: string;
   eventdata: any;
   downloadPhotos$: Observable<UploadPhoto[]>;
-   
+  photovariable: string;
   @ViewChild('link') link: ElementRef;
 
   constructor(private fb: FormBuilder,
@@ -24,13 +24,17 @@ export class UploadPhotoComponent implements OnInit {
 
   ngOnInit() {
     this.uploadPhotosForm = this.createForm();
-    // this.downloadPhotos$ = this.CRUD.fetchAllData('groupPhotos')
-    this.downloadPhotos$ = of([{name: "Fake_pic", 
-                                date: "11/23/19", 
-                                caption: "this is a test", 
-                                link: "thisidjsopk//"}])
+    this.downloadPhotos$ = this.CRUD.fetchAllData('groupPhotos')
+    // this.downloadPhotos$ = of([{name: "Fake_pic", 
+    //                             date: "11/23/19", 
+    //                             caption: "this is a test", 
+    //                             link: "thisidjsopk//"}])
+
   }
 
+  onFile(event: any) {
+    this.eventdata = event;
+  }
 
   onSubmit() {
     const newPhoto = Object.assign({}, this.uploadPhotosForm.value);
@@ -41,10 +45,32 @@ export class UploadPhotoComponent implements OnInit {
         this.CRUD.uploadItem(newPhoto, 'groupPhotos');
       }).then(() => this.message = 'Success!');
   }
+
+  onUpdate() {
+    const newPhoto = Object.assign({}, this.uploadPhotosForm.value);
+    console.log(newPhoto);
+    this.CRUD.editImages([`groupPhotos/${newPhoto.date}${newPhoto.name}`], 
+                          [this.eventdata], [newPhoto.link]).then(link => {
+                            newPhoto.link = link[0];
+                            return this.CRUD.editItem(newPhoto, 'groupPhotos', this.photovariable);
+                          }).then(() => {
+                            this.message = 'submission successful!';
+                            // this.onReset();
+                          });
+    
+
+  }
   
   onNameChange(thisevent: any){
     console.log(thisevent);
-    this.uploadPhotosForm = this.CRUD.quickAssign(this.uploadPhotosForm, thisevent)
+    this.CRUD.fetchTargetData(thisevent,'name','groupPhotos').subscribe(photodata => 
+      
+    {this.uploadPhotosForm = this.CRUD.quickAssign(this.uploadPhotosForm, photodata); 
+      this.photovariable = photodata.key
+    }
+    
+    )
+    console.log(this.uploadPhotosForm.value)
 }
 
   createForm() {
