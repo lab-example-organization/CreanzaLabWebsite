@@ -14,3 +14,9 @@ div#containTwitter{
 .lab-caption {
   background-color: black;
 }
+img#carouselImg{
+  width: 600px;
+  height: 400px;
+  object-fit: contain;
+  background-color: #363636
+}

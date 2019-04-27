@@ -10,6 +10,6 @@ export class HomeService {
   constructor(private firebaseserv: FirebaseService) { }
 
   getImages() {
-    return this.firebaseserv.returnCollect('images');
+    return this.firebaseserv.returnCollect('groupPhotos');
   }
 }

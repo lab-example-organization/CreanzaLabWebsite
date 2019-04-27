@@ -1,8 +1,9 @@
 <div id="outer">
   <div style="margin:25px;">
-    <ngb-carousel *ngIf="images$ | async as images" [pauseOnHover]="true">
+    <ngb-carousel *ngIf="images$ | async as images" [pauseOnHover]="true"
+    [showNavigationIndicators]="false">
       <ng-template ngbSlide *ngFor="let image of images">
-        <img [src]="image.link" alt="{{ image.caption }}" style="height:400px; width:600px;">
+        <img id="carouselImg" [src]="image.link" alt="{{ image.caption }}">
         <div class="carousel-caption">
           <span class="lab-caption">{{ image.caption }}</span>
         </div>
