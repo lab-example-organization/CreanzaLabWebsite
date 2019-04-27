@@ -7,11 +7,31 @@
 </mat-list>
 
 <form [formGroup]="uploadPhotosForm">
-  <p> Photo Name: <input formControlName="name" type="text"></p>
+  <p> Photo Name: <input formControlName="name" type="text" > 
+    <!-- you are on this line of the code for next week -->
+    <select name="PhotoName" *ngIf="downloadPhotos$ | async as Photos" (change)="onNameChange($event.target.value)">
+      <option value="" selected disabled>Please select an option...</option>
+      <option *ngFor="let photo of Photos"
+          [value] = photo.name> {{ photo.name}}
+           
+        </option> 
+    
+        
+      
+
+    </select> </p>
+
   <p> Date: <input formControlName="date" type="text"></p>
   <p> Caption: <input formControlName="caption" type="text"></p>
-  <p> Link: <input #link formControlName="link" type="file" (change)="onFile($event)"></p>
+  <p> Link: <input #link  type="file" (change)="onFile($event)"></p> 
+  
+
   <button type="submit"
   [disabled]="!uploadPhotosForm.valid"
   (click)="onSubmit()">Submit</button> {{ message }}
+
+  <button type="Update" (click)="onUpdate()">Update Pic
+
+  </button>
+  
 </form>

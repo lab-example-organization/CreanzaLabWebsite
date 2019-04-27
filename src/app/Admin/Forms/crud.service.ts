@@ -103,6 +103,14 @@ export class CRUDService {
     return this.firebaseserv.editDocument(editDoc, path, docKey);
   }
 
+  fetchTargetData(target: string, targetType:string, path: string) {
+    return this.fetchAllData(path).pipe(
+      map(members =>
+        members.find(member =>
+          member[targetType] === target)
+    ));
+}
+
   deleteItem(StorageUrls: string[] = [], docPath: string, docKey: string) {
     return Promise.all(StorageUrls.map(pic => {
       return this.firebaseserv.deleteImage(pic);
