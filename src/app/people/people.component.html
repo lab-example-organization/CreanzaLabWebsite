@@ -1,36 +1,36 @@
 <div *ngIf="people$ | async as people">
-    <div class="parent">
+    <div class="background">
         <div *ngFor="let person of people">
+          <mat-card>
             
-                <mat-card class="example-card child">
-                  <mat-card-header>
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>{{person.name}}</mat-card-title>
-                    <mat-card-subtitle class="ex2">
-                      <div>{{person.description}}</div>
-                      <div *ngIf="person.pronouns">
-                        <div>{{person.pronouns}}</div>
-                      </div>
-                      <div>{{person.studying}}</div>
-                    </mat-card-subtitle>
-                  </mat-card-header>
-                  <p></p>
-                  <img class="ex1" mat-card-image [src]="person.portraitLink" [alt]="'Photo of ' + person.name">
-                  <mat-card-content>
-                    <p>
-                      {{person.startYear}} - {{person.endingYear}}
-                    </p>
-                    <p>
-                      {{person.project}}
-                    </p>
-                  </mat-card-content>
-                  <mat-card-actions>
-                    <nav *ngIf="person.name">
-                        <a class="navbar" [routerLink]="person.name.split(' ').join('-')">Personal Page</a>
-                    </nav>
-                  </mat-card-actions>
-                </mat-card>
-            
-              </div> 
+            <mat-card-header>
+              
+              <mat-card-title>
+                {{person.name}}
+                <span class="optionalPronouns" *ngIf="person.pronouns">
+                  ({{person.pronouns}})
+                </span>
+              </mat-card-title>
+              <mat-card-subtitle>
+                <div class="emptySpace">{{person.description}}</div>
+                <div class="emptySpace">{{person.studying}}</div>
+                <div class="emptySpace">{{person.startYear}} - {{person.endingYear}}</div>
+              </mat-card-subtitle>
+              <div mat-card-avatar class="bubble-pic"></div> <!--  -->
+            </mat-card-header>
+             
+            <img mat-card-image [src]="person.portraitLink" [alt]="'Photo of ' + person.name">
+            <mat-card-content>
+              <p class="block-with-text">
+                {{person.project}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <nav *ngIf="person.name">
+                  <a class="navbar" [routerLink]="person.name.split(' ').join('-')">Personal Page</a>
+              </nav>
+            </mat-card-actions>
+          </mat-card>
+        </div> 
     </div>
 </div>
