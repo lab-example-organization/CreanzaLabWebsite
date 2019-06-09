@@ -1,18 +1,23 @@
 <div id="outer">
-    <div id="slideshow" *ngIf="images$ | async as images">
-            <div id="slideshowloop" *ngFor="let image of images">
-                <img class="slideshow" [src]="image.link">
-                <span class="slideshow">{{ image.caption }}</span>
-            </div>
+  <div style="margin:25px;">
+    <ngb-carousel *ngIf="images$ | async as images" [pauseOnHover]="true"
+    [showNavigationIndicators]="false">
+      <ng-template ngbSlide *ngFor="let image of images">
+        <img id="carouselImg" [src]="image.link" alt="{{ image.caption }}">
+        <div class="carousel-caption">
+          <span class="lab-caption">{{ image.caption }}</span>
         </div>
-        
-        <div id="containTwitter">
-            <ngx-twitter-timeline 
-            [data]="{sourceType: 'url',
-                        url: 'https://twitter.com/creanzalab?lang=en'}"
-            [opts]="{tweetLimit: 20,
-                        width: 440,
-                        theme: 'dark'}"
-        ></ngx-twitter-timeline>
-        </div>            
+      </ng-template>
+    </ngb-carousel>
+  </div>
+
+  <div id="containTwitter">
+    <ngx-twitter-timeline
+    [data]="{sourceType: 'url',
+              url: 'https://twitter.com/creanzalab?lang=en'}"
+    [opts]="{tweetLimit: 20,
+              width: 440,
+              theme: 'dark'}"
+    ></ngx-twitter-timeline>
+  </div>
 </div>

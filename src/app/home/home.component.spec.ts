@@ -5,6 +5,8 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { of } from 'rxjs';
 
 describe('HomeComponent', () => {
@@ -26,7 +28,7 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
-      imports: [ NgxTwitterTimelineModule ],
+      imports: [ NgxTwitterTimelineModule, NgbCarouselModule ],
       providers: [
         { provide: AngularFirestore, useValue: angularFirestoreStub },
         { provide: AngularFireStorage },

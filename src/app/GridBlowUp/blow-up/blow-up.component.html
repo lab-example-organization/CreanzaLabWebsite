@@ -1,0 +1,27 @@
+<div id="biggerouter">
+
+  <div id="biggerback" (click)="onClickOut()"></div>
+
+  <!-- Left and Right arrow "buttons" -->
+  <img #left id="left" src="assets/images/back.svg" alt="Prev"
+  (click)="onArrow(-1)" tabindex="0" role="button">
+
+  <img #right id="right" src="assets/images/forward.svg" alt="Next"
+  (click)="onArrow(1)" tabindex="0" role="button">
+
+  <!-- Image and Text -->
+  <div id="content" (window:resize)="onResize()">
+    <div class="imgcaption" id="aligner" *ngIf="array[index]">
+      <img #bigger id="bigger" [src]="array[index].Links[0]" (load)="onResize()"
+        [alt]="array[index].AltText ? array[index].AltText : ''">
+
+      <div *ngIf="array[index].Description" class="textblock"
+        [style.height.px]="textHeight">
+        <h3>{{ array[index].Name }}</h3>
+        {{ array[index].Description }}
+      </div>
+
+    </div>
+  </div>
+
+</div>

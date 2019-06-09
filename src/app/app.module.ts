@@ -8,6 +8,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
+// Angular Bootstrap
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -17,31 +19,33 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PeopleComponent } from './people/people.component';
-import { PeopleuploadComponent } from './peopleupload/peopleupload.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { HomeComponent } from './home/home.component';
-import { AdminComponent } from './admin/admin.component';
-import { LoginComponent } from './login/login.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { IndividualComponent } from './individual/individual.component';
 import { InteractiveProjectsComponent } from './interactive-projects/interactive-projects.component';
 
+import { AdministrationModule } from './Admin/administration.module';
+
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
+import { ResearchComponent } from './research/research.component';
+import { GridBlowUpModule } from './GridBlowUp/grid-blow-up.module';
+
 @NgModule({
   declarations: [
     AppComponent,
     PeopleComponent,
-    PeopleuploadComponent,
     PublicationsComponent,
     HomeComponent,
-    AdminComponent,
-    LoginComponent,
     UserInfoComponent,
     IndividualComponent,
-    InteractiveProjectsComponent
+    InteractiveProjectsComponent,
+    ResearchComponent,
   ],
   imports: [
     BrowserModule,
+
+    GridBlowUpModule,
 
     MatButtonModule,
     MatCardModule,
@@ -56,9 +60,13 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
     AngularFireStorageModule, // imports firebase/auth, only needed for auth features,
     AngularFireAuthModule, // imports firebase/storage only needed for storage features
 
+    NgbCarouselModule,
+    AdministrationModule,
+
     AppRoutingModule// this should always be LAST!!!
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

@@ -11,41 +11,12 @@ div#containTwitter{
     margin:10px;
 }
 
-div#slideshow{
-    position: relative;
-    display:inline-flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    width:600px;
-    flex-grow: 1;
-    align-content: center;
-    background-color: #232323;
-    margin:10px;
-    align-items: center;
+.lab-caption {
+  background-color: black;
 }
-div#slideshowloop{
-    height:650px;
-}
-
-img.slideshow{
-    position: relative;
-    object-fit: contain;
-    height:100%;
-    max-height:inherit;
-    min-width: 0px;
-    margin:5px;
-
-    background-color: blueviolet;
-}
-
-span.slideshow{
-    display: block;
-    margin:5px;
-    position: relative;
-    bottom:15%;
-    width:100%;
-    z-index: 2;
-    background-color: rgba(0,0,0,.8);
-    color:whitesmoke;
-    font-size: 20px;
+img#carouselImg{
+  width: 600px;
+  height: 400px;
+  object-fit: contain;
+  background-color: #363636
 }

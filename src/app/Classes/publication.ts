@@ -10,3 +10,4 @@ export class Publication {
     last_page?: number;
     article_number?: number;
 }
+

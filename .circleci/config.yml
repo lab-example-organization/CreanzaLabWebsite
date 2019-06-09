@@ -17,10 +17,49 @@ jobs:
             - v1-dependencies-
 
       - run: npm install
+      - run: npm install firebase-tools
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI
+      # Lint the source code
+      - run:
+          name: Linting
+          command: npm run lint
+
+      # Unit test the source code
+      - run:
+          name: Testing
+          command: |
+            npm run test -- \
+            --watch=false \
+            --progress=false \
+            --browsers=ChromeHeadlessCI
+
+      # Build project with different configuration based on
+      # the current branch
+      - run:
+          name: Building
+          command: |
+              if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                npm run build-prod
+              else
+                npm run build-dev
+              fi
+
+      # Cache the dist folder for the deploy job
+      - save_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - dist
+
+      - run:
+          name: Deploy to Firebase
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              firebase deploy --token=$token
+            else
+              echo "Not deploying source to Firebase."
+            fi

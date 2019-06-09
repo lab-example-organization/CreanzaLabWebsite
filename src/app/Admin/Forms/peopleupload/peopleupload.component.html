@@ -1,0 +1,32 @@
+<form [formGroup]="personForm">
+  <br>
+  <b>Name: </b> <input formControlName="name" class="long" type="text"><br><br>
+
+  <b>Pronouns: </b> <input formControlName="pronouns" class="medium" type="text"><br>
+  (please format as "pronoun, pronoun". It is also okay to leave this blank)<br><br>
+  
+  <b>Position: </b> <select formControlName="description">
+    <option *ngFor="let position of positions"
+    [value]="position">
+      {{position}}
+    </option>
+  </select><br><br>
+  
+  <b>Start Year: </b> <input formControlName="startYear" class="short" type="number"><br><br>
+  
+  <b>Ending Year: </b> <input formControlName="endingYear" class="short" type="text"><br><br>
+  
+  <b>Project: </b> <br>
+  <textarea formControlName="project" rows=4 cols=60></textarea><br><br>
+  
+  <b>Studying/Major: </b> <input formControlName="studying" class="long" type="text"><br><br>
+
+  <b>Image: </b> <input #image class="long" type="file" (change)="onFile($event)"><br><br>
+  <br>
+
+  <button type="submit"
+  [disabled]="!personForm.valid"
+  (click)="onSubmit()">Submit</button>
+  {{ message }}
+  <br>
+</form>

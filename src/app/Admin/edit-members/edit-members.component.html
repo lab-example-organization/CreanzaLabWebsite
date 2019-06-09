@@ -1,0 +1,19 @@
+<app-new-memeber></app-new-memeber>
+
+<hr>
+
+<h3>Edit Member: </h3>
+<b>User: </b>
+<select
+(change)="onSwitchUser($event.target.value)">
+  <option value="" selected disabled>Please select an option...</option>
+  <option *ngFor="let user of users" [value]=user.email>
+    {{ user.name }}
+  </option>
+</select> (Users do not show up until they have logged in once!)<br>
+<br>
+<app-edit-roles></app-edit-roles>
+<hr>
+(Remember that users can edit their own data.  The following sections exist only in case bad things happen.)<br>
+<b>Edit Card:</b><br>
+<b>Edit Page:</b><br>

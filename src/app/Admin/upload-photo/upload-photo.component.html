@@ -1,0 +1,43 @@
+<mat-list role="list" *ngIf="uploadPhotos$ | async as Photos">
+  <mat-list-item role="listitem" *ngFor="let photo of Photos">
+    {{ photo.name }}
+    {{ photo.date }}
+    {{ photo.caption }}
+  </mat-list-item>
+</mat-list>
+
+<form [formGroup]="uploadPhotosForm">
+  <p> Photo Name: <input formControlName="name" type="text" > 
+    <!-- you are on this line of the code for next week -->
+    <select #reset name="PhotoName" *ngIf="downloadPhotos$ | async as Photos" (change)="onNameChange($event.target.value)">
+      <option value="" selected disabled>Please select an option...</option>
+      <option *ngFor="let photo of Photos"
+          [value] = photo.name> {{ photo.name}}
+           
+        </option> 
+    
+        
+      
+
+    </select> </p>
+
+  <p> Date: <input formControlName="date" type="text"></p>
+  <p> Caption: <input formControlName="caption" type="text"></p>
+  <p> Link: <input #link  type="file" (change)="onFile($event)"></p> 
+  
+
+  <button type="submit"
+  [disabled]="(!uploadPhotosForm.valid || (photovariable !== undefined))"
+  (click)="onSubmit()">Submit</button> {{ message }}
+
+  <button type="Update" 
+  (click)="onUpdate()" 
+  [disabled]="photovariable === undefined"
+  >Update Pic
+  </button>
+  
+  <button type = "Delete" 
+  (click)="onDelete()"
+  [disabled]="photovariable === undefined"
+  > Delete </button> 
+</form>
