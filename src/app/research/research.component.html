@@ -1,1 +1,8 @@
-<app-grid></app-grid>
+<div *ngIf="research$ | async as research">
+        <!-- innerHTML="research.mainText" -->
+    <div [innerHTML]="research[0].mainText"></div>
+</div>
+
+<app-grid>
+    
+</app-grid>
