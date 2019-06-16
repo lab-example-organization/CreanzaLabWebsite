@@ -1,1 +1,12 @@
-<app-grid></app-grid>
+<div *ngIf="research$ | async as research">
+        <!-- innerHTML="research.mainText" -->
+    <div id="mainText" [innerHTML]="research.mainText"></div>
+
+    <app-grid
+    [collect]="gridData"
+    >
+    </app-grid>
+    
+    
+</div>
+

@@ -12,7 +12,7 @@
   <!-- Image and Text -->
   <div id="content" (window:resize)="onResize()">
     <div class="imgcaption" id="aligner" *ngIf="array[index]">
-      <img #bigger id="bigger" [src]="array[index].Links[0]" (load)="onResize()"
+      <img #bigger id="bigger" [src]="array[index].Link" (load)="onResize()"
         [alt]="array[index].AltText ? array[index].AltText : ''">
 
       <div *ngIf="array[index].Description" class="textblock"
