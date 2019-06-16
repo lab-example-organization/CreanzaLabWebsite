@@ -10,8 +10,8 @@ export class GridComponent implements OnInit {
   link: string = 'https://firebasestorage.googleapis.com/v0/b/creanza-lab-208216.appspot.com' +
                  '/o/Profiles%2FParker%20Rundstrom.JPG?alt=media&token=a41f57d5-2afd-4c43-9f8f-44ad87530ce8';
   @Input() collect: any[] = [
-    {Links: [this.link, this.link], Name: 'birb1'},
-    {Links: [this.link, this.link], Name: 'birb2'},
+    {Link: this.link, Name: 'birb1', Description: 'LOL!'},
+    {Link: this.link, Name: 'birb2', Description: 'LOLER!'}
   ];
   BlowUpVisible: Boolean;
   constructor(private gridBlowUpService: GridBlowUpService) {}
