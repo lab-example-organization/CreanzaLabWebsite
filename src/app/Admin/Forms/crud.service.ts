@@ -24,7 +24,6 @@ export class CRUDService {
   fetchAllData(path) {
     return this.firebaseserv.returnCollectionWithKeys(path);
   }
-  
 
   quickAssign(Form: FormGroup, edit: any): FormGroup {
     Object.keys(Form.controls).forEach(key => {
@@ -103,7 +102,7 @@ export class CRUDService {
     return this.firebaseserv.editDocument(editDoc, path, docKey);
   }
 
-  fetchTargetData(target: string, targetType:string, path: string) {
+  fetchTargetData(target: string, targetType: string, path: string) {
     return this.fetchAllData(path).pipe(
       map(members =>
         members.find(member =>

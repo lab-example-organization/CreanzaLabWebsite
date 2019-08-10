@@ -1,3 +1,15 @@
-<p>
-  edit-research works!
-</p>
+<label>Edit Main Text</label> <br>
+<form [formGroup]="ResearchForm">
+  <textarea formControlName="MainText" rows=15 cols=60></textarea><br>
+  <button (click)="SubmitResearch()">Accept</button>{{Message}}
+  <br>
+  <hr>
+  <label>Edit Figures</label> <br>
+  <div id=Title>
+    <label>Title:</label> <input><br>
+    <label>Caption:</label> <input>
+  </div><br>
+  <label>Image Upload:</label><input type="file"><br>
+  <button type="button" (click)="SubmitResearch()">Accept</button><button>Delete</button> {{Message}}
+</form>
+<br><br>
