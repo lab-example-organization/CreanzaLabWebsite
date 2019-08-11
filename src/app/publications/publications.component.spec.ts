@@ -21,9 +21,9 @@ describe('PublicationsComponent', () => {
       doi: 'This is a DOI for the article.',
       issue: 95,
       volume: 5,
-      first_page: 100,
-      last_page: 105,
-      article_number: 342,
+      first_page: '100',
+      last_page: '105',
+      article_number: '342',
     },
     {
       authors: ['First Author', 'Second Author', 'N Creanza'],
@@ -33,9 +33,9 @@ describe('PublicationsComponent', () => {
       doi: 'This is a DOI for the article.',
       issue: 95,
       volume: 5,
-      first_page: 100,
-      last_page: 105,
-      article_number: 342,
+      first_page: '100',
+      last_page: '105',
+      article_number: '342',
     },
   ]];
 

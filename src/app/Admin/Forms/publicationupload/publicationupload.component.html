@@ -5,12 +5,14 @@
   <p *ngFor="let group of publicationForm.get('authors')['controls'], let i = index"
   [formGroupName]="i">
     Author {{ i+1 }}: <input formControlName="name" type="text">
+    <span *ngIf="i===0">
+      <button type="button" (click)="addAuthor(true)">+</button>
+      <button type="button" (click)="addAuthor(false)">-</button>
+    </span>
   </p>
 
 </div>
-
-<button type="button" (click)="addAuthor(true)">+</button>
-<button type="button" (click)="addAuthor(false)">-</button>
+<br>
 
 <p> Year: <input formControlName="year" type="number"> </p>
 
@@ -34,3 +36,6 @@
 [disabled]="!publicationForm.valid"
 (click)="onSubmit()">Submit</button> {{ message }}
 </form>
+
+<br><br>
+
