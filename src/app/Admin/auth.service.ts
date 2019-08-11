@@ -7,6 +7,7 @@ import { User } from 'src/app/Classes/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Person } from '../Classes/person';
+import { ParkerService } from '../parker.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,14 @@ redirectUrl: string;
   user: Observable<User>;
 
   constructor(private authorize: AngularFireAuth,
-                private afs: AngularFirestore,
-                private router: Router) {
+              private afs: AngularFirestore,
+              private router: Router,
+              private park: ParkerService) {
 
     this.user = this.authorize.authState.pipe(
       switchMap(user => {
         if (user) {
+          this.park.updateSignOn("Profile");
           return this.afs.doc<User>(`Users/${user.uid}`).valueChanges().pipe(
             tap(userInfo =>{
               if(userInfo){
@@ -80,6 +83,7 @@ redirectUrl: string;
   }
 
   logout() {
+    this.park.updateSignOn("Sign On");
     this.authorize.auth.signOut();
   }
 

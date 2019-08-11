@@ -25,3 +25,13 @@ div#googleBtn:disabled{
     background-size: contain;
     background-image: url("../../../assets/images/g-disabled.png");
 }
+
+div.push {
+    margin-left: 30px;
+}
+div#help {
+    max-width: 600px;
+}
+a {
+    margin-left: 30px;
+}
