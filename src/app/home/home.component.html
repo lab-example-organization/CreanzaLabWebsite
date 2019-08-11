@@ -1,5 +1,7 @@
+<div id="background"></div>
 <div id="outer">
-  <div style="margin:25px;">
+  <div id="joy">
+      <h3>Lab Events and Joy</h3>
     <ngb-carousel *ngIf="images$ | async as images" [pauseOnHover]="true"
     [showNavigationIndicators]="false">
       <ng-template ngbSlide *ngFor="let image of images">
