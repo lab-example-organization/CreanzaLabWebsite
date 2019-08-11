@@ -1,4 +1,4 @@
-export class UploadPhoto {
+export class LabPhoto {
     name: string;
     date: string;
     caption: string;
