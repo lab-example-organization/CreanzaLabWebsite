@@ -7,23 +7,25 @@
   position: absolute;
 }
 
-mat-card-header {
+#header {
   /* background-color: yellowgreen; */
   /* display: inline-block; */
   position: relative;
 }
 
-.background {
+#outer{
+  background-color: rgb(132, 163, 189);
+}
+.subouter {
   display: flex;
   /*max-width: 904px;*/
   flex-flow: row wrap;
   /* justify-content: center; */
-  background-color: rgb(232, 232, 247);
   align-items: space-between;
   padding: 10px;
 }
 
-mat-card-actions {
+nav {
   text-align: center;
   position: absolute;
   bottom: 17px;
@@ -32,19 +34,21 @@ mat-card-actions {
 
 mat-card {
   flex: 1;
-  max-width: 400px;
-  width: 432px;  /* Or whatever */
-  height: 620px; /* Or whatever */
-  margin: 10px;  /* Magic! */
-  background-color: lightblue;
-  align-self: center;
-  flex-direction: column;
+  width: 350px;
+  height: 600px;
+  margin: 10px;
+  background-color: rgb(188, 221, 231);
+}
+img {
+  max-width: 250px;
+  max-height: 300px;
+  margin-left: 35px;
 }
   
 a.navbar {
   display: inline-block;
   border: 1px solid black;
-  background-color: rgb(85, 85, 170);
+  background-color: rgb(80, 138, 146);
   padding: .3em;
   color: whitesmoke;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -55,12 +59,6 @@ a.navbar {
   text-align: center;
 }
 
-img {
-  max-width: 250px;
-  max-height: 500px;
-  /* background-color: pink; */
-  margin-left: 50px;
-}
 
 .optionalPronouns {
   font-size: 15px;
@@ -70,48 +68,29 @@ img {
   font-size: 15px;
   min-height: 1.5em;
   padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
  /* styles for '...' */ 
  .block-with-text {
-  /* hide text if it more than N lines  */
+   line-height: 1.2em;
   overflow: hidden;
-  /* for set '...' in absolute position */
   position: relative; 
-  /* use this value to count block height */
   line-height: 1.2em;
-  /* max-height = line-height (1.2) * lines max number (3) */
-  max-height: 4.7em; 
-  /* fix problem when last visible word doesn't adjoin right side  */
-  text-align: justify;  
-  /* place for '...' */
-  margin-right: -1em;
-  padding-right: 1em;
+  height: 4.8em; 
+  margin-right: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 2em;
+  font-size: 16px;
+  
 }
 
-/* create the ... */
-.block-with-text:before {
-  /* points in the end */
-  content: '...';
-  /* absolute position */
-  position: absolute;
-  /* set position to right bottom corner of block */
-  right: 0;
-  bottom: 0;
+h3 {
+  padding-left: 30px;
+  color: azure;
 }
 
-/* hide ... if we have text, which is less than or equal to max lines */
-.block-with-text:after {
-  /* points in the end */
-  content: '';
-  /* absolute position */
-  position: absolute;
-  /* set position to right bottom corner of text */
-  right: 0;
-  /* set width and height */
-  width: 1em;
-  height: 1em;
-  margin-top: 0.2em;
-  /* bg color = bg color under block */
-  background: lightblue;
-};
+hr {
+  border: azure solid 2px;
+}
