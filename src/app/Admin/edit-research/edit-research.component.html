@@ -1,15 +1,44 @@
 <label>Edit Main Text</label> <br>
 <form [formGroup]="ResearchForm">
   <textarea formControlName="MainText" rows=15 cols=60></textarea><br>
-  <button (click)="SubmitResearch()">Accept</button>{{Message}}
+  <button type="submit"
+  [disabled]="!ResearchForm.controls.MainText.dirty"
+  (click)="SubmitResearch(false)">Accept</button>{{MessageTop}}
   <br>
+
+
   <hr>
+
+
+
   <label>Edit Figures</label> <br>
   <div id=Title>
-    <label>Title:</label> <input><br>
-    <label>Caption:</label> <input>
+    <label>Title:</label> <input formControlName="Title">
+    
+    <select #reset name="FigureName" (change)="onNameChange($event.target.value)">
+      <option value="-1" selected>New Figure</option>
+      <option *ngFor="let figure of Figures, let i = index"
+          [value] = i> {{ figure.Name }}
+      </option>
+    </select>
+    
+    
+    <br>
+
+
+    <label>Caption:</label> <input formControlName="Description">
   </div><br>
-  <label>Image Upload:</label><input type="file"><br>
-  <button type="button" (click)="SubmitResearch()">Accept</button><button>Delete</button> {{Message}}
+  
+  
+  
+  <label>Image Upload:</label><input #image type="file" (change)="onFile($event)"><br>
+  <button type="submit"
+  [disabled]="!ResearchForm.valid"
+  (click)="SubmitResearch(true)">Accept</button>
+  
+  <button
+  [disabled]="!edit"
+  (click)="deleteResearch()">Delete</button> {{MessageBottom}}
+
 </form>
 <br><br>

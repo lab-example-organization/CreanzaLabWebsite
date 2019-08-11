@@ -86,7 +86,7 @@ export class CRUDService {
     });
   }
 
-  private removeOldImage(link: string) {
+  removeOldImage(link: string) {
     if (link) {
       return this.firebaseserv.deleteImage(link);
     } else {
