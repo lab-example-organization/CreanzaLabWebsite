@@ -5,9 +5,9 @@ a.navbar {
     padding: .2em;
     color: whitesmoke;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     text-decoration:none;
-    margin: .1em;
+    margin: .15em;
     white-space: nowrap;
 }
 a.navbar:hover{
