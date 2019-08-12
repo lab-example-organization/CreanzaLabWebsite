@@ -60,6 +60,13 @@ a.navbar {
   white-space: nowrap;
   text-align: center;
 }
+a.navbar:hover{
+  background-color: rgb(105, 164, 172);
+}
+a.navbar:active{
+  background-color: rgb(61, 69, 70);
+}
+
 
 
 .optionalPronouns {
