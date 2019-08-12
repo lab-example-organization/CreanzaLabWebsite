@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from './home.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UploadPhoto } from '../Classes/uploadPhoto';
+import { LabPhoto } from '../Classes/labPhoto';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,7 +10,7 @@ import { UploadPhoto } from '../Classes/uploadPhoto';
 })
 
 export class HomeComponent implements OnInit {
-  images$: Observable<UploadPhoto[]>;
+  images$: Observable<LabPhoto[]>;
 
   constructor(private homeserv: HomeService) { }
 

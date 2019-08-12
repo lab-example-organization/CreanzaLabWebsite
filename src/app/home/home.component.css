@@ -15,24 +15,25 @@ div#outer{
 }
 div#joy {
   margin: 25px;
+  margin-top: 10px;
+  width: 600px;
+  height: 470px;
+  background-color: rgb(49, 49, 49);
 }
 ngb-carousel {
   padding-top:0px;
-  border-bottom: 15px solid rgb(49, 49, 49);
 }
 h3 {
   font-weight: bold;
   text-align: center;
   position: relative;
   color: azure;
-  background-color: rgb(49, 49, 49);
   padding: 7px;
   margin-bottom:0px;
 }
 div#containTwitter{
     display: inline-block;
-    max-height: 40em;
-    max-height: 600px;
+    height: 600px;
     overflow-y:scroll;
     margin:10px;
 }
