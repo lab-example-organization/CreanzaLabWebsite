@@ -1,12 +1,13 @@
+<br>
 <div *ngIf="research$ | async as research">
         <!-- innerHTML="research.mainText" -->
-    <div id="mainText" [innerHTML]="research.mainText"></div>
-
+    <div class="research" [innerHTML]="research.mainText"></div>
+<hr>
+<div class="research">
+    <u><h5>Key Findings:</h5></u>
     <app-grid
     [collect]="gridData"
     >
-    </app-grid>
-    
-    
+    </app-grid>   
 </div>
 

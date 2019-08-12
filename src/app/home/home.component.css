@@ -1,13 +1,39 @@
-div#outer{
-    display: flex;
-    flex-flow: row;
+div#background {
+  z-index: 0;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/creanza-lab-208216.appspot.com/o/Backgroundimages%2Fimage%20(1).png?alt=media&token=71cc185d-8538-4168-a76a-b189268ef1d4");
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  filter: opacity(30%);
+  object-fit: contain;
 }
-
+div#outer{
+  display: flex;
+  flex-flow: row;
+  position: absolute;
+  z-index: 1;
+}
+div#joy {
+  margin: 25px;
+}
+ngb-carousel {
+  padding-top:0px;
+  border-bottom: 15px solid rgb(49, 49, 49);
+}
+h3 {
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  color: azure;
+  background-color: rgb(49, 49, 49);
+  padding: 7px;
+  margin-bottom:0px;
+}
 div#containTwitter{
     display: inline-block;
-    height: 700px;
+    max-height: 40em;
+    max-height: 600px;
     overflow-y:scroll;
-    width:440px;
     margin:10px;
 }
 

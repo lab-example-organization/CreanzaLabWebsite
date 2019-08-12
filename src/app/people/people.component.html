@@ -1,36 +1,76 @@
-<div *ngIf="people$ | async as people">
-    <div class="background">
-        <div *ngFor="let person of people">
-          <mat-card>
-            
-            <mat-card-header>
+<div id="outer">
+  <br>
+  <h3>Current Creanza Lab Members:</h3>
+  <div *ngIf="people$ | async as people">
+      <div class="subouter">
+          <div *ngFor="let person of people">
+            <mat-card>
               
-              <mat-card-title>
-                {{person.name}}
-                <span class="optionalPronouns" *ngIf="person.pronouns">
-                  ({{person.pronouns}})
-                </span>
-              </mat-card-title>
-              <mat-card-subtitle>
-                <div class="emptySpace">{{person.description}}</div>
-                <div class="emptySpace">{{person.studying}}</div>
-                <div class="emptySpace">{{person.startYear}} - {{person.endingYear}}</div>
-              </mat-card-subtitle>
-              <!-- <div mat-card-avatar class="bubble-pic"></div>  -->
-            </mat-card-header>
-             
-            <img mat-card-image [src]="person.portraitLink" [alt]="'Photo of ' + person.name">
-            <mat-card-content>
-              <p class="block-with-text">
+              <div id="header"> 
+                <mat-card-title>
+                  {{person.name}}
+                  <span class="optionalPronouns" *ngIf="person.pronouns">
+                    ({{person.pronouns}})
+                  </span>
+                </mat-card-title>
+                <mat-card-subtitle>
+                  <div class="emptySpace">{{person.description}}</div>
+                  <div class="emptySpace">{{person.studying}}</div>
+                  <div class="emptySpace">{{person.startYear}} - {{person.endingYear}}</div>
+                </mat-card-subtitle>
+                <!-- <div mat-card-avatar class="bubble-pic"></div>  -->
+              </div>
+              
+              <img mat-card-image [src]="person.portraitLink" [alt]="'Photo of ' + person.name">
+              
+              <div class="block-with-text">
                 {{person.project}}
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
+              </div>
+              
               <nav *ngIf="person.name">
                   <a class="navbar" [routerLink]="person.name.split(' ').join('-')">Personal Page</a>
               </nav>
-            </mat-card-actions>
-          </mat-card>
-        </div> 
-    </div>
+            
+            </mat-card>
+          </div> 
+      </div>
+  </div>
+  
+  <br>
+  <div *ngIf="alumni$ | async as alumni">
+    <hr>
+      <h3>Alumni:</h3>
+      <div class="subouter">
+          <div *ngFor="let alum of alumni">
+            <mat-card>
+              
+              <div id="header"> 
+                <mat-card-title>
+                  {{alum.name}}
+                  <span class="optionalPronouns" *ngIf="alum.pronouns">
+                    ({{alum.pronouns}})
+                  </span>
+                </mat-card-title>
+                <mat-card-subtitle>
+                  <div class="emptySpace">{{alum.description}}</div>
+                  <div class="emptySpace">{{alum.studying}}</div>
+                  <div class="emptySpace">{{alum.startYear}} - {{alum.endingYear}}</div>
+                </mat-card-subtitle>
+                <!-- <div mat-card-avatar class="bubble-pic"></div>  -->
+              </div>
+              
+              <img mat-card-image [src]="alum.portraitLink" [alt]="'Photo of ' + alum.name">
+              
+              <div class="block-with-text">
+                {{alum.project}}
+              </div>
+              
+              <nav *ngIf="alum.name">
+                  <a class="navbar" [routerLink]="alum.name.split(' ').join('-')">Personal Page</a>
+              </nav>
+            
+            </mat-card>
+          </div> 
+      </div>
+  </div>
 </div>
