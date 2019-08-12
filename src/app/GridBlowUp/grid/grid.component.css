@@ -14,7 +14,7 @@ div.item {
 }
 
 div.item:hover {
-    background-color: rgba(140,140,140,.8);
+    background-color: rgba(80, 138, 146, .35);;
 }
 
 div.item:active {
