@@ -43,6 +43,8 @@ img {
   max-width: 250px;
   max-height: 300px;
   margin-left: 35px;
+  width: auto;
+  height: auto;
 }
   
 a.navbar {
