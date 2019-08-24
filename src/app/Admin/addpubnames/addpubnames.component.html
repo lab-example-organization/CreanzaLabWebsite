@@ -1,0 +1,8 @@
+<h4>Add/Remove Trainee Publication Name</h4>
+
+<form [formGroup]="traineeForm">
+  <b>New Trainee: </b> <input formControlName="Trainee">
+  <button [disabled]="!traineeForm.valid"
+          (click)="onSubmit()"
+          type="submit">Submit</button>
+</form>{{Message}}

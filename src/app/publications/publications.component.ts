@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Publication } from '../Classes/publication';
 import { PublicationsService } from './publications.service';
 import { Observable, Subscription } from 'rxjs';
@@ -25,6 +25,10 @@ export class PublicationsComponent implements OnInit {
       this.subscription = this.publicationserv.getTrainees().pipe(
         map(trainees => trainees.map(trainee => RegExp(`${trainee.name}*`)))
       ).subscribe(trainees => this.nicoleTrainees = trainees);
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   checkFormat(author:string){
