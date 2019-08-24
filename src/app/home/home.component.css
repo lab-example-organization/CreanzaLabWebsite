@@ -15,7 +15,6 @@ div#outer{
   position: absolute;
   z-index: 1;
   flex-wrap: wrap;
-  justify-content: center;
 }
 div#joy {
   margin: 25px;
@@ -48,6 +47,7 @@ div#containTwitter{
     height: 600px;
     overflow-y:scroll;
     margin:10px;
+    margin-left: 30px;
 }
 
 .lab-caption {
@@ -58,4 +58,20 @@ img#carouselImg{
   height: 400px;
   object-fit: contain;
   background-color: #363636
+}
+
+p {
+  color: whitesmoke;
+  padding-left: 15px;
+}
+a {
+  color: rgb(164, 214, 221);
+}
+
+a:hover {
+  color: rgb(205, 240, 245);
+}
+
+a:visited {
+  color: rgb(96, 170, 180);
 }
