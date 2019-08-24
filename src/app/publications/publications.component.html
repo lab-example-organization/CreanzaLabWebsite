@@ -3,9 +3,10 @@
 <div id="outer" role="list" *ngIf="publications$ | async as publications">
   <div role="listitem"  *ngFor="let publication of publications">
     <p>
-      <span *ngFor="let author of publication.authors, let i = index"
-      [style.font-weight]=" MainAuthor.test(author) ? 'bold' : 'normal' ">
-        {{author}}<span id="comma"
+      <span *ngFor="let author of publication.authors, let i = index">
+        <span [style.font-weight]="mainAuthor.test(author) ? 'bold' : 'normal' "
+        [style.text-decoration]="checkFormat(author)">
+        {{author}}</span><span id="comma"
         *ngIf="i !== publication.authors.length-1">, </span>
       </span>
       <!-- {{ publication.authors.join(", ") }} -->
@@ -23,5 +24,6 @@
 </div>
 <br>
 <div id="contribute">
-  * = contributed equally
+  * = contributed equally <br>
+  <u>Underlined</u> = Nicole's Trainees
 </div>
