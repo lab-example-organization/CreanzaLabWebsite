@@ -36,7 +36,7 @@ export class PublicationsComponent implements OnInit {
       if(reg.test(author)){
         return('underline');
       }
-    return('none');
     }
+  return('none');
   }
 }
