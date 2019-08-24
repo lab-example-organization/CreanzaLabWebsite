@@ -3,8 +3,10 @@ img {
     max-height: 100%;
 }
 div.textblock {
-    border: 1px solid whitesmoke;
-    margin:10px;
+    border: 1px solid grey;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
 }
 div {
     color: whitesmoke;
@@ -12,11 +14,9 @@ div {
 div#date {
     float: right;
 }
-
 hr {
-    border: 1px dotted white;
+    border-top: 1px solid grey;
 }
-
 span#name {
     font-family: 'Courier New', Courier, monospace;
     font-size: 20px;

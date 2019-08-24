@@ -15,8 +15,10 @@ import { EditPublicationsComponent } from './edit-publications/edit-publications
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { PeopleuploadComponent } from './Forms/peopleupload/peopleupload.component';
 import { PublicationuploadComponent } from './Forms/publicationupload/publicationupload.component';
-import { NewMemeberComponent } from '../Admin/Forms/new-memeber/new-memeber.component';
+import { NewMemberComponent } from '../Admin/Forms/new-member/new-member.component';
 import { EditRolesComponent } from '../Admin/Forms/edit-roles/edit-roles.component';
+import { AddNewNewsEventComponent } from '../Admin/Forms/add-new-news-event/add-new-news-event.component';
+import { EditNewfeedComponent } from '../Admin/edit-newfeed/edit-newfeed.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +35,13 @@ import { EditRolesComponent } from '../Admin/Forms/edit-roles/edit-roles.compone
 
     PublicationuploadComponent,
 
-    NewMemeberComponent,
+    NewMemberComponent,
 
-    EditRolesComponent
+    EditRolesComponent,
+
+    AddNewNewsEventComponent,
+
+    EditNewfeedComponent
   ],
   imports: [
     CommonModule,

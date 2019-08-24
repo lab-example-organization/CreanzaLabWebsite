@@ -4,11 +4,11 @@ import { CRUDService } from '../crud.service';
 import { formatDate } from '@angular/common';
 
 @Component({
-  selector: 'app-new-memeber',
-  templateUrl: './new-memeber.component.html',
-  styleUrls: ['./new-memeber.component.css']
+  selector: 'app-new-member',
+  templateUrl: './new-member.component.html',
+  styleUrls: ['./new-member.component.css']
 })
-export class NewMemeberComponent implements OnInit {
+export class NewMemberComponent implements OnInit {
 
   newPersonForm = this.createNewForm();
   message: string;

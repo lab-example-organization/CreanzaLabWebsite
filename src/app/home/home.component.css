@@ -30,6 +30,7 @@ div#news{
   height: 400px;
   background-color: rgb(49, 49, 49);
   margin-bottom: 60px;
+  overflow-y: scroll;
 }
 ngb-carousel {
   padding-top:0px;

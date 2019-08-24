@@ -7,9 +7,13 @@
           <hr>
           <br>
           <div [innerHTML]="post.Body"></div>
-          <!--<div *ngIf="post.Links">
-            <img [src]="post.Links" [alt]="post.AltText">
-          </div>-->
+          <div *ngIf="post.ImgLink">
+            <img [src]="post.ImgLink" [alt]="post.AltText">
+          </div>
+          <span *ngIf="post.TextLink">
+            <a [href]="post.TextLink" target="_blank">{{ post.TextLinkText }}</a>
+          </span>
+            
       </div>
       <br>
 

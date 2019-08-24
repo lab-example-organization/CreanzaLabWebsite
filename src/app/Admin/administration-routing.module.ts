@@ -9,6 +9,7 @@ import { EditMembersComponent } from './edit-members/edit-members.component';
 import { EditResearchComponent } from './edit-research/edit-research.component';
 import { EditPublicationsComponent } from './edit-publications/edit-publications.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { AddNewNewsEventComponent } from './Forms/add-new-news-event/add-new-news-event.component';
 
 const adminRoutes: Routes = [
   {path: 'users', component: AdminComponent,
@@ -22,7 +23,8 @@ const adminRoutes: Routes = [
         ]},
         {path: 'upload', canActivate: [AuthGuard],
         children: [
-          {path: 'labphotos', component: UploadPhotoComponent}
+          {path: 'labphotos', component: UploadPhotoComponent},
+          {path: 'newsfeed', component: AddNewNewsEventComponent}
         ]},
         {path: 'admin', canActivate: [AuthGuard],
         children: [
