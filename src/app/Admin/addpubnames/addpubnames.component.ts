@@ -17,6 +17,7 @@ export class AddpubnamesComponent implements OnInit {
   trainees: trainee[];
   traineeForm = this.makeForm();
   Message: string;
+  deleteIndex: number;
 
   constructor(private pubnameserv: PubnamesService,
               private crud: CRUDService,
@@ -35,16 +36,19 @@ export class AddpubnamesComponent implements OnInit {
   }
 
   onSubmit(){
-    const newTrainee = Object.assign({}, this.traineeForm.value);
+    const newTrainee = {name: this.traineeForm.controls.Trainee.value};
     this.crud.uploadItem(newTrainee, 'trainees')
     .then(() => {this.Message = "Submitted!";
     setTimeout(() => { this.Message = undefined; }, 3000);
                   this.traineeForm = this.makeForm();})
   }
-  onDelete(key){
-    this.crud.deleteItem([], 'trainees', key)
+  onDelete(){
+    this.crud.deleteItem([], 'trainees', this.trainees[this.deleteIndex].key)
     .then(() => {this.Message = "Deleted!";
     setTimeout(() => { this.Message = undefined; }, 3000);
     });
+  }
+  onSwitchUser(index: number){
+    this.deleteIndex = index
   }
 }

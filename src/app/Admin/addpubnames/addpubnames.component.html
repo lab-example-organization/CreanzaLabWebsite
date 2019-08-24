@@ -1,8 +1,18 @@
 <h4>Add/Remove Trainee Publication Name</h4>
 
 <form [formGroup]="traineeForm">
-  <b>New Trainee: </b> <input formControlName="Trainee">
+  <b>Add Name: </b> <input formControlName="Trainee">
   <button [disabled]="!traineeForm.valid"
           (click)="onSubmit()"
           type="submit">Submit</button>
-</form>{{Message}}
+</form>
+<b>Remove Name: </b><select
+(change)="onSwitchUser($event.target.value)">
+  <option value="" selected disabled>Please select an option...</option>
+  <option *ngFor="let trainee of trainees let i = index" [value]=i>
+    {{ trainee.name }}
+  </option>
+</select><button [disabled]="!deleteIndex"
+(click)="onDelete()"
+>Delete</button> <br>
+{{Message}}
