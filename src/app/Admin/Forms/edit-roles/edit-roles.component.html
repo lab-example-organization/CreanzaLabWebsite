@@ -1,4 +1,3 @@
-<b>Edit Roles:</b><br>
 <form [formGroup]="rolesForm">
 <b>User: </b>
 <select formControlName="User">
@@ -13,7 +12,7 @@ Users have access to Edit My Person Card and Edit My User Page
   <option value=true>true</option>
   <option value=false>false</option>
 </select><br>
-Uploaders have access to Edit Lab Photos 
+Uploaders have access to Add/Edit Lab Photos and Add/Edit New News Event 
 <br><br>
 
 <b>Admin: </b>
@@ -21,7 +20,7 @@ Uploaders have access to Edit Lab Photos
   <option value=true>true</option>
   <option value=false>false</option>
 </select><br>
-Admin have access to Edit Publications and Edit Members 
+Admin have access to Edit Publications, Edit Members, and Edit Research/Contact Pages
 <br><br>
 
 <button (click)=onEdit()>Edit</button>
