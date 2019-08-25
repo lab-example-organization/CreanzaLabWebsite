@@ -17,6 +17,7 @@ import { PeopleuploadComponent } from './Forms/peopleupload/peopleupload.compone
 import { PublicationuploadComponent } from './Forms/publicationupload/publicationupload.component';
 import { NewMemeberComponent } from '../Admin/Forms/new-memeber/new-memeber.component';
 import { EditRolesComponent } from '../Admin/Forms/edit-roles/edit-roles.component';
+import { AddpubnamesComponent } from '../Admin/addpubnames/addpubnames.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { EditRolesComponent } from '../Admin/Forms/edit-roles/edit-roles.compone
 
     NewMemeberComponent,
 
-    EditRolesComponent
+    EditRolesComponent,
+
+    AddpubnamesComponent
   ],
   imports: [
     CommonModule,
