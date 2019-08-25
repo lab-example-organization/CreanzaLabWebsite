@@ -18,7 +18,6 @@ import { PublicationuploadComponent } from './Forms/publicationupload/publicatio
 import { NewMemberComponent } from '../Admin/Forms/new-member/new-member.component';
 import { EditRolesComponent } from '../Admin/Forms/edit-roles/edit-roles.component';
 import { AddNewNewsEventComponent } from '../Admin/Forms/add-new-news-event/add-new-news-event.component';
-import { EditNewfeedComponent } from '../Admin/edit-newfeed/edit-newfeed.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +38,7 @@ import { EditNewfeedComponent } from '../Admin/edit-newfeed/edit-newfeed.compone
 
     EditRolesComponent,
 
-    AddNewNewsEventComponent,
-
-    EditNewfeedComponent
+    AddNewNewsEventComponent
   ],
   imports: [
     CommonModule,
