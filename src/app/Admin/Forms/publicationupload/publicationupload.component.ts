@@ -21,7 +21,6 @@ export class PublicationuploadComponent implements OnInit {
   onSubmit() {
     const newPublications = Object.assign({}, this.publicationForm.value);
     newPublications.authors = this.formatAuthors(newPublications.authors);
-    console.log(newPublications);
     this.CRUD.uploadItem(newPublications, 'publications')
     .then(() => this.message = 'Success!');
   }
