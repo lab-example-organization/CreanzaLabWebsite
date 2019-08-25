@@ -5,6 +5,7 @@ import { PeopleService } from '../people/people.service';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { SocialMedia } from '../Classes/socialMedia';
+import { Publication } from '../Classes/publication';
 
 
 @Component({
@@ -14,14 +15,23 @@ import { SocialMedia } from '../Classes/socialMedia';
 })
 export class IndividualComponent implements OnInit {
   person$: Observable<Person>;
-  socialMedia: SocialMedia;
+  socialMedia = new SocialMedia;
+  sMTypes = Object.keys(this.socialMedia);
+  publications: Publication[];
+  ShowSocial = false;
   constructor(private peopleserv: PeopleService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe((data: {person: Person}) => {
       this.person$ = of(data.person);
-      this.socialMedia = JSON.parse(data.person.socialMedia);
+      //this.socialMedia = JSON.parse(data.person.socialMedia);
+      //this.publications = JSON.parse(data.person.publications);
+      for(let SM of this.sMTypes){
+        if (typeof this.socialMedia[SM] === 'undefined') {
+          this.ShowSocial = true;
+        }
+      }
     });
   }
 
