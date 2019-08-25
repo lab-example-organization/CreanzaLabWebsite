@@ -1,8 +1,3 @@
-export class Project {
-    title: string;
-    mainInfo: string;
-}
-
 export class Person {
     email: string = '';
     description: string = '';
@@ -19,4 +14,15 @@ export class Person {
     cvresume: string = '';// Link to cv
     awards: string = '';//should be a JSON string of Award
     pubName: string = '';
+    publicEmail: string = '';
+}
+
+export class Project {
+    title: string;
+    mainInfo: string;
+}
+
+export class Award {
+    title: string;
+    yearReceived: number;
 }

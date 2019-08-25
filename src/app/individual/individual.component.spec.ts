@@ -32,6 +32,7 @@ describe('IndividualComponent', () => {
     pronouns: 'These are the pronouns of a person',
     portraitLink: 'This is the portrait link of a person.',
     socialMedia: 'This is the social media for a person.',
+    publicEmail: 'This is a public facing email'
   };
 
   const expectedSocialMedia: SocialMedia = {

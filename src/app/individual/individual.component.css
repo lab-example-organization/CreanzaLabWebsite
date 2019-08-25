@@ -46,8 +46,11 @@ div#SocialMedia {
 padding-left: 30px;
 }
 
+ul#awards {
+  list-style-type:none;
+}
 /* Style all font awesome icons */
-ul {
+ul#socialmedia {
   list-style-type:none;
   display:flex;
   flex-direction: column;

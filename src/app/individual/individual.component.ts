@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Person, Project } from '../Classes/person';
+import { Person, Project, Award } from '../Classes/person';
 import { PeopleService } from '../people/people.service';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
@@ -19,6 +19,7 @@ export class IndividualComponent implements OnInit {
   sMTypes = Object.keys(this.socialMedia);
   publications: Publication[];
   projects: Project[];
+  awards: Award[];
   ShowSocial = false;
   constructor(private peopleserv: PeopleService,
               private route: ActivatedRoute) { }
@@ -29,6 +30,7 @@ export class IndividualComponent implements OnInit {
       //this.socialMedia = JSON.parse(data.person.socialMedia);
       //this.publications = JSON.parse(data.person.publications);
       //this.projects = JSON.parse(data.person.projects);
+      //this.awardss = JSON.parse(data.person.awards);
       for(let SM of this.sMTypes){
         if (typeof this.socialMedia[SM] === 'undefined') {
           this.ShowSocial = true;

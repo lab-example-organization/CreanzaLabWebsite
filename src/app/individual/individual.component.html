@@ -8,12 +8,14 @@
         <p id="Description">{{ person.description }}, {{ person.startYear }} - {{ person.endingYear }}</p>
         <p id="Studying">{{ person.studying }}</p>
         <p id="Project">{{ person.project }}</p>
+        <p *ngIf="person.publicEmail"><b>Email: </b> {{ person.publicEmail }}</p>
+        <p *ngIf="person.cvresume"><b><a [href]="person.cvresume">CV/Resume</a></b></p>
   </div>
   <div style="clear: both;"></div><br>
     
 
       <!--PROJECTS-->
-<h4 *ngIf="projects">My Projects:</h4>
+<h4 *ngIf="projects">Projects:</h4>
 <div *ngFor="let project of projects">
   <h5>{{ project.title }}</h5>
   <p>{{ prject.mainInfo }}</p>
@@ -23,7 +25,7 @@
 
 <!--PUBLICATIONS-->
 <div *ngIf="publications">
-  <h4>My Publications</h4>
+  <h4>Publications:</h4>
   <!--NEEDS THE UNDERLINE PUBS BRANCH TO BE MERGED
   <app-display-pubs
 [mainAuthor]="person.pubName"
@@ -33,11 +35,20 @@
   * = contributed equally
 </div>
 
+<!--PUBLICATIONS-->
+<div *ngIf="Awards">
+    <h4>Awards:</h4>
+<ul id="awards">
+  <li *ngFor="let award of awards">
+    {{ award.yearReceived }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ award.title }}
+  </li>
+</ul>
+</div>
 
 <!--SOCIAL MEDIA-->
       <div id="SocialMedia" *ngIf="ShowSocial">
-        <h4>My Social Media Links:</h4>
-          <ul>
+        <h4>Social Media Links:</h4>
+          <ul id="socialmedia">
               <div *ngFor="let social of sMTypes">
                   <li *ngIf="socialMedia[social]">
                       <a  class="fa" [id]="social"
