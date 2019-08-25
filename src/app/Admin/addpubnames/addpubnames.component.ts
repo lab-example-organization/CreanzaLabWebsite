@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { trainee } from 'src/app/Classes/trainee';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CRUDService } from '../Forms/crud.service';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-addpubnames',
