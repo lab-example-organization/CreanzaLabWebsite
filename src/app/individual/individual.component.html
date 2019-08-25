@@ -8,11 +8,33 @@
         <p id="Description">{{ person.description }}, {{ person.startYear }} - {{ person.endingYear }}</p>
         <p id="Studying">{{ person.studying }}</p>
         <p id="Project">{{ person.project }}</p>
-        <p id="SocialMedia">{{ socialMedia.android }}</p>
   </div>
   <div style="clear: both;"></div><br>
     
-      <p id="ProjectTitle">This is the title of My Awesome Project(s)/Interest(s)</p>
+
+      <!--PROJECTS-->
+<h4 *ngIf="projects">My Projects:</h4>
+<div *ngFor="let project of projects">
+  <h5>{{ project.title }}</h5>
+  <p>{{ prject.mainInfo }}</p>
+</div>
+
+
+
+<!--PUBLICATIONS-->
+<div *ngIf="publications">
+  <h4>My Publications</h4>
+  <!--NEEDS THE UNDERLINE PUBS BRANCH TO BE MERGED
+  <app-display-pubs
+[mainAuthor]="person.pubName"
+[publications]="publications"
+></app-display-pubs>
+  -->
+  * = contributed equally
+</div>
+
+
+<!--SOCIAL MEDIA-->
       <div id="SocialMedia" *ngIf="ShowSocial">
         <h4>My Social Media Links:</h4>
           <ul>

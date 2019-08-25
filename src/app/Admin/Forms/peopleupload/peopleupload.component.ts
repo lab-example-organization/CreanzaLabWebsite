@@ -45,7 +45,7 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
       description: ['Undergraduate', Validators.required],
       endingYear: ['Present', Validators.required],
       name: ['', Validators.required],
-      project: '',
+      projectShort: '',
       startYear: [Year, Validators.required],
       studying: ['', Validators.required],
       pronouns: '',

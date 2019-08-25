@@ -8,14 +8,15 @@ export class Person {
     description: string;
     endingYear: string;
     name: string;
-    project: string;
+    projectShort: string;
     startYear: number;
     studying: string;
     pronouns: string;
     portraitLink: string;
-    socialMedia: string; // should be a JSON string
-    publications: string;  // should be a JSON string
-    projects: Project[];
-    cvresume: string;
+    socialMedia: string; // should be a JSON string of Social Media
+    publications: string;  // should be a JSON string of Publication[]
+    projects: string;// should be a JSON string of Project[]
+    cvresume: string;// Link to cv
     awards: string[];
+    pubName: string;
 }

@@ -17,22 +17,14 @@ describe('IndividualComponent', () => {
   const activatedRoute = new ActivatedRouteStub();
 
   const expectedPerson: Person = {
+    pubName: 'this is your pub name',
     description: 'This is the description of a person.',
     endingYear: 'This is the ending year of a person.',
     name: 'This is the name of a person.',
     email: 'This is the email of a person.',
     publications: 'Publications',
-    project: 'This is the project of a person.',
-    projects: [
-      {
-        title: 'First project title',
-        mainInfo: 'First project description',
-      },
-      {
-        title: 'Second project title',
-        mainInfo: 'Second project description',
-      },
-    ],
+    projectShort: 'This is the project of a person.',
+    projects: "lol",
     cvresume: 'Link to a CV',
     awards: ['First award', 'Second Award'],
     startYear: 2017,
