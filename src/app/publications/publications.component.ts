@@ -31,12 +31,5 @@ export class PublicationsComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  checkFormat(author:string){
-    for(let reg of this.nicoleTrainees){
-      if(reg.test(author)){
-        return('underline');
-      }
-    }
-  return('none');
-  }
+  
 }
