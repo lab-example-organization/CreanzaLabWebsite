@@ -7,7 +7,7 @@
         </p>
         <p id="Description">{{ person.description }}, {{ person.startYear }} - {{ person.endingYear }}</p>
         <p id="Studying">{{ person.studying }}</p>
-        <p id="Project">{{ person.project }}</p>
+        <p id="Project">{{ person.projectShort }}</p>
         <p *ngIf="person.publicEmail"><b>Email: </b> {{ person.publicEmail }}</p>
         <p *ngIf="person.cvresume"><b><a [href]="person.cvresume">CV/Resume</a></b></p>
   </div>
