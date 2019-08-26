@@ -3,7 +3,7 @@ import { PubnamesService } from './pubnames.service'
 import { Subscription } from 'rxjs';
 import { trainee } from 'src/app/Classes/trainee';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CRUDService } from '../Forms/crud.service';
+import { CRUDService } from '../crud.service';
 
 @Component({
   selector: 'app-addpubnames',

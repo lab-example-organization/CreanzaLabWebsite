@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FirebaseService } from '../../GlobalServices/firebase.service';
+import { FirebaseService } from '../../../GlobalServices/firebase.service';
 
 @Injectable({
   providedIn: 'root'
