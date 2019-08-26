@@ -30,6 +30,7 @@ import { AdministrationModule } from './Admin/administration.module';
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 import { ResearchComponent } from './research/research.component';
 import { GridBlowUpModule } from './GridBlowUp/grid-blow-up.module';
+import { DisplayPubsComponent } from './display-pubs/display-pubs.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { GridBlowUpModule } from './GridBlowUp/grid-blow-up.module';
     IndividualComponent,
     InteractiveProjectsComponent,
     ResearchComponent,
+    DisplayPubsComponent,
   ],
   imports: [
     BrowserModule,

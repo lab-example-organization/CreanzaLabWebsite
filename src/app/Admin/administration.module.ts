@@ -18,6 +18,7 @@ import { PublicationuploadComponent } from './Forms/publicationupload/publicatio
 import { NewMemeberComponent } from '../Admin/Forms/new-memeber/new-memeber.component';
 import { EditRolesComponent } from '../Admin/Forms/edit-roles/edit-roles.component';
 import { EditIndividualComponent } from '../Admin/Forms/edit-individual/edit-individual.component';
+import { AddpubnamesComponent } from '../Admin/addpubnames/addpubnames.component';
 
 @NgModule({
   declarations: [
@@ -29,16 +30,12 @@ import { EditIndividualComponent } from '../Admin/Forms/edit-individual/edit-ind
     EditMembersComponent,
     EditPublicationsComponent,
     UploadPhotoComponent,
-
     PeopleuploadComponent,
-
     PublicationuploadComponent,
-
     NewMemeberComponent,
-
     EditRolesComponent,
-
     EditIndividualComponent
+    AddpubnamesComponent
   ],
   imports: [
     CommonModule,
