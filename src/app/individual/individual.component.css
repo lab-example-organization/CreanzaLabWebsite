@@ -15,6 +15,10 @@ div#cardinfo {
   padding: 7px;
 }
 
+div.conditional {
+  margin-left: 10px;
+}
+
 p#Name {
     text-align:center;
     font-size:32px;

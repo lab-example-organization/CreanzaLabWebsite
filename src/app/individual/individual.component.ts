@@ -27,12 +27,13 @@ export class IndividualComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: {person: Person}) => {
       this.person$ = of(data.person);
-      //this.socialMedia = JSON.parse(data.person.socialMedia);
+      this.socialMedia = JSON.parse(data.person.socialMedia);
+      console.log(this.socialMedia)
+      this.projects = JSON.parse(data.person.projects);
+      this.awards = JSON.parse(data.person.awards);
       //this.publications = JSON.parse(data.person.publications);
-      //this.projects = JSON.parse(data.person.projects);
-      //this.awardss = JSON.parse(data.person.awards);
       for(let SM of this.sMTypes){
-        if (typeof this.socialMedia[SM] === 'undefined') {
+        if (typeof this.socialMedia[SM] === null) {
           this.ShowSocial = true;
         }
       }

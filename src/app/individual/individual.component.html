@@ -12,19 +12,23 @@
         <p *ngIf="person.cvresume"><b><a [href]="person.cvresume">CV/Resume</a></b></p>
   </div>
   <div style="clear: both;"></div><br>
-    
+  <hr>
 
       <!--PROJECTS-->
-<h4 *ngIf="projects">Projects:</h4>
-<div *ngFor="let project of projects">
-  <h5>{{ project.title }}</h5>
-  <p>{{ prject.mainInfo }}</p>
+<div *ngIf="projects" class="conditional">
+  <h4>Projects:</h4>
+  <div *ngFor="let project of projects" >
+    <h5>{{ project.title }}</h5>
+    <p>{{ project.mainInfo }}</p>
+  </div>
+  <hr>
 </div>
 
 
 
+
 <!--PUBLICATIONS-->
-<div *ngIf="publications">
+<div *ngIf="publications" class="conditional">
   <h4>Publications:</h4>
   <!--NEEDS THE UNDERLINE PUBS BRANCH TO BE MERGED
   <app-display-pubs
@@ -33,20 +37,22 @@
 ></app-display-pubs>
   -->
   * = contributed equally
+  <hr>
 </div>
 
-<!--PUBLICATIONS-->
-<div *ngIf="Awards">
+<!--Awards-->
+<div *ngIf="awards" class="conditional">
     <h4>Awards:</h4>
-<ul id="awards">
-  <li *ngFor="let award of awards">
-    {{ award.yearReceived }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ award.title }}
-  </li>
-</ul>
+  <ul id="awards">
+    <li *ngFor="let award of awards">
+      {{ award.yearReceived }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ award.title }}
+    </li>
+  </ul>
+  <hr>
 </div>
 
 <!--SOCIAL MEDIA-->
-      <div id="SocialMedia" *ngIf="ShowSocial">
+  <div id="SocialMedia" *ngIf="ShowSocial" class="conditional">
         <h4>Social Media Links:</h4>
           <ul id="socialmedia">
               <div *ngFor="let social of sMTypes">
@@ -59,6 +65,7 @@
                     </li>
               </div>
             </ul>
-      </div>
+    <hr>
+  </div>
 
 </div>

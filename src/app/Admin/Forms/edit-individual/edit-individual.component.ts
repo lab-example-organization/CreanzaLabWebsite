@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { SocialMedia } from 'src/app/Classes/socialMedia';
 import { CRUDService } from '../crud.service';
-import { FormBuilder, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray, Form } from '@angular/forms';
 import { Award, Project } from 'src/app/Classes/person';
 
 @Component({
@@ -19,6 +19,10 @@ export class EditIndividualComponent implements OnInit {
   awardsArray = this.fb.array([]);
   projectsArray = this.fb.array([]);
   individualForm = this.makeForm();
+
+  fileEvent: any;
+  @ViewChild('file') fileValue: ElementRef;
+
   constructor(private CRUD: CRUDService,
               private fb: FormBuilder) { }
 
@@ -82,8 +86,46 @@ export class EditIndividualComponent implements OnInit {
 
   onSubmit(){
     this.message = "Processing Data"
-    let results = Object.assign({}, this.individualForm.value);
-    console.log(results)
+    const editedInfo = this.OldInfo;
+    Object.keys(this.individualForm.controls).forEach(key => {
+      editedInfo[key] = this.individualForm.controls[key].value;
+    });
+    editedInfo.awards = this.format(this.awardsArray);
+    editedInfo.projects = this.format(this.projectsArray);
+    editedInfo.socialMedia = this.formatSM(editedInfo);
+    console.log(editedInfo);
+     return this.CRUD.editImages([`CVs/${this.OldInfo.name}`], [this.fileEvent], [this.OldInfo.cvresume])
+     .then(link => {
+       editedInfo.cvresume = link[0];
+       return this.CRUD.editItem(editedInfo, 'people', this.OldInfo.key);
+     }).then(() => {
+       this.message = 'submission successful!';
+       this.onReset();
+     });
+  }
+  
+  onReset() {
+    this.fileEvent = undefined;
+    this.fileValue.nativeElement.value = '';
+  }
+
+  onFile(event: any) {
+    this.fileEvent = event;
+  }
+
+  format(formArray: FormArray){
+    let JSONed: any[] = [];
+    formArray.value.forEach(element => JSONed.push(element));
+    return(JSON.stringify(JSONed));
+  }
+
+  formatSM(data: any){
+    let JSONed: any[] = [];
+    data.socialMedia.forEach(element => {
+      const values = <string[]>Object.values(element);
+        JSONed.push({[values[0]]: values[1]});
+      });
+    return(JSON.stringify(JSONed));
   }
 
 }
