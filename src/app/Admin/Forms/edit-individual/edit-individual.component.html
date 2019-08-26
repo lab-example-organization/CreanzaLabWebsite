@@ -24,11 +24,26 @@
   <h4>Publications:</h4>
   <app-publicationupload></app-publicationupload>
   <hr>
+  <h4>Awards:</h4>
+  <div formArrayName="awards">
+      <p *ngFor="let group of individualForm.get('awards')['controls'], let i = index"
+      [formGroupName]="i">
+      <b>Title {{ i+1 }}: </b> <input formControlName="title" type="text">
+      <span *ngIf="i===0">
+          <button type="button" (click)="addAward(true)">+</button>
+          <button type="button" (click)="addAward(false)"
+                  [disabled] ="individualForm.controls.awards.length === 1">-</button>
+        </span><br>
+        <b>Year Recieved {{ i+1 }}: </b> <input formControlName="yearReceived" type="text"> 
+      </p>
+  <hr>
+  </div>
+
   <h4>Social Media:</h4>
     <div id="socialMedia" formArrayName="socialMedia">
-      <span *ngFor="let type of sMTypes; let i = index"
+      <span *ngFor="let type of socialMediaArray.controls; let i = index"
       [formGroupName]="i">
-        <b>{{ type }}: </b> <input class="long" [formControlName]="type"><br><br>
+        <b>{{ socialMediaArray.controls[i].value.media }}: </b> <input class="long" formControlName="link"><br><br>
       </span>
     </div>
 

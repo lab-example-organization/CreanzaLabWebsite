@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CRUDService } from '../crud.service';
 import { formatDate } from '@angular/common';
-import { Person } from 'src/app/Classes/person';
+import { Person, Project, Award } from 'src/app/Classes/person';
+import { SocialMedia } from 'src/app/Classes/socialMedia';
 
 @Component({
   selector: 'app-new-memeber',
@@ -29,6 +30,9 @@ export class NewMemeberComponent implements OnInit {
 
     blankPerson.portraitLink = 'https://firebasestorage.googleapis.com/v0/b/creanza-lab-208216.appspot.com' +
                              '/o/Profiles%2FPlaceHolder.jpg?alt=media&token=21990311-773c-41ad-9949-c4a34812db2a';
+    blankPerson.socialMedia = JSON.stringify(new SocialMedia);
+    blankPerson.projects = JSON.stringify(new Project);
+    blankPerson.awards = JSON.stringify(new Award);
     console.log(blankPerson);
     const newPerson = Object.assign({}, blankPerson);
     this.CRUD.uploadItem(newPerson, 'people').then(() => this.message = 'successful upload!');

@@ -1,5 +1,4 @@
 export class SocialMedia {
-    Personal: string = '';
     Android: string = '';
     Dribbble: string = '';
     Facebook: string = '';
@@ -8,6 +7,7 @@ export class SocialMedia {
     Google: string = '';
     Instagram: string = '';
     LinkedIn: string = '';
+    Personal: string = '';
     Pinterest: string = '';
     Reddit: string = '';
     RSS: string = '';

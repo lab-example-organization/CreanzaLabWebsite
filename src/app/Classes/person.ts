@@ -18,11 +18,11 @@ export class Person {
 }
 
 export class Project {
-    title: string;
-    mainInfo: string;
+    title: string = '';
+    mainInfo: string = '';
 }
 
 export class Award {
-    title: string;
-    yearReceived: number;
+    title: string = '';
+    yearReceived: string = '';
 }
