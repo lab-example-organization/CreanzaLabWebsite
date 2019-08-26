@@ -33,8 +33,12 @@ export class EditMembersComponent implements OnInit {
   }
 
   onSwitchUser(who: string){
-    console.log(who);
-    this.editmemberserv.updateActive(who);
+    if(who === "None"){
+      this.editmemberserv.undoActive();
+    }else{
+      this.editmemberserv.updateActive(who);
+    }
+    
   }
   onEditRoles(){
     //this.CRUD.editItem(editDoc, path, docKey)

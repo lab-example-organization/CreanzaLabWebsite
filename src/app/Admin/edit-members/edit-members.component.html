@@ -9,7 +9,7 @@
     <b>User: </b>
     <select
     (change)="onSwitchUser($event.target.value)">
-      <option value="" selected disabled>Please select an option...</option>
+      <option value="None" selected>Select a user</option>
       <option *ngFor="let user of users" [value]=user.email>
         {{ user.name }}
       </option>

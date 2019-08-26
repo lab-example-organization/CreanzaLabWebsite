@@ -25,9 +25,14 @@ export class EditRolesComponent implements OnInit {
       if(aUser.email){
         this.activeUser = aUser;
         this.rolesForm.patchValue({User: aUser.roles[0],
-                                Uploader: aUser.roles[1],
-                                Admin: aUser.roles[2]});  
-      }
+                                   Uploader: aUser.roles[1],
+                                   Admin: aUser.roles[2]});
+      }else{
+         delete this.activeUser;
+         this.rolesForm.patchValue({User: '',
+                                   Uploader: '',
+                                   Admin: ''});
+       }
     });
 
     this.editmemberserv.activePerson.subscribe(aPerson => {
