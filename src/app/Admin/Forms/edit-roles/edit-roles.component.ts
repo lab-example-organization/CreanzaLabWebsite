@@ -1,27 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/Classes/user';
 import { Person } from 'src/app/Classes/person';
 import { FormBuilder } from '@angular/forms';
 import { EditmembersService } from '../../edit-members/editmembers.service';
 import { CRUDService } from '../crud.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-roles',
   templateUrl: './edit-roles.component.html',
   styleUrls: ['./edit-roles.component.css']
 })
-export class EditRolesComponent implements OnInit {
+export class EditRolesComponent implements OnInit, OnDestroy {
 
   activeUser: any;
   activePerson: Person;
   rolesForm = this.createForm();
+  subscribe1: Subscription;
+  subscribe2: Subscription;
 
   constructor(private fb: FormBuilder,
               private editmemberserv: EditmembersService,
               private CRUD: CRUDService) { }
 
   ngOnInit() {
-    this.editmemberserv.activeUser.subscribe(aUser => {
+    this.subscribe1 = this.editmemberserv.activeUser.subscribe(aUser => {
       if(aUser.email){
         this.activeUser = aUser;
         this.rolesForm.patchValue({User: aUser.roles[0],
@@ -35,13 +38,17 @@ export class EditRolesComponent implements OnInit {
        }
     });
 
-    this.editmemberserv.activePerson.subscribe(aPerson => {
+    this.subscribe2 = this.editmemberserv.activePerson.subscribe(aPerson => {
       if(aPerson.email){
         this.activePerson = aPerson;
       }
     })
   }
 
+  ngOnDestroy(){
+    this.subscribe1.unsubscribe();
+    this.subscribe2.unsubscribe();
+  }
 
   createForm(){
     return this.fb.group({

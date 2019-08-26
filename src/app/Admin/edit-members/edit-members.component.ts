@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { CRUDService } from '../Forms/crud.service';
 import { Person } from 'src/app/Classes/person';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/Classes/user';
 import { map, tap } from 'rxjs/operators';
 import { EditmembersService } from './editmembers.service';
@@ -12,12 +12,14 @@ import { EditmembersService } from './editmembers.service';
   templateUrl: './edit-members.component.html',
   styleUrls: ['./edit-members.component.css']
 })
-export class EditMembersComponent implements OnInit {
+export class EditMembersComponent implements OnInit, OnDestroy {
 
   
   users: User[];
   people: Person[];
   person: Person;
+  subscribe1: Subscription;
+  subscribe2: Subscription;
   
 
   constructor(
@@ -25,11 +27,16 @@ export class EditMembersComponent implements OnInit {
               private editmemberserv: EditmembersService) { }
 
   ngOnInit() {
-    this.editmemberserv.userData.subscribe(userData => this.users = userData);
-    this.editmemberserv.personData.subscribe(personData => {
+    this.subscribe1 = this.editmemberserv.userData.subscribe(userData => this.users = userData);
+    this.subscribe2 = this.editmemberserv.personData.subscribe(personData => {
       this.people = personData;
       this.person = this.people[0];
     });
+  }
+
+  ngOnDestroy(){
+    this.subscribe1.unsubscribe();
+    this.subscribe2.unsubscribe();
   }
 
   onSwitchUser(who: string){

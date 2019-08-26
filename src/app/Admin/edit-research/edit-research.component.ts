@@ -1,16 +1,17 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { CRUDService } from '../Forms/crud.service';
 import { Research } from '../../Classes/research';
 import { FigureImage } from '../../Classes/figureImage';
 import { tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-research',
   templateUrl: './edit-research.component.html',
   styleUrls: ['./edit-research.component.css']
 })
-export class EditResearchComponent implements OnInit {
+export class EditResearchComponent implements OnInit, OnDestroy {
 
   // ResearchText = 'lewl';
   MessageTop: string;
@@ -21,16 +22,21 @@ export class EditResearchComponent implements OnInit {
   edit = false;
   editIndex: number;
   @ViewChild('image') imageValue: ElementRef;
+  subscribe: Subscription;
 
   constructor(private CRUD: CRUDService,
               private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.CRUD.fetchAllData('research').subscribe
+    this.subscribe = this.CRUD.fetchAllData('research').subscribe
       (x => {
         this.Figures = JSON.parse(x[0].figures);
         this.ResearchForm = this.MakeForm(x[0].mainText);
       });
+  }
+  
+  ngOnDestroy(){
+    this.subscribe.unsubscribe();
   }
   
   SubmitResearch(fig: boolean) {
