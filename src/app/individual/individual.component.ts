@@ -28,7 +28,6 @@ export class IndividualComponent implements OnInit {
     this.route.data.subscribe((data: {person: Person}) => {
       this.person$ = of(data.person);
       this.socialMedia = JSON.parse(data.person.socialMedia);
-      console.log(this.socialMedia)
       this.projects = JSON.parse(data.person.projects);
       this.awards = JSON.parse(data.person.awards);
       //this.publications = JSON.parse(data.person.publications);

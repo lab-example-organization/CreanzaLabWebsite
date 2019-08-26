@@ -17,6 +17,7 @@ export class EditMembersComponent implements OnInit {
   
   users: User[];
   people: Person[];
+  person:Person;
   
 
   constructor(
@@ -25,7 +26,10 @@ export class EditMembersComponent implements OnInit {
 
   ngOnInit() {
     this.editmemberserv.userData.subscribe(userData => this.users = userData);
-    this.editmemberserv.personData.subscribe(personData => this.people = personData);
+    this.editmemberserv.personData.subscribe(personData => {
+      this.people = personData;
+      this.person = this.people[0];
+    });
   }
 
   onSwitchUser(who: string){

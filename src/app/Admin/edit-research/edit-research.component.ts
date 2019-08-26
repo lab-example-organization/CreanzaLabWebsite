@@ -26,7 +26,6 @@ export class EditResearchComponent implements OnInit {
               private fb: FormBuilder) { }
 
   ngOnInit() {
-    console.log('start');
     this.CRUD.fetchAllData('research').subscribe
       (x => {
         this.Figures = JSON.parse(x[0].figures);

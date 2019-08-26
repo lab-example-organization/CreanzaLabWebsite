@@ -34,7 +34,7 @@ import { AddpubnamesComponent } from '../Admin/addpubnames/addpubnames.component
     PublicationuploadComponent,
     NewMemeberComponent,
     EditRolesComponent,
-    EditIndividualComponent
+    EditIndividualComponent,
     AddpubnamesComponent
   ],
   imports: [
