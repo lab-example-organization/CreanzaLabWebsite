@@ -22,7 +22,6 @@ export class PeopleComponent implements OnInit {
   ngOnInit() {
     this.people$ = this.peopleserv.getPeople().pipe(
       tap(people => this.alumni$ = of (people.filter(person => person.description === 'Alumni'))),
-      tap(() => this.alumni$.subscribe(x => console.log(x[0]))),
       map(people => people.filter(person => person.description !== 'Alumni')),
       map(people => people.sort(
         (a, b) => {

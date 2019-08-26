@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SocialMedia } from 'src/app/Classes/socialMedia';
 import { CRUDService } from '../crud.service';
 import { FormBuilder, FormArray } from '@angular/forms';
-import { Award } from 'src/app/Classes/person';
+import { Award, Project } from 'src/app/Classes/person';
 
 @Component({
   selector: 'app-edit-individual',
@@ -16,6 +16,8 @@ export class EditIndividualComponent implements OnInit {
   message: string;
   
   socialMediaArray: FormArray = this.populateNewSocialMedia();
+  awardsArray = this.fb.array([]);
+  projectsArray = this.fb.array([]);
   individualForm = this.makeForm();
   constructor(private CRUD: CRUDService,
               private fb: FormBuilder) { }
@@ -23,8 +25,10 @@ export class EditIndividualComponent implements OnInit {
   ngOnInit() {
     this.individualForm = this.CRUD.quickAssign(this.individualForm, this.OldInfo);
     this.individualForm.controls.socialMedia = this.populateSocialMedia();
-    //const awards = <Award[]>JSON.parse(this.OldInfo.awards);
-    //awards.forEach(award => this.addAward(true, award.title, award.yearReceived));
+    const awards = <Award[]>JSON.parse(this.OldInfo.awards);
+    awards.forEach(award => this.addAward(true, award.title, award.yearReceived));
+    const projects = <Project[]>JSON.parse(this.OldInfo.projects);
+    projects.forEach(project => this.addProject(true, project.title, project.mainInfo));
   }
     makeForm(){
     return this.fb.group({
@@ -32,26 +36,25 @@ export class EditIndividualComponent implements OnInit {
       pubName: '',
       cvresume: '',
       socialMedia: this.socialMediaArray,//this.populateNewSocialMedia(),//this.fb.array([this.fb.group({name: ''})]),
-      projects: this.fb.array([this.fb.group({title: '', mainInfo: ''})]),
-      awards: this.fb.array([this.fb.group({title: '', yearReceived: ''})])
+      projects: this.projectsArray,
+      awards: this.awardsArray
     })
 
   }
   
-  addProject(add: boolean) {
-    const projects = <FormArray>this.individualForm.controls.projects;
+  addProject(add: boolean, title: string= '', mainInfo: string = '') {
     if (add) {
-      projects.push(this.fb.group({title: '', mainInfo: ''}));
+      this.projectsArray.push(this.fb.group({title: title, mainInfo: mainInfo}));
     } else {
-      projects.removeAt(projects.length - 1);
+      this.projectsArray.removeAt(this.projectsArray.length - 1);
     }
   }
+
   addAward(add: boolean, title: string= '', yearReceived: string = '') {
-    const awards = <FormArray>this.individualForm.controls.awards;
     if (add) {
-      awards.push(this.fb.group({title: title, yearReceived: yearReceived}));
+      this.awardsArray.push(this.fb.group({title: title, yearReceived: yearReceived}));
     } else {
-      awards.removeAt(awards.length - 1);
+      this.awardsArray.removeAt(this.awardsArray.length - 1);
     }
   }
 
