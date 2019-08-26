@@ -1,6 +1,6 @@
-<label>Edit Main Text</label> <br>
 <form [formGroup]="ResearchForm">
-  <textarea formControlName="MainText" rows=15 cols=60></textarea><br>
+  <label>Edit Main Text</label> <br>
+  <textarea formControlName="MainText" rows=25 cols=70></textarea><br>
   <button type="submit"
   [disabled]="!ResearchForm.controls.MainText.dirty"
   (click)="SubmitResearch(false)">Accept</button>{{MessageTop}}
@@ -10,23 +10,21 @@
   <hr>
 
 
-
-  <label>Edit Figures</label> <br>
-  <div id=Title>
-    <label>Title:</label> <input formControlName="Title">
-    
+  <label>Edit Figures:</label> <br>
+  
+  <div id="Title">
     <select #reset name="FigureName" (change)="onNameChange($event.target.value)">
       <option value="-1" selected>New Figure</option>
       <option *ngFor="let figure of Figures, let i = index"
           [value] = i> {{ figure.Name }}
       </option>
     </select>
+    <br><br>
+    <label>Title:</label> <input formControlName="Title"><br>
     
-    
-    <br>
 
-
-    <label>Caption:</label> <input formControlName="Description">
+    <label>Caption:</label><br>
+    <textarea rows=7 cols=70 formControlName="Description" wrap="hard"></textarea>
   </div><br>
   
   
