@@ -1,3 +1,37 @@
-<p>
-  edit-individual works!
-</p>
+<form [formGroup]="individualForm">
+  <h4>Header:</h4>
+  <b>Public-Facing Email: </b> <input class="long" formControlName="publicEmail"><br><br>
+  <b>Publication Name: </b> <input class="long" formControlName="pubName"><br>(To bold yourself in publications; e.g. Robinson CM or Creanza N)<br><br>
+  <b>CV or Resume: </b> <input type="file" class="long" formControlName="cvresume"><br><br>
+  <hr>
+  <h4>Projects:</h4>
+  <div formArrayName="projects">
+      <p *ngFor="let group of individualForm.get('projects')['controls'], let i = index"
+      [formGroupName]="i">
+      <b>Title {{ i+1 }}: </b> <input formControlName="title" type="text">
+      <span *ngIf="i===0">
+          <button type="button" (click)="addProject(true)">+</button>
+          <button type="button" (click)="addProject(false)"
+                  [disabled] ="individualForm.controls.projects.length === 1">-</button>
+        </span><br>
+      <b>Main Text {{ i+1 }}: </b><br>
+      <textarea rows="4" cols="50" formControlName="mainInfo"></textarea> 
+         
+      </p>
+  
+  </div>
+  <hr>
+  <h4>Publications:</h4>
+  <app-publicationupload></app-publicationupload>
+  <hr>
+  <h4>Social Media:</h4>
+    <div id="socialMedia" formArrayName="socialMedia">
+      <span *ngFor="let type of sMTypes; let i = index"
+      [formGroupName]="i">
+        <b>{{ type }}: </b> <input class="long" [formControlName]="type"><br><br>
+      </span>
+    </div>
+
+    <button type="submit"
+    (click)="onSubmit()">Submit</button> {{ message }}
+</form>

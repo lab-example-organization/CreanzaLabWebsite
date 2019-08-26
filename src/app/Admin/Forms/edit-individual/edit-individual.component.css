@@ -1,0 +1,8 @@
+div#socialMedia {
+    max-width: 500px;
+    height: 1180px; /*if you add more social media stuff, you will have to make this longer*/
+}
+
+div#socialMedia span {
+    float: right;
+}
