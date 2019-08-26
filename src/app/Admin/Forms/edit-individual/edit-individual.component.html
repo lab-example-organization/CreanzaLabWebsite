@@ -1,0 +1,53 @@
+<form [formGroup]="individualForm">
+  <h4>Header:</h4>
+  <b>Public-Facing Email: </b> <input class="long" formControlName="publicEmail"><br><br>
+  <b>Publication Name: </b> <input class="long" formControlName="pubName"><br>(To bold yourself in publications; e.g. Robinson CM or Creanza N)<br><br>
+  <b>CV or Resume: </b> <input #file type="file" class="long" (change)="onFile($event)"><br><br>
+  <hr>
+  <h4>Projects:</h4>
+  <div formArrayName="projects">
+      <p *ngFor="let group of individualForm.get('projects')['controls'], let i = index"
+      [formGroupName]="i">
+      <b>Title {{ i+1 }}: </b> <input formControlName="title" type="text">
+      <span *ngIf="i===0">
+          <button type="button" (click)="addProject(true)">+</button>
+          <button type="button" (click)="addProject(false)"
+                  [disabled] ="individualForm.controls.projects.length === 1">-</button>
+        </span><br>
+      <b>Main Text {{ i+1 }}: </b><br>
+      <textarea rows="6" cols="65" formControlName="mainInfo"></textarea> 
+         
+      </p>
+  
+  </div>
+  <hr>
+  <h4>Publications:</h4>
+  <app-publicationupload></app-publicationupload>
+  <hr>
+  <h4>Awards:</h4>
+  <div formArrayName="awards">
+      <p *ngFor="let group of individualForm.get('awards')['controls'], let i = index"
+      [formGroupName]="i">
+      <b>Title {{ i+1 }}: </b> <input formControlName="title" type="text">
+      <span *ngIf="i===0">
+          <button type="button" (click)="addAward(true)">+</button>
+          <button type="button" (click)="addAward(false)"
+                  [disabled] ="individualForm.controls.awards.length === 1">-</button>
+        </span><br>
+        <b>Year Recieved {{ i+1 }}: </b> <input formControlName="yearReceived" type="text"> 
+      </p>
+  <hr>
+  </div>
+
+  <h4>Social Media:</h4>
+    <div id="socialMedia" formArrayName="socialMedia">
+      <span *ngFor="let type of socialMediaArray.controls; let i = index"
+      [formGroupName]="i">
+        <b>{{ socialMediaArray.controls[i].value.media }}: </b> <input class="long" formControlName="link"><br><br>
+      </span>
+    </div>
+
+    <button type="submit"
+    (click)="onSubmit()">Submit</button> {{ message }}
+</form>
+<br>

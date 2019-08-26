@@ -1,20 +1,27 @@
-<app-new-memeber></app-new-memeber>
+div id="outer">
+    <app-new-memeber></app-new-memeber>
 
+    <hr>
+    <app-addpubnames></app-addpubnames>
 <hr>
-
-<h3>Edit Member: </h3>
-<b>User: </b>
-<select
-(change)="onSwitchUser($event.target.value)">
-  <option value="" selected disabled>Please select an option...</option>
-  <option *ngFor="let user of users" [value]=user.email>
-    {{ user.name }}
-  </option>
-</select> (Users do not show up until they have logged in once!)<br>
-<br>
-<app-edit-roles></app-edit-roles>
-<app-addpubnames></app-addpubnames>
-<hr>
-(Remember that users can edit their own data.  The following sections exist only in case bad things happen.)<br>
-<b>Edit Card:</b><br>
-<b>Edit Page:</b><br>
+    <h3>Edit Member Roles: </h3>
+    (Members do not have roles until they have logged in once!)<br><br>
+    <b>User: </b>
+    <select
+    (change)="onSwitchUser($event.target.value)">
+      <option value="" selected disabled>Please select an option...</option>
+      <option *ngFor="let user of users" [value]=user.email>
+        {{ user.name }}
+      </option>
+    </select>
+    <br><br>
+    <app-edit-roles></app-edit-roles>
+    <hr>
+    <h3>Edit Member Display: </h3>
+    (Remember that users can edit their own data.  The following sections exist only in case bad things happen.)<br>
+    <b>Edit Card:</b><br>
+    <app-peopleupload *ngIf="true"
+    [OldInfo]="person"
+    ></app-peopleupload>
+    <b>Edit Page:</b><br>
+</div>

@@ -11,4 +11,22 @@ a.navbar{
     text-decoration:none;
     margin: .1em;
     white-space: nowrap;
-};
+}
+
+form {
+    border: 2px solid black;
+    padding: 7px;
+    max-width: 700px;
+    margin-left: 15px;
+}
+
+input.long{
+    width: 300px;
+}
+
+input.short{
+    width:60px;
+}
+input.medium{
+    width: 120px;
+}

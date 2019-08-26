@@ -24,7 +24,7 @@
               <img mat-card-image [src]="person.portraitLink" [alt]="'Photo of ' + person.name">
               
               <div class="block-with-text">
-                {{person.project}}
+                {{person.projectShort}}
               </div>
               
               <nav *ngIf="person.name">
@@ -62,7 +62,7 @@
               <img mat-card-image [src]="alum.portraitLink" [alt]="'Photo of ' + alum.name">
               
               <div class="block-with-text">
-                {{alum.project}}
+                {{alum.projectShort}}
               </div>
               
               <nav *ngIf="alum.name">

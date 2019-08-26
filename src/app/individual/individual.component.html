@@ -1,41 +1,71 @@
 
-<div class="verticalDivide" *ngIf="person$ | async as person">
-  <div class="column2">
-    <div id="row2">
-      <div class="itemOne">
-        <p id="Name">{{ person.name }}</p>
-        <p id="Description">{{ person.description }}</p>
-        <p id="Pronouns">{{ person.pronouns }}</p>
-        <p id="Year">{{ person.startYear }} - {{ person.endingYear }}</p>
-      </div>
-      <div class="itemTwo">
-        <p id="Studying">{{ person.studying }}</p>
-        <p id="Project">{{ person.project }}</p>
-        <p id="SocialMedia">{{ socialMedia.android }}</p>
-      </div>
-    </div>
-    <div class="itemThree">
-      <p id="ProjectTitle">This is the title of My Awesome Project(s)/Interest(s)</p>
-      <ul class="portfolio">
-        <h4>What's going on?</h4>
-        <p>
-          This story, believe it or not, is the very familiar fable of Little Red Riding Hood. 
-          This curious version was written in 1940 by a professor of French named H. L. Chace, 
-          who wanted to show his students that intonation - that is, the melody of a language - 
-          is an integral part of its meaning. The words here are all common English words, but 
-          not the ones you'd expect to tell the story of Ladle Rat Rotten Hut. 
+<div *ngIf="person$ | async as person">
+  <img id="portrait" [src]="person.portraitLink">
+  <div id="cardinfo">
+        <p id="Name">{{ person.name }}
+          <span *ngIf="person.pronouns" id="Pronouns">({{ person.pronouns }})</span>
         </p>
-        <li>
-          <a target="_blank" href="https://xkcd.com/451/">
-            This could be my social media link
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="http://phdcomics.com/comics/archive.php?comicid=975">
-            This could be a twitter, or a bumble, or a snapchat
-          </a>
-        </li>
-      </ul>
-    </div>
+        <p id="Description">{{ person.description }}, {{ person.startYear }} - {{ person.endingYear }}</p>
+        <p id="Studying">{{ person.studying }}</p>
+        <p id="Project">{{ person.projectShort }}</p>
+        <p *ngIf="person.publicEmail"><b>Email: </b> {{ person.publicEmail }}</p>
+        <p *ngIf="person.cvresume"><b><a [href]="person.cvresume">CV/Resume</a></b></p>
   </div>
+  <div style="clear: both;"></div><br>
+  <hr>
+
+      <!--PROJECTS-->
+<div *ngIf="projects" class="conditional">
+  <h3><u>Projects:</u></h3>
+  <div *ngFor="let project of projects" >
+    <b>{{ project.title }}</b>
+    <p>{{ project.mainInfo }}</p>
+  </div>
+  <hr>
+</div>
+
+
+
+
+<!--PUBLICATIONS-->
+<div *ngIf="publications" class="conditional">
+  <h3><u>Publications:</u></h3>
+  <!--NEEDS THE UNDERLINE PUBS BRANCH TO BE MERGED
+  <app-display-pubs
+[mainAuthor]="person.pubName"
+[publications]="publications"
+></app-display-pubs>
+  -->
+  * = contributed equally
+  <hr>
+</div>
+
+<!--Awards-->
+<div *ngIf="awards" class="conditional">
+    <h3><u>Awards:</u></h3>
+  <ul id="awards">
+    <li *ngFor="let award of awards">
+      {{ award.yearReceived }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ award.title }}
+    </li>
+  </ul>
+  <hr>
+</div>
+
+<!--SOCIAL MEDIA-->
+  <div id="SocialMedia" *ngIf="ShowSocial">
+        <h3><u>Social Media Links:</u></h3>
+          <ul id="socialmedia">
+              <div *ngFor="let social of sMTypes">
+                  <li *ngIf="socialMedia[social]">
+                      <a  class="fa" [id]="social"
+                          target="_blank"
+                          [href]="socialMedia[social]">
+                        {{ social }}
+                      </a>
+                    </li>
+              </div>
+            </ul>
+    <hr>
+  </div>
+
 </div>

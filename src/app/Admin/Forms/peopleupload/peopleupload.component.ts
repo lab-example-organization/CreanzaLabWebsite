@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { CRUDService } from '../crud.service';
@@ -10,33 +10,22 @@ import { Subscription } from 'rxjs';
   templateUrl: './peopleupload.component.html',
   styleUrls: ['./peopleupload.component.css']
 })
-export class PeopleuploadComponent implements OnInit, OnDestroy {
+export class PeopleuploadComponent implements OnInit {
 
-  @Input() existingPerson;
+  @Input() OldInfo: any;
   positions: string[] = ['High-schooler', 'Undergraduate Student', 'Graduate Student', 'Post-Doc', 'PI', 'Alumni', 'Rotation Student'];
   personForm = this.createForm();
   imageEvent: any;
   @ViewChild('image') imageValue: ElementRef;
   message: string;
-  OldInfo: any;
 
   stream: Subscription;
 
   constructor(private fb: FormBuilder,
-              private CRUD: CRUDService,
-              private auth: AuthService) { }
+              private CRUD: CRUDService) { }
 
   ngOnInit() {
-    this.stream = this.auth.user.subscribe(user => {
-      this.CRUD.fetchIndivdualData(user, 'people').subscribe(u => {
-        this.OldInfo = u;
-        this.personForm = this.CRUD.quickAssign(this.personForm, u);
-      });
-    });
-  }
-
-  ngOnDestroy() {
-    this.stream.unsubscribe();
+        this.personForm = this.CRUD.quickAssign(this.personForm, this.OldInfo);
   }
 
   createForm() {
@@ -45,7 +34,7 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
       description: ['Undergraduate', Validators.required],
       endingYear: ['Present', Validators.required],
       name: ['', Validators.required],
-      project: '',
+      projectShort: '',
       startYear: [Year, Validators.required],
       studying: ['', Validators.required],
       pronouns: '',
