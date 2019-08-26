@@ -1,6 +1,14 @@
 
 <form [formGroup]="publicationForm">
 
+<select #reset  (change)="onNameChange($event.target.value)">
+      <option value="-1" selected>New Publication</option>
+      <option *ngFor="let pub of pubsList; let i = index"
+          [value] = index> {{ pub.title}}     
+        </option> 
+  </select><br><br>
+
+
 <div formArrayName="authors">
   <p *ngFor="let group of publicationForm.get('authors')['controls'], let i = index"
   [formGroupName]="i">

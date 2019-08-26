@@ -26,7 +26,6 @@ export class PublicationuploadComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    console.log(this.pubsList);
     this.subscription.unsubscribe();
   }
 
