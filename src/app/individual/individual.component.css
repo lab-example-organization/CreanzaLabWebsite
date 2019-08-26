@@ -17,6 +17,7 @@ div#cardinfo {
 
 div.conditional {
   margin-left: 30px;
+  max-width: 800px;
 }
 
 p#Name {
@@ -44,7 +45,6 @@ p#Studying {
 p#Project {
   font-size:20px;
 }
-
 
 div#SocialMedia {
 padding-left: 30px;

@@ -16,7 +16,7 @@
 
       <!--PROJECTS-->
 <div *ngIf="projects" class="conditional">
-  <h4>Projects:</h4>
+  <h3><u>Projects:</u></h3>
   <div *ngFor="let project of projects" >
     <b>{{ project.title }}</b>
     <p>{{ project.mainInfo }}</p>
@@ -29,7 +29,7 @@
 
 <!--PUBLICATIONS-->
 <div *ngIf="publications" class="conditional">
-  <h4>Publications:</h4>
+  <h3><u>Publications:</u></h3>
   <!--NEEDS THE UNDERLINE PUBS BRANCH TO BE MERGED
   <app-display-pubs
 [mainAuthor]="person.pubName"
@@ -42,7 +42,7 @@
 
 <!--Awards-->
 <div *ngIf="awards" class="conditional">
-    <h4>Awards:</h4>
+    <h3><u>Awards:</u></h3>
   <ul id="awards">
     <li *ngFor="let award of awards">
       {{ award.yearReceived }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ award.title }}
@@ -53,7 +53,7 @@
 
 <!--SOCIAL MEDIA-->
   <div id="SocialMedia" *ngIf="ShowSocial">
-        <h4>Social Media Links:</h4>
+        <h3><u>Social Media Links:</u></h3>
           <ul id="socialmedia">
               <div *ngFor="let social of sMTypes">
                   <li *ngIf="socialMedia[social]">
