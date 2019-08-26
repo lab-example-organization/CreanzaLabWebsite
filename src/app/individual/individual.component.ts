@@ -33,7 +33,7 @@ export class IndividualComponent implements OnInit {
       this.awards = JSON.parse(data.person.awards);
       //this.publications = JSON.parse(data.person.publications);
       for(let SM of this.sMTypes){
-        if (typeof this.socialMedia[SM] === null) {
+        if (typeof this.socialMedia[SM] !== null) {
           this.ShowSocial = true;
         }
       }

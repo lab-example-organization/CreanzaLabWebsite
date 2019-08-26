@@ -120,12 +120,12 @@ export class EditIndividualComponent implements OnInit {
   }
 
   formatSM(data: any){
-    let JSONed: any[] = [];
+    let Blank = new SocialMedia;
     data.socialMedia.forEach(element => {
       const values = <string[]>Object.values(element);
-        JSONed.push({[values[0]]: values[1]});
-      });
-    return(JSON.stringify(JSONed));
+      Blank[values[0]] = values[1]
+    });
+    return(JSON.stringify(Blank));
   }
 
 }

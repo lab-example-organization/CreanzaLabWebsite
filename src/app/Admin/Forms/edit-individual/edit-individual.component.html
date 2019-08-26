@@ -2,7 +2,7 @@
   <h4>Header:</h4>
   <b>Public-Facing Email: </b> <input class="long" formControlName="publicEmail"><br><br>
   <b>Publication Name: </b> <input class="long" formControlName="pubName"><br>(To bold yourself in publications; e.g. Robinson CM or Creanza N)<br><br>
-  <b>CV or Resume: </b> <input #file type="file" class="long" formControlName="cvresume" (change)="onFile($event)"><br><br>
+  <b>CV or Resume: </b> <input #file type="file" class="long" (change)="onFile($event)"><br><br>
   <hr>
   <h4>Projects:</h4>
   <div formArrayName="projects">
