@@ -1,27 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { CRUDService } from '../crud.service';
+import { PublicationService } from './publication.service';
+import { Publication } from 'src/app/Classes/publication';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-publicationupload',
   templateUrl: './publicationupload.component.html',
   styleUrls: ['./publicationupload.component.css']
 })
-export class PublicationuploadComponent implements OnInit {
+export class PublicationuploadComponent implements OnInit, OnDestroy {
 
+  pubsList: Publication[];
   publicationForm = this.createForm();
   message: string;
+  subscription: Subscription;
 
   constructor(private fb: FormBuilder,
-              private CRUD: CRUDService) { }
+              private pubserv: PublicationService) { }
 
   ngOnInit() {
+    this.subscription = this.pubserv.publicationList
+                        .subscribe(pubs => this.pubsList=pubs);
+  }
+
+  ngOnDestroy(){
+    console.log(this.pubsList);
+    this.subscription.unsubscribe();
   }
 
   onSubmit() {
     const newPublications = Object.assign({}, this.publicationForm.value);
     newPublications.authors = this.formatAuthors(newPublications.authors);
-    this.CRUD.uploadItem(newPublications, 'publications')
+    this.pubserv.Action(newPublications, 'submit')
     .then(() => this.message = 'Success!');
   }
 

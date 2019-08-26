@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PublicationService } from '../Forms/publicationupload/publication.service';
 
 @Component({
   selector: 'app-edit-publications',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditPublicationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pubserv: PublicationService) { }
 
   ngOnInit() {
+    this.pubserv.fetchMaster();
   }
 
 }
