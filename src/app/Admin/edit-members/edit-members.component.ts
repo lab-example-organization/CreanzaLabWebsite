@@ -17,7 +17,7 @@ export class EditMembersComponent implements OnInit {
   
   users: User[];
   people: Person[];
-  person:Person;
+  person: Person;
   
 
   constructor(

@@ -32,6 +32,7 @@ export class EditResearchComponent implements OnInit {
         this.ResearchForm = this.MakeForm(x[0].mainText);
       });
   }
+  
   SubmitResearch(fig: boolean) {
     if (fig) {
       if (this.edit) {
