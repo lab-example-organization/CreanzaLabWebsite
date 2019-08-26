@@ -45,7 +45,7 @@ export class EditmembersService {
 
   updateActive(email: string){
     this.fetchUser(email).subscribe(user => this.activeUser.next(user));
-    //this.fetchPerson(email).subscribe(person => this.activePerson.next(person));
+    this.fetchPerson(email).subscribe(person => this.activePerson.next(person));
   }
 
   undoActive(){

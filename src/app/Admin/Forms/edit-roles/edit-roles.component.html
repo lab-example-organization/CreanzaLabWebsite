@@ -23,5 +23,5 @@ Uploaders have access to Add/Edit Lab Photos and Add/Edit New News Event
 Admin have access to Edit Publications, Edit Members, and Edit Research/Contact Pages
 <br><br>
 
-<button (click)=onEdit()>Edit</button>
+<button (click)=onEdit() [disabled]="!activeUser">Edit</button>
 </form>
