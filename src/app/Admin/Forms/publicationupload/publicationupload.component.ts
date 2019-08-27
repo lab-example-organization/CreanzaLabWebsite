@@ -18,6 +18,7 @@ export class PublicationuploadComponent implements OnInit, OnDestroy {
   message: string;
   subscription: Subscription;
   key: string;
+  edit = false;
 
   constructor(private fb: FormBuilder,
               private pubserv: PublicationService,
@@ -32,7 +33,7 @@ export class PublicationuploadComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onSubmit(type: string) {
+  onSubmit(type: boolean) {
     this.message = "Processing Data..."
     const newPublications = Object.assign({}, this.publicationForm.value);
     newPublications.authors = this.formatAuthors(newPublications.authors);
@@ -84,12 +85,14 @@ export class PublicationuploadComponent implements OnInit, OnDestroy {
   onNameChange(index: number){
     if(index === -1){
       this.publicationForm = this.createForm();
-      delete this.key
+      delete this.key;
+      this.edit = false;
     }else{
       this.CRUD.quickAssign(this.publicationForm, this.pubsList[index]);
       this.authorArray.value.forEach(() => this.addAuthor(false));
       this.pubsList[index].authors.forEach(author => this.addAuthor(true, author));
       this.key = this.pubsList[index].key;
+      this.edit = true
     }
     
   }
@@ -98,5 +101,6 @@ export class PublicationuploadComponent implements OnInit, OnDestroy {
     this.publicationForm = this.createForm();
     this.authorArray = <FormArray>this.publicationForm.controls.authors;
     delete this.key;
+    this.edit = false;
   }
 }

@@ -28,10 +28,10 @@
 
 
 <!--PUBLICATIONS-->
-<div *ngIf="publications[0].title" class="conditional">
+<div *ngIf="publications[0]" class="conditional">
   <h3><u>Publications:</u></h3>
   <app-display-pubs
-[mainAuthor]="person.pubName"
+[mainAuthor]="mainAuthor"
 [publications]="publications"
 ></app-display-pubs>
   * = contributed equally

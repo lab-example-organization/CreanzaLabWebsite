@@ -1,7 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Subscription, of } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Publication } from 'src/app/Classes/publication';
 import { CRUDService } from '../crud.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,25 +19,37 @@ export class PublicationService implements OnDestroy{
     this.masterList = bool;
   }
 
-  editSubmit(pub: Publication, type: string = "submit", key: string = ''){
+  editSubmit(newPub: Publication, submit: boolean, key: string = ''){
     if(this.masterList){
-      if(type === "submit"){
-        return (this.CRUD.uploadItem(pub, 'publications'));
-      }else if(type === "edit"){
-        return this.CRUD.editItem(pub, 'publications', key);
+      if(submit){
+        return (this.CRUD.uploadItem(newPub, 'publications'));
+      }else{
+        return this.CRUD.editItem(newPub, 'publications', key);
       }
     }else{
+      let pubList = this.publicationList.value;
+      if(submit){
+        pubList.push(newPub);
+      }else{
+            const index = pubList.findIndex(pub => pub.title === newPub.title);
+            pubList.splice(index, 1);
+            pubList.push(newPub);
+      }
+      this.publicationList.next(pubList);
       return Promise.resolve(undefined)
     }
   }
 
-  delete(key:string){
+  delete(key: string = "no key", delPub: any = "no pub"){
     if(this.masterList){
       return this.CRUD.deleteItem([], 'publications', key);
     }else{
-
+      let pubList = this.publicationList.value;
+      const index = pubList.findIndex(pub => pub.title === delPub.title);
+      pubList.splice(index, 1);
+      this.publicationList.next(pubList);
+      return Promise.resolve(undefined)
     }
-
   }
 
   fetchMaster(){
@@ -46,6 +59,7 @@ export class PublicationService implements OnDestroy{
   }
 
   assignMaster(pubs: Publication[]){
+    this.masterList = false;
     this.publicationList.next(pubs);
   }
 

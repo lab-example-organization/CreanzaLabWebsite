@@ -42,13 +42,13 @@
 <p> Article Number: <input formControlName="article_number" type="text"></p>
 
 <button type="submit"
-[disabled]="!publicationForm.valid || key"
-(click)="onSubmit('submit')">Submit</button>
+[disabled]="!publicationForm.valid || edit"
+(click)="onSubmit(true)">Submit</button>
 <button
-[disabled]="!publicationForm.valid || !key"
-(click)="onSubmit('edit')">Edit</button>
+[disabled]="!publicationForm.valid || !edit"
+(click)="onSubmit(false)">Edit</button>
 <button
-[disabled]="!publicationForm.valid || !key"
+[disabled]="!publicationForm.valid || !edit"
 (click)="onDelete()">Delete</button>
 {{ message }}
 </form>

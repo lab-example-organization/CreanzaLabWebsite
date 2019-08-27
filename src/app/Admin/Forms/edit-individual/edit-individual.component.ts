@@ -1,17 +1,18 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { SocialMedia } from 'src/app/Classes/socialMedia';
 import { CRUDService } from '../crud.service';
 import { FormBuilder, FormArray, Form } from '@angular/forms';
 import { Award, Project } from 'src/app/Classes/person';
 import { PublicationService } from '../publicationupload/publication.service';
 import { Publication } from 'src/app/Classes/publication';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-individual',
   templateUrl: './edit-individual.component.html',
   styleUrls: ['./edit-individual.component.css']
 })
-export class EditIndividualComponent implements OnInit {
+export class EditIndividualComponent implements OnInit, OnDestroy {
 
   @Input() OldInfo: any;
   sMTypes = Object.keys(new SocialMedia);
@@ -21,6 +22,8 @@ export class EditIndividualComponent implements OnInit {
   awardsArray = this.fb.array([]);
   projectsArray = this.fb.array([]);
   individualForm = this.makeForm();
+  publicationsArray: Publication[];
+  subscribe:Subscription;
 
   fileEvent: any;
   @ViewChild('file') fileValue: ElementRef;
@@ -32,6 +35,8 @@ export class EditIndividualComponent implements OnInit {
   ngOnInit() {
     console.log(JSON.parse(this.OldInfo.publications));
     this.pubsserv.assignMaster(JSON.parse(this.OldInfo.publications));
+    this.subscribe = this.pubsserv.publicationList
+                      .subscribe(pubs => this.publicationsArray = pubs);
     this.individualForm = this.CRUD.quickAssign(this.individualForm, this.OldInfo);
     this.individualForm.controls.socialMedia = this.populateSocialMedia();
     const awards = <Award[]>JSON.parse(this.OldInfo.awards);
@@ -39,7 +44,12 @@ export class EditIndividualComponent implements OnInit {
     const projects = <Project[]>JSON.parse(this.OldInfo.projects);
     projects.forEach(project => this.addProject(true, project.title, project.mainInfo));
   }
-    makeForm(){
+
+  ngOnDestroy(){
+    this.subscribe.unsubscribe();
+  }
+
+  makeForm(){
     return this.fb.group({
       publicEmail: '',
       pubName: '',
@@ -98,6 +108,7 @@ export class EditIndividualComponent implements OnInit {
     editedInfo.awards = this.format(this.awardsArray);
     editedInfo.projects = this.format(this.projectsArray);
     editedInfo.socialMedia = this.formatSM(editedInfo);
+    editedInfo.publications = this.formatPubs();
     console.log(editedInfo);
      return this.CRUD.editImages([`CVs/${this.OldInfo.name}`], [this.fileEvent], [this.OldInfo.cvresume])
      .then(link => {
@@ -121,7 +132,7 @@ export class EditIndividualComponent implements OnInit {
   format(formArray: FormArray){
     let JSONed: any[] = [];
     formArray.value.forEach(element => JSONed.push(element));
-    return(JSON.stringify(JSONed));
+    return JSON.stringify(JSONed);
   }
 
   formatSM(data: any){
@@ -130,7 +141,15 @@ export class EditIndividualComponent implements OnInit {
       const values = <string[]>Object.values(element);
       Blank[values[0]] = values[1]
     });
-    return(JSON.stringify(Blank));
+    return JSON.stringify(Blank);
+  }
+
+  formatPubs(){
+    let pubArray = JSON.stringify(this.publicationsArray)
+    if(pubArray === "[{}]"){
+      pubArray = "[]";
+    }
+    return pubArray;
   }
 
 }
