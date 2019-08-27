@@ -17,6 +17,7 @@ export class Person {
     pubName: string = '';
     publicEmail: string = '';
     about: string = '';
+    key?: string = '';
 }
 
 export class Project {

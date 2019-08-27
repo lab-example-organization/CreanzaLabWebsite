@@ -24,4 +24,9 @@ Admin have access to Edit Publications, Edit Members, and Edit Research/Contact 
 <br><br>
 
 <button (click)=onEdit() [disabled]="!activeUser">Edit</button>
+<button id="revoke" (click)=onRevoke() [disabled]="!activeUser">REVOKE (Cannot be undone)*</button>
+<div style="clear: both"></div>
 </form>
+<div id="explain">
+  *Revoke deletes a user's roles and their login email.  This will NOT affect their public-facing email (as seen on the person page), only their login email.  You should only have to use this feature if someone is being bad.  If you accidently mess this up, you can go to the Creanza Lab Firebase Console and manually add the person's email back into their person information.
+</div>
