@@ -19,7 +19,7 @@ export class UploadPhotoComponent implements OnInit, OnDestroy {
   photovariable: string;
   @ViewChild('link') link: ElementRef;
   @ViewChild('reset') reset: HTMLSelectElement;
-  subscribe: Subscription;
+  subscribe = Subscription.EMPTY;
 
   constructor(private fb: FormBuilder,
               private CRUD: CRUDService) { }

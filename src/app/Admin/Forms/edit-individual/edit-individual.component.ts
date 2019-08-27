@@ -3,6 +3,8 @@ import { SocialMedia } from 'src/app/Classes/socialMedia';
 import { CRUDService } from '../crud.service';
 import { FormBuilder, FormArray, Form } from '@angular/forms';
 import { Award, Project } from 'src/app/Classes/person';
+import { PublicationService } from '../publicationupload/publication.service';
+import { Publication } from 'src/app/Classes/publication';
 
 @Component({
   selector: 'app-edit-individual',
@@ -24,9 +26,11 @@ export class EditIndividualComponent implements OnInit {
   @ViewChild('file') fileValue: ElementRef;
 
   constructor(private CRUD: CRUDService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private pubsserv: PublicationService) { }
 
   ngOnInit() {
+    this.pubsserv.assignMaster(JSON.parse(this.OldInfo.publication));
     this.individualForm = this.CRUD.quickAssign(this.individualForm, this.OldInfo);
     this.individualForm.controls.socialMedia = this.populateSocialMedia();
     const awards = <Award[]>JSON.parse(this.OldInfo.awards);

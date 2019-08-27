@@ -45,6 +45,10 @@ export class PublicationService implements OnDestroy{
                             .subscribe(pubs => this.publicationList.next(pubs));
   }
 
+  assignMaster(pubs: Publication[]){
+    this.publicationList.next(pubs);
+  }
+
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }
