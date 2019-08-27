@@ -25,6 +25,7 @@ export class EditIndividualComponent implements OnInit, OnDestroy {
   publicationsArray: Publication[];
   subscribe:Subscription;
 
+  cvresumeTitle: string;
   fileEvent: any;
   @ViewChild('file') fileValue: ElementRef;
 
@@ -33,7 +34,6 @@ export class EditIndividualComponent implements OnInit, OnDestroy {
               private pubsserv: PublicationService) { }
 
   ngOnInit() {
-    console.log(JSON.parse(this.OldInfo.publications));
     this.pubsserv.assignMaster(JSON.parse(this.OldInfo.publications));
     this.subscribe = this.pubsserv.publicationList
                       .subscribe(pubs => this.publicationsArray = pubs);
@@ -42,7 +42,8 @@ export class EditIndividualComponent implements OnInit, OnDestroy {
     const awards = <Award[]>JSON.parse(this.OldInfo.awards);
     awards.forEach(award => this.addAward(true, award.title, award.yearReceived));
     const projects = <Project[]>JSON.parse(this.OldInfo.projects);
-    projects.forEach(project => this.addProject(true, project.title, project.mainInfo));
+    projects.forEach(project => this.addProject(true, project.title, project.mainInfo, project.githubLink));
+    this.cvresumeTitle = this.OldInfo.cvresumeTitle;
   }
 
   ngOnDestroy(){
@@ -54,6 +55,8 @@ export class EditIndividualComponent implements OnInit, OnDestroy {
       publicEmail: '',
       pubName: '',
       cvresume: '',
+      about: '',
+      cvresumeTitle: this.cvresumeTitle,
       socialMedia: this.socialMediaArray,//this.populateNewSocialMedia(),//this.fb.array([this.fb.group({name: ''})]),
       projects: this.projectsArray,
       awards: this.awardsArray
@@ -61,9 +64,9 @@ export class EditIndividualComponent implements OnInit, OnDestroy {
 
   }
   
-  addProject(add: boolean, title: string= '', mainInfo: string = '') {
+  addProject(add: boolean, title: string= '', mainInfo: string = '', githubLink: string = '') {
     if (add) {
-      this.projectsArray.push(this.fb.group({title: title, mainInfo: mainInfo}));
+      this.projectsArray.push(this.fb.group({title: title, mainInfo: mainInfo, githubLink: githubLink}));
     } else {
       this.projectsArray.removeAt(this.projectsArray.length - 1);
     }
@@ -109,11 +112,13 @@ export class EditIndividualComponent implements OnInit, OnDestroy {
     editedInfo.projects = this.format(this.projectsArray);
     editedInfo.socialMedia = this.formatSM(editedInfo);
     editedInfo.publications = this.formatPubs();
-    console.log(editedInfo);
-     return this.CRUD.editImages([`CVs/${this.OldInfo.name}`], [this.fileEvent], [this.OldInfo.cvresume])
+    editedInfo.cvresumeTitle = this.cvresumeTitle;
+    const key = this.OldInfo.key; 
+    delete editedInfo.key
+     return this.CRUD.editImages([`CVs/${this.cvresumeTitle}`], [this.fileEvent], [this.OldInfo.cvresume])
      .then(link => {
        editedInfo.cvresume = link[0];
-       return this.CRUD.editItem(editedInfo, 'people', this.OldInfo.key);
+       return this.CRUD.editItem(editedInfo, 'people', key);
      }).then(() => {
        this.message = 'submission successful!';
        this.onReset();
@@ -127,6 +132,8 @@ export class EditIndividualComponent implements OnInit, OnDestroy {
 
   onFile(event: any) {
     this.fileEvent = event;
+    const filePath = event.target.value;
+    this.cvresumeTitle = filePath.substr(filePath.lastIndexOf('\\') + 1);
   }
 
   format(formArray: FormArray){

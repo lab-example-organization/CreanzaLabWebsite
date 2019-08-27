@@ -10,6 +10,7 @@
         <p id="Project">{{ person.projectShort }}</p>
         <p *ngIf="person.publicEmail"><b>Email: </b> {{ person.publicEmail }}</p>
         <p *ngIf="person.cvresume"><b><a [href]="person.cvresume">CV/Resume</a></b></p>
+        <div *ngIf="person.about"><b>About Me:</b> {{ person.about }}</div>
   </div>
   <div style="clear: both;"></div><br>
   <hr>
@@ -17,9 +18,11 @@
       <!--PROJECTS-->
 <div *ngIf="projects[0].title" class="conditional">
   <h3><u>Projects:</u></h3>
-  <div *ngFor="let project of projects" >
-    <b>{{ project.title }}</b>
-    <p>{{ project.mainInfo }}</p>
+  <div class="offset"*ngFor="let project of projects" >
+    <b><h4>{{ project.title }}</h4></b>
+    <span>{{ project.mainInfo }}</span><br>
+    <span *ngIf="project.githubLink"><b><a [href]="project.githubLink" target="_blank">GitHub Repository</a></b></span>
+    <br><br>
   </div>
   <hr>
 </div>
@@ -30,11 +33,13 @@
 <!--PUBLICATIONS-->
 <div *ngIf="publications[0]" class="conditional">
   <h3><u>Publications:</u></h3>
-  <app-display-pubs
-[mainAuthor]="mainAuthor"
-[publications]="publications"
-></app-display-pubs>
-  * = contributed equally
+  <div  class="offset">
+    <app-display-pubs
+    [mainAuthor]="mainAuthor"
+    [publications]="publications"
+    ></app-display-pubs>
+    * = contributed equally
+  </div>
   <hr>
 </div>
 

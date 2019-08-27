@@ -4,8 +4,8 @@
     <hr>
     <app-addpubnames></app-addpubnames>
     <hr>
-    <h3>Edit Member Roles: </h3>
-    (Members do not have roles until they have logged in once!)<br><br>
+    <h3>Edit Users Roles: </h3>
+    (Members do not become Users with roles until they have logged in once!)<br><br>
     <b>User: </b>
     <select
     (change)="onSwitchUser($event.target.value)">
@@ -20,8 +20,11 @@
     <h3>Edit Member Display: </h3>
     (Remember that users can edit their own data.  The following sections exist only in case bad things happen.)<br>
     <b>Edit Card:</b><br>
-    <app-peopleupload *ngIf="true"
+    <app-peopleupload *ngIf="asyncReturn"
     [OldInfo]="person"
     ></app-peopleupload>
     <b>Edit Page:</b><br>
+    <app-edit-individual *ngIf="asyncReturn"
+    [OldInfo]="person"
+    ></app-edit-individual>
 </div>

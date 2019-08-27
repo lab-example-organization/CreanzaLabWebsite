@@ -1,8 +1,11 @@
 <form [formGroup]="individualForm">
   <h4>Header:</h4>
   <b>Public-Facing Email: </b> <input class="long" formControlName="publicEmail"><br><br>
-  <b>Publication Name: </b> <input class="long" formControlName="pubName"><br>(To bold yourself in publications; e.g. Robinson CM or Creanza N)<br><br>
-  <b>CV or Resume: </b> <input #file type="file" class="long" (change)="onFile($event)"><br><br>
+  <b>Publication Name: </b> <input class="long" formControlName="pubName"><br>(To bold your name in publications; e.g. Robinson CM or Creanza N)<br><br>
+  <b>CV or Resume: </b> <input #file type="file" class="long" (change)="onFile($event)"><br>
+  <b>Current Resume: </b> {{ cvresumeTitle }}<br>
+  (Whatever you name the original file is what other people will download it as!!!)<br><br>
+  <b>About Me: </b><br> <textarea class="long" formControlName="about" rows=4 cols=65></textarea> <br><br>
   <hr>
   <h4>Projects:</h4>
   <div formArrayName="projects">
@@ -15,8 +18,8 @@
                   [disabled] ="individualForm.controls.projects.length === 1">-</button>
         </span><br>
       <b>Main Text {{ i+1 }}: </b><br>
-      <textarea rows="6" cols="65" formControlName="mainInfo"></textarea> 
-         
+      <textarea rows="6" cols="65" formControlName="mainInfo"></textarea><br>
+      <b>GitHub Repo {{ i+1 }}: </b> <input formControlName="githubLink" type="text">
       </p>
   
   </div>

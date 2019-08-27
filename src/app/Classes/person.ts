@@ -11,15 +11,18 @@ export class Person {
     socialMedia: string = ''; // should be a JSON string of Social Media
     publications: string = '';  // should be a JSON string of Publication[]
     projects: string = '';// should be a JSON string of Project[]
-    cvresume: string = '';// Link to cv
+    cvresume: string = '';// Link to cv/resue file
+    cvresumeTitle: string = '';//name of teh file
     awards: string = '';//should be a JSON string of Award
     pubName: string = '';
     publicEmail: string = '';
+    about: string = '';
 }
 
 export class Project {
     title: string = '';
     mainInfo: string = '';
+    githubLink: string = '';
 }
 
 export class Award {

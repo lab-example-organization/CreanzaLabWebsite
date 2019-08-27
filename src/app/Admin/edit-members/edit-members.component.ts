@@ -16,10 +16,11 @@ export class EditMembersComponent implements OnInit, OnDestroy {
 
   
   users: User[];
-  people: Person[];
-  person: Person;
+  //people: Person[];
+  //person: Person;
   subscribe1: Subscription;
-  subscribe2: Subscription;
+  //subscribe2: Subscription;
+  asyncReturn = false;
   
 
   constructor(
@@ -28,15 +29,15 @@ export class EditMembersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscribe1 = this.editmemberserv.userData.subscribe(userData => this.users = userData);
-    this.subscribe2 = this.editmemberserv.personData.subscribe(personData => {
-      this.people = personData;
-      this.person = this.people[0];
-    });
+    //this.subscribe2 = this.editmemberserv.personData.subscribe(personData => {
+      //this.people = personData;
+      //this.person = this.people[0];
+    //});
   }
 
   ngOnDestroy(){
     this.subscribe1.unsubscribe();
-    this.subscribe2.unsubscribe();
+    //this.subscribe2.unsubscribe();
   }
 
   onSwitchUser(who: string){
