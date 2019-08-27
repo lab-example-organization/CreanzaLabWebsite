@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, of } from 'rxjs';
 import { Publication } from 'src/app/Classes/publication';
 import { CRUDService } from '../crud.service';
 
@@ -18,14 +18,25 @@ export class PublicationService implements OnDestroy{
     this.masterList = bool;
   }
 
-  Action(pubs: Publication, type="submit"){
+  editSubmit(pub: Publication, type: string = "submit", key: string = ''){
     if(this.masterList){
       if(type === "submit"){
-        return (this.CRUD.uploadItem(pubs, 'publications'));
+        return (this.CRUD.uploadItem(pub, 'publications'));
+      }else if(type === "edit"){
+        return this.CRUD.editItem(pub, 'publications', key);
       }
+    }else{
+      return Promise.resolve(undefined)
+    }
+  }
+
+  delete(key:string){
+    if(this.masterList){
+      return this.CRUD.deleteItem([], 'publications', key);
     }else{
 
     }
+
   }
 
   fetchMaster(){

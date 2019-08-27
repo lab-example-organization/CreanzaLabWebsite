@@ -4,7 +4,7 @@
 <select #reset  (change)="onNameChange($event.target.value)">
       <option value="-1" selected>New Publication</option>
       <option *ngFor="let pub of pubsList; let i = index"
-          [value] = index> {{ pub.title}}     
+          [value] = i> {{ pub.title}}     
         </option> 
   </select><br><br>
 
@@ -25,25 +25,32 @@
 
 <p> Year: <input formControlName="year" type="number"> </p>
 
-<p> Title: <input formControlName="title" type="text"></p>
+<p> Title:<br> <textarea formControlName="title" rows=3 cols=50></textarea> </p>
 
-<p> Journal: <input formControlName="journal" type="text"></p>
+<p> Journal: <input formControlName="journal" type="text" class="extralong"></p>
 
-<p> DOI: <input formControlName="doi" type="text"></p>
+<p> DOI: <input formControlName="doi" type="text" class="long"></p>
 
 <p> Volume: <input formControlName="issue" type="number" ></p>
 
 <p> Issue: <input formControlName="volume" type="number"></p>
 
-<p> First Page: <input formControlName="first_page" type="number"></p>
+<p> First Page: <input formControlName="first_page" type="text"></p>
 
-<p> Last Page: <input formControlName="last_page" type="number"></p>
+<p> Last Page: <input formControlName="last_page" type="text"></p>
 
-<p> Article Number: <input formControlName="article_number" type="number"></p>
+<p> Article Number: <input formControlName="article_number" type="text"></p>
 
 <button type="submit"
-[disabled]="!publicationForm.valid"
-(click)="onSubmit()">Submit</button> {{ message }}
+[disabled]="!publicationForm.valid || key"
+(click)="onSubmit('submit')">Submit</button>
+<button
+[disabled]="!publicationForm.valid || !key"
+(click)="onSubmit('edit')">Edit</button>
+<button
+[disabled]="!publicationForm.valid || !key"
+(click)="onDelete()">Delete</button>
+{{ message }}
 </form>
 
 <br><br>
