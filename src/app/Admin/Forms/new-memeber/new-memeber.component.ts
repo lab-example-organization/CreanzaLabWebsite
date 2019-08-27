@@ -4,6 +4,7 @@ import { CRUDService } from '../crud.service';
 import { formatDate } from '@angular/common';
 import { Person, Project, Award } from 'src/app/Classes/person';
 import { SocialMedia } from 'src/app/Classes/socialMedia';
+import { Publication } from 'src/app/Classes/publication';
 
 @Component({
   selector: 'app-new-memeber',
@@ -33,6 +34,7 @@ export class NewMemeberComponent implements OnInit {
     blankPerson.socialMedia = JSON.stringify(new SocialMedia);
     blankPerson.projects = JSON.stringify([new Project]);
     blankPerson.awards = JSON.stringify([new Award]);
+    blankPerson.publications = JSON.stringify([new Publication]);
     const newPerson = Object.assign({}, blankPerson);
     this.CRUD.uploadItem(newPerson, 'people').then(() => this.message = 'successful upload!');
   }

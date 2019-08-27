@@ -30,7 +30,8 @@ export class EditIndividualComponent implements OnInit {
               private pubsserv: PublicationService) { }
 
   ngOnInit() {
-    this.pubsserv.assignMaster(JSON.parse(this.OldInfo.publication));
+    console.log(JSON.parse(this.OldInfo.publications));
+    this.pubsserv.assignMaster(JSON.parse(this.OldInfo.publications));
     this.individualForm = this.CRUD.quickAssign(this.individualForm, this.OldInfo);
     this.individualForm.controls.socialMedia = this.populateSocialMedia();
     const awards = <Award[]>JSON.parse(this.OldInfo.awards);

@@ -15,7 +15,7 @@
   <hr>
 
       <!--PROJECTS-->
-<div *ngIf="projects" class="conditional">
+<div *ngIf="projects[0].title" class="conditional">
   <h3><u>Projects:</u></h3>
   <div *ngFor="let project of projects" >
     <b>{{ project.title }}</b>
@@ -28,7 +28,7 @@
 
 
 <!--PUBLICATIONS-->
-<div *ngIf="publications" class="conditional">
+<div *ngIf="publications[0].title" class="conditional">
   <h3><u>Publications:</u></h3>
   <app-display-pubs
 [mainAuthor]="person.pubName"
@@ -39,7 +39,7 @@
 </div>
 
 <!--Awards-->
-<div *ngIf="awards" class="conditional">
+<div *ngIf="awards[0].title" class="conditional">
     <h3><u>Awards:</u></h3>
   <ul id="awards">
     <li *ngFor="let award of awards">
