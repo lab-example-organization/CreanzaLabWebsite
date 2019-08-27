@@ -11,7 +11,7 @@ import { of } from 'rxjs';
 describe('ResolverService', () => {
   const expectedPerson: Person = {
     description: 'This is the description of a person.',
-    startYear: 2018,
+    startYear: '2018',
     studying: 'This is the studying of a person.',
     pronouns: 'These are the pronouns of a person',
     portraitLink: 'This is the portrait link of a person.',
@@ -19,20 +19,18 @@ describe('ResolverService', () => {
     name: 'This is the name of a person.',
     email: 'This is the email of a person.',
     publications: 'Publications',
-    project: 'This is the project of a person.',
-    projects: [
-      {
-        title: 'First project title',
-        mainInfo: 'First project description',
-      },
-      {
-        title: 'Second project title',
-        mainInfo: 'Second project description',
-      },
-    ],
+    projectShort: 'This is the project of a person.',
+    projects: 'lewl',
     cvresume: 'Link to a CV',
-    awards: ['First award', 'Second Award'],
-    socialMedia: 'This is the social media of a person.'
+    awards: 'First award',
+    socialMedia: 'This is the social media of a person.',
+    pubName: 'bold me',
+    publicEmail: 'show me',
+    about: 'rambleing',
+    cvresumeTitle: 'title cv',
+    website: 'your website',
+    department: 'becase abigail',
+    github: 'code pusher'
   };
 
   const data = of(expectedPerson);

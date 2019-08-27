@@ -1,74 +1,83 @@
 
-<div *ngIf="person$ | async as person">
-  <img id="portrait" [src]="person.portraitLink">
-  <div id="cardinfo">
-        <p id="Name">{{ person.name }}
-          <span *ngIf="person.pronouns" id="Pronouns">({{ person.pronouns }})</span>
-        </p>
-        <p id="Description">{{ person.description }}, {{ person.startYear }} - {{ person.endingYear }}</p>
-        <p id="Studying">{{ person.studying }}</p>
-        <p id="Project">{{ person.projectShort }}</p>
-        <p *ngIf="person.publicEmail"><b>Email: </b> {{ person.publicEmail }}</p>
-        <p *ngIf="person.cvresume"><b><a [href]="person.cvresume">CV/Resume</a></b></p>
-        <div *ngIf="person.about"><b>About Me:</b> {{ person.about }}</div>
-  </div>
-  <div style="clear: both;"></div><br>
-  <hr>
+<div id="background">
+  <br>
+  <div id="outer" *ngIf="person$ | async as person">
+    <div id="cardinfo">
+        <img id="portrait" [src]="person.portraitLink">
+      <div id="top">
+          <h3>{{ person.name }} <span *ngIf="person.pronouns" id="Pronouns">({{ person.pronouns }})</span></h3>
+          <h5>{{ person.description }}, <span *ngIf="person.description !== 'PI'">{{ person.startYear }} - {{ person.endingYear }}</span></h5>
+          <h5 id="Studying">{{ person.studying }} <span *ngIf="person.department">In {{ person.department }}</span></h5>
+      </div>
+      <div id="bottom">
+        <br>
+          <div *ngIf="person.publicEmail"><a [href]="person.publicEmail">Email</a></div>
+          <div *ngIf="person.website"><a [href]="person.website">Web Page</a></div>
+          <div *ngIf="person.github"><a [href]="person.github">GitHub</a></div>
+          <div *ngIf="person.cvresume"><a [href]="person.cvresume">CV/Resume</a></div>
+          <br>
+          <div *ngIf="person.about"><b>About Me:</b> {{ person.about }}</div><br>
+      </div>
 
-      <!--PROJECTS-->
-<div *ngIf="projects[0].title" class="conditional">
-  <h3><u>Projects:</u></h3>
-  <div class="offset"*ngFor="let project of projects" >
-    <b><h4>{{ project.title }}</h4></b>
-    <span>{{ project.mainInfo }}</span><br>
-    <span *ngIf="project.githubLink"><b><a [href]="project.githubLink" target="_blank">GitHub Repository</a></b></span>
-    <br><br>
-  </div>
-  <hr>
-</div>
+      <br>
+    </div>
+    <div style="clear: both;"></div>
+    <hr>
 
-
-
-
-<!--PUBLICATIONS-->
-<div *ngIf="publications[0]" class="conditional">
-  <h3><u>Publications:</u></h3>
-  <div  class="offset">
-    <app-display-pubs
-    [mainAuthor]="mainAuthor"
-    [publications]="publications"
-    ></app-display-pubs>
-    * = contributed equally
-  </div>
-  <hr>
-</div>
-
-<!--Awards-->
-<div *ngIf="awards[0].title" class="conditional">
-    <h3><u>Awards:</u></h3>
-  <ul id="awards">
-    <li *ngFor="let award of awards">
-      {{ award.yearReceived }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ award.title }}
-    </li>
-  </ul>
-  <hr>
-</div>
-
-<!--SOCIAL MEDIA-->
-  <div id="SocialMedia" *ngIf="ShowSocial">
-        <h3><u>Social Media Links:</u></h3>
-          <ul id="socialmedia">
-              <div *ngFor="let social of sMTypes">
-                  <li *ngIf="socialMedia[social]">
-                      <a  class="fa" [id]="social"
-                          target="_blank"
-                          [href]="socialMedia[social]">
-                        {{ social }}
-                      </a>
-                    </li>
-              </div>
-            </ul>
+        <!--PROJECTS-->
+  <div *ngIf="projects[0].title" class="conditional">
+    <h5><u>Projects:</u></h5>
+    <div class="offset"*ngFor="let project of projects" >
+      <b>{{ project.title }}</b><br>
+      <span>{{ project.mainInfo }}</span><br>
+      <span *ngIf="project.githubLink"><a [href]="project.githubLink" target="_blank">GitHub Repository</a></span>
+      <br><br>
+    </div>
     <hr>
   </div>
 
+
+
+
+  <!--PUBLICATIONS-->
+  <div *ngIf="publications[0]" class="conditional">
+    <h3><u>Publications:</u></h3>
+    <div  class="offset">
+      <app-display-pubs
+      [mainAuthor]="mainAuthor"
+      [publications]="publications"
+      ></app-display-pubs>
+      * = contributed equally
+    </div>
+    <hr>
+  </div>
+
+  <!--Awards-->
+  <div *ngIf="awards[0].title" class="conditional">
+      <h3><u>Awards:</u></h3>
+    <ul id="awards">
+      <li *ngFor="let award of awards">
+        {{ award.yearReceived }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ award.title }}
+      </li>
+    </ul>
+    <hr>
+  </div>
+
+  <!--SOCIAL MEDIA-->
+    <div id="SocialMedia" *ngIf="ShowSocial">
+        <h3><u>Social Media Links:</u></h3>
+        <ul id="socialmedia">
+          <div *ngFor="let social of sMTypes">
+            <li *ngIf="socialMedia[social]">
+              <a  class="fa" [id]="social"
+                  target="_blank"
+                  [href]="socialMedia[social]">
+                {{ social }}
+              </a>
+            </li>
+          </div>
+        </ul>
+        <hr>
+    </div>
+  </div>
 </div>

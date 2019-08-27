@@ -1,5 +1,8 @@
 <form [formGroup]="individualForm">
   <h4>Header:</h4>
+  <b>Department: </b> <input class="long" formControlName="department"><br><br>
+  <b>GitHub Account: </b> <input class="long" formControlName="github"><br><br>
+  <b>Personal Website: </b> <input class="long" formControlName="website"><br><br>
   <b>Public-Facing Email: </b> <input class="long" formControlName="publicEmail"><br><br>
   <b>Publication Name: </b> <input class="long" formControlName="pubName"><br>(To bold your name in publications; e.g. Robinson CM or Creanza N)<br><br>
   <b>CV or Resume: </b> <input #file type="file" class="long" (change)="onFile($event)"><br>

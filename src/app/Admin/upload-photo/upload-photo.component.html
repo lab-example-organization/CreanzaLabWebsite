@@ -10,7 +10,11 @@
 
   <p> Date: <input formControlName="date" class="medium" type="text"></p>
   <p> Caption: <textarea formControlName="caption" rows=2 cols=70></textarea> </p>
-  <p> Link: <input #link  type="file" (change)="onFile($event)"></p> 
+  <p> Link: <input #link  type="file" (change)="onFile($event)"></p>
+
+  <div *ngIf="photovariable">
+    <img [src]="photovariable.link">
+  </div>
   
 
   <button type="submit"

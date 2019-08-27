@@ -17,6 +17,9 @@ export class Person {
     pubName: string = '';
     publicEmail: string = '';
     about: string = '';
+    website: string = '';
+    department: string = '';
+    github: string = '';
     key?: string = '';
 }
 
