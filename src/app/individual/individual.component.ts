@@ -32,7 +32,8 @@ export class IndividualComponent implements OnInit {
       this.socialMedia = JSON.parse(data.person.socialMedia);
       this.projects = JSON.parse(data.person.projects);
       this.awards = JSON.parse(data.person.awards);
-      this.publications = JSON.parse(data.person.publications);
+      this.publications = JSON.parse(data.person.publications)
+      .sort((a,b) => (a.year > b.year ? -1 : a.year < b.year ? 1 : 0));
       if(data.person.publicEmail !== ''){
         this.mail = `mailto:${data.person.publicEmail}`;
       }
