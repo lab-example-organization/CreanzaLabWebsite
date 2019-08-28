@@ -42,3 +42,9 @@ option {
 textarea {
     white-space: normal;
 }
+
+div#WYSIWYG {
+    border: solid black 1px;
+    width: 550px;
+    margin-left: 80px;
+}

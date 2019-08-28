@@ -36,7 +36,7 @@ export class EditMembersComponent implements OnInit, OnDestroy {
       this.activePerson = this.makePerson();
       this.key = '';
       if(personData[0].key){
-        personData.forEach(person => {this.keys.push(person.key); console.log(person.key)})
+        personData.forEach(person => this.keys.push(person.key));
       }
     });
   }
@@ -58,8 +58,6 @@ export class EditMembersComponent implements OnInit, OnDestroy {
     if(index >= 0){
       this.activePerson = this.people[index];
       this.key = this.keys[index];
-      console.log(this.activePerson.name)
-      console.log(this.keys)
     }else{
       this.activePerson = this.makePerson();
       this.key = '';

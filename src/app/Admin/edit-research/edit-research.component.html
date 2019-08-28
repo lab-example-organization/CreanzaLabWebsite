@@ -1,6 +1,19 @@
+(You can use all standard web tags.  You will most likely want:
 <form [formGroup]="ResearchForm">
-  <label>Edit Main Text</label> <br>
+  <label>Edit Main Text:</label> <br>
   <textarea formControlName="MainText" rows=25 cols=70></textarea><br>
+  <label>Help:</label> <br>
+  <ul>
+      <li><b>Textformating:</b> &lt;i&gt;, &lt;u&gt;, &lt;b&gt;</li>
+      <li><b>Headers:</b>&lt;h1&gt;,&lt;h2&gt;,&lt;h3&gt;,&lt;h4&gt;,&lt;h5&gt;</li>
+      <li><b>Links:</b>&lt;a href="link"&gt;how link should appear in text&lt;/a&gt;</li>
+      <li><b>Lists:</b>  &lt;ul&gt; (unordered list), &lt;ol&gt; (ordered list), &lt;li&gt; (list element)</li>
+      <li><b>Sections:</b> &lt;span&gt; (section with no return), &lt;div&gt; (complete section with return), &lt;p&gt; (paragraph, spaces between)</li>
+      <li><b>Misc:</b>&lt;hr&gt;(line break), &lt;br&gt;(finish current line/return)</li>
+  </ul>
+  <label>WYSIWYG:</label> <br>
+  <div id="WYSIWYG" [innerHTML]="ResearchForm.get('MainText').value"></div>
+  <br>
   <button type="submit"
   [disabled]="!ResearchForm.controls.MainText.dirty"
   (click)="SubmitResearch(false)">Accept</button>{{MessageTop}}
