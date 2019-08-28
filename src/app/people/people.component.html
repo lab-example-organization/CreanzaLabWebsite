@@ -38,8 +38,10 @@
   
   <br>
   <div *ngIf="alumni$ | async as alumni">
-    <hr>
-      <h3>Alumni:</h3>
+    <div *ngIf="alumni.length > 0">
+        <hr>
+        <h3>Alumni:</h3>
+    </div>
       <div class="subouter">
           <div *ngFor="let alum of alumni">
             <mat-card>

@@ -19,12 +19,10 @@ export class EditmembersService implements OnDestroy{
 
   constructor(private CRUD: CRUDService) {
     this.subscribe1 = CRUD.fetchAllData('Users').subscribe( users =>
-      this.userData.next(users)
-    )
+      this.userData.next(users));
 
     this.subscribe2 = CRUD.fetchAllData('people').subscribe( person =>
-      this.personData.next(person)
-    )
+      this.personData.next(person));
   }
   
   ngOnDestroy(){

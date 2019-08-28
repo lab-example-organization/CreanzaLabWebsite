@@ -6,7 +6,7 @@
         <img id="portrait" [src]="person.portraitLink">
       <div id="top">
           <h3>{{ person.name }} <span *ngIf="person.pronouns" id="Pronouns">({{ person.pronouns }})</span></h3>
-          <h5>{{ person.description }}, <span *ngIf="person.description !== 'PI'">{{ person.startYear }} - {{ person.endingYear }}</span></h5>
+          <h5>{{ person.description }}<span *ngIf="person.description !== 'PI'">, {{ person.startYear }} - {{ person.endingYear }}</span></h5>
           <h5 id="Studying">{{ person.studying }} <span *ngIf="person.department">In {{ person.department }}</span></h5>
       </div>
       <div id="bottom">

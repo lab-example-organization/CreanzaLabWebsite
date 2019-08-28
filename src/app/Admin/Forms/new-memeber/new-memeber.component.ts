@@ -34,9 +34,13 @@ export class NewMemeberComponent implements OnInit {
     blankPerson.socialMedia = JSON.stringify(new SocialMedia);
     blankPerson.projects = JSON.stringify([new Project]);
     blankPerson.awards = JSON.stringify([new Award]);
-    blankPerson.publications = JSON.stringify([new Publication]);
+    blankPerson.publications = JSON.stringify([]);
     const newPerson = Object.assign({}, blankPerson);
-    this.CRUD.uploadItem(newPerson, 'people').then(() => this.message = 'successful upload!');
+    this.CRUD.uploadItem(newPerson, 'people').then(() => {
+      this.message = 'Welcome to the Creanza Lab!';
+      setTimeout(() => { this.message = undefined; }, 3000);
+      this.newPersonForm = this.createNewForm();
+    });
   }
 
   createNewForm() {
