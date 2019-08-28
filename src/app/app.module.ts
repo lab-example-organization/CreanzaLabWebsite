@@ -31,6 +31,7 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 import { ResearchComponent } from './research/research.component';
 import { GridBlowUpModule } from './GridBlowUp/grid-blow-up.module';
 import { DisplayPubsComponent } from './display-pubs/display-pubs.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DisplayPubsComponent } from './display-pubs/display-pubs.component';
     InteractiveProjectsComponent,
     ResearchComponent,
     DisplayPubsComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
