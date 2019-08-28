@@ -1,11 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { formatDate } from '@angular/common';
-import { CRUDService } from '../Forms/crud.service';
 import { Person, Project, Award } from 'src/app/Classes/person';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/Classes/user';
-import { map, tap } from 'rxjs/operators';
 import { EditmembersService } from './editmembers.service';
 import { SocialMedia } from 'src/app/Classes/socialMedia';
 import { Publication } from 'src/app/Classes/publication';
@@ -59,7 +55,6 @@ export class EditMembersComponent implements OnInit, OnDestroy {
     if(index >= 0){
       this.activePerson = this.people[index];
       this.key = this.keys[index];
-      console.log(this.key);
     }else{
       this.activePerson = this.makePerson();
       this.key = '';
