@@ -28,7 +28,7 @@
                   {{person.projectShort}}
                 </div>
                 
-                <nav *ngIf="person.name">
+                <nav *ngIf="person.showIndividual == true">
                     <a class="navbar" [routerLink]="person.name.split(' ').join('-')">Personal Page</a>
                 </nav>
               
@@ -68,7 +68,7 @@
                   {{alum.projectShort}}
                 </div>
                 
-                <nav *ngIf="alum.name">
+                <nav *ngIf="alum.showIndividual">
                     <a class="navbar" [routerLink]="alum.name.split(' ').join('-')">Personal Page</a>
                 </nav>
               

@@ -20,6 +20,7 @@ export class Person {
     website: string = '';
     department: string = '';
     github: string = '';
+    showIndividual: boolean = false;
     key?: string = '';
 }
 

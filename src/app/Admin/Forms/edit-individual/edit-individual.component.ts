@@ -64,6 +64,7 @@ export class EditIndividualComponent implements OnInit, OnDestroy, OnChanges {
       website: '',
       department: '',
       github: '',
+      showIndividual: false,
       cvresumeTitle: this.cvresumeTitle,
       socialMedia: this.socialMediaArray,
       projects: this.projectsArray,
@@ -136,6 +137,9 @@ export class EditIndividualComponent implements OnInit, OnDestroy, OnChanges {
     editedInfo.socialMedia = this.formatSM(editedInfo);
     editedInfo.publications = this.formatPubs();
     editedInfo.cvresumeTitle = this.cvresumeTitle;
+    editedInfo.showIndividual === 'true'?
+      editedInfo.showIndividual = true:
+      editedInfo.showIndividual = false;
      return this.CRUD.editImages([`CVs/${this.cvresumeTitle}`], [this.fileEvent], [this.OldInfo.cvresume])
      .then(link => {
        editedInfo.cvresume = link[0];
