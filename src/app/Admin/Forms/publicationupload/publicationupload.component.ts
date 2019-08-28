@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { CRUDService } from '../crud.service';
 import { PublicationService } from './publication.service';
@@ -10,8 +10,9 @@ import { Subscription } from 'rxjs';
   templateUrl: './publicationupload.component.html',
   styleUrls: ['./publicationupload.component.css']
 })
-export class PublicationuploadComponent implements OnInit, OnDestroy {
+export class PublicationuploadComponent implements OnInit, OnChanges, OnDestroy {
 
+  @Input() disabled = false;
   pubsList: Publication[];
   publicationForm = this.createForm();
   authorArray = <FormArray>this.publicationForm.controls.authors;
@@ -27,6 +28,14 @@ export class PublicationuploadComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.pubserv.publicationList
                         .subscribe(pubs => this.pubsList = pubs);
+  }
+
+  ngOnChanges(){
+    if(this.disabled){
+      this.publicationForm.disable();
+    }else{
+      this.publicationForm.enable();
+    }
   }
 
   ngOnDestroy(){

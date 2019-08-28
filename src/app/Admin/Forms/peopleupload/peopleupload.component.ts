@@ -1,31 +1,35 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { CRUDService } from '../crud.service';
-import { AuthService } from '../../auth.service';
-import { Subscription } from 'rxjs';
+import { Person } from 'src/app/Classes/person';
 
 @Component({
   selector: 'app-peopleupload',
   templateUrl: './peopleupload.component.html',
   styleUrls: ['./peopleupload.component.css']
 })
-export class PeopleuploadComponent implements OnInit {
+export class PeopleuploadComponent implements OnChanges {
 
-  @Input() OldInfo: any;
+  @Input() OldInfo: Person;
+  @Input() Key: string;
   positions: string[] = ['High-schooler', 'Undergraduate Student', 'Graduate Student', 'Post-Doc', 'PI', 'Alumni', 'Rotation Student'];
   personForm = this.createForm();
   imageEvent: any;
   @ViewChild('image') imageValue: ElementRef;
   message: string;
 
-  stream: Subscription;
-
   constructor(private fb: FormBuilder,
               private CRUD: CRUDService) { }
 
-  ngOnInit() {
-        this.personForm = this.CRUD.quickAssign(this.personForm, this.OldInfo);
+
+  ngOnChanges(){
+    if(!this.Key){
+      this.personForm.disable();
+    }else{
+      this.personForm.enable();
+    }
+    this.personForm = this.CRUD.quickAssign(this.personForm, this.OldInfo);
   }
 
   createForm() {
@@ -36,7 +40,7 @@ export class PeopleuploadComponent implements OnInit {
       name: ['', Validators.required],
       projectShort: '',
       startYear: [Year, Validators.required],
-      studying: ['', Validators.required],
+      studying: '',
       pronouns: '',
       portraitLink: ''
     });
@@ -55,7 +59,7 @@ export class PeopleuploadComponent implements OnInit {
     return this.CRUD.editImages([`Profiles/${editedInfo.name}`], [this.imageEvent], [this.OldInfo.portraitLink])
     .then(link => {
       editedInfo.portraitLink = link[0];
-      return this.CRUD.editItem(editedInfo, 'people', this.OldInfo.key);
+      return this.CRUD.editItem(editedInfo, 'people', this.Key);
     }).then(() => {
       this.message = 'submission successful!';
       this.onReset();

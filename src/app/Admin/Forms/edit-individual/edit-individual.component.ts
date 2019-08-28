@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy, OnChanges } from '@angular/core';
 import { SocialMedia } from 'src/app/Classes/socialMedia';
 import { CRUDService } from '../crud.service';
 import { FormBuilder, FormArray, Form } from '@angular/forms';
@@ -12,18 +12,20 @@ import { Subscription } from 'rxjs';
   templateUrl: './edit-individual.component.html',
   styleUrls: ['./edit-individual.component.css']
 })
-export class EditIndividualComponent implements OnInit, OnDestroy {
+export class EditIndividualComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() OldInfo: any;
+  @Input() Key: string;
   sMTypes = Object.keys(new SocialMedia);
   message: string;
   
-  socialMediaArray: FormArray = this.populateNewSocialMedia();
+  socialMediaArray = this.populateNewSocialMedia();
   awardsArray = this.fb.array([]);
   projectsArray = this.fb.array([]);
   individualForm = this.makeForm();
   publicationsArray: Publication[];
-  subscribe:Subscription;
+  subscribe: Subscription;
+  disable: boolean
 
   cvresumeTitle: string;
   fileEvent: any;
@@ -34,16 +36,19 @@ export class EditIndividualComponent implements OnInit, OnDestroy {
               private pubsserv: PublicationService) { }
 
   ngOnInit() {
-    this.pubsserv.assignMaster(JSON.parse(this.OldInfo.publications));
     this.subscribe = this.pubsserv.publicationList
                       .subscribe(pubs => this.publicationsArray = pubs);
-    this.individualForm = this.CRUD.quickAssign(this.individualForm, this.OldInfo);
-    this.individualForm.controls.socialMedia = this.populateSocialMedia();
-    const awards = <Award[]>JSON.parse(this.OldInfo.awards);
-    awards.forEach(award => this.addAward(true, award.title, award.yearReceived));
-    const projects = <Project[]>JSON.parse(this.OldInfo.projects);
-    projects.forEach(project => this.addProject(true, project.title, project.mainInfo, project.githubLink));
-    this.cvresumeTitle = this.OldInfo.cvresumeTitle;
+  }
+
+  ngOnChanges(){
+    if(!this.Key){
+      this.individualForm.disable()
+      this.disable = true;
+    }else{
+      this.individualForm.enable();
+      this.disable = false;
+    }
+    this.populateForm();
   }
 
   ngOnDestroy(){
@@ -60,11 +65,26 @@ export class EditIndividualComponent implements OnInit, OnDestroy {
       department: '',
       github: '',
       cvresumeTitle: this.cvresumeTitle,
-      socialMedia: this.socialMediaArray,//this.populateNewSocialMedia(),//this.fb.array([this.fb.group({name: ''})]),
+      socialMedia: this.socialMediaArray,
       projects: this.projectsArray,
       awards: this.awardsArray
     })
 
+  }
+
+  populateForm(){
+    this.socialMediaArray = this.populateNewSocialMedia();
+    this.awardsArray = this.fb.array([]);
+    this.projectsArray = this.fb.array([]);
+    this.individualForm = this.makeForm();
+    this.pubsserv.assignMaster(JSON.parse(this.OldInfo.publications));
+    this.individualForm = this.CRUD.quickAssign(this.individualForm, this.OldInfo);
+    this.individualForm.controls.socialMedia = this.populateSocialMedia();
+    const awards = <Award[]>JSON.parse(this.OldInfo.awards);
+    awards.forEach(award => this.addAward(true, award.title, award.yearReceived));
+    const projects = <Project[]>JSON.parse(this.OldInfo.projects);
+    projects.forEach(project => this.addProject(true, project.title, project.mainInfo, project.githubLink));
+    this.cvresumeTitle = this.OldInfo.cvresumeTitle;
   }
   
   addProject(add: boolean, title: string= '', mainInfo: string = '', githubLink: string = '') {
@@ -116,12 +136,10 @@ export class EditIndividualComponent implements OnInit, OnDestroy {
     editedInfo.socialMedia = this.formatSM(editedInfo);
     editedInfo.publications = this.formatPubs();
     editedInfo.cvresumeTitle = this.cvresumeTitle;
-    const key = this.OldInfo.key; 
-    delete editedInfo.key
      return this.CRUD.editImages([`CVs/${this.cvresumeTitle}`], [this.fileEvent], [this.OldInfo.cvresume])
      .then(link => {
        editedInfo.cvresume = link[0];
-       return this.CRUD.editItem(editedInfo, 'people', key);
+       return this.CRUD.editItem(editedInfo, 'people', this.Key);
      }).then(() => {
        this.message = 'submission successful!';
        this.onReset();

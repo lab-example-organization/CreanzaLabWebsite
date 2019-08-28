@@ -35,7 +35,6 @@ export class IndividualComponent implements OnInit {
       data.person.pubName === '' ?
             this.mainAuthor = RegExp('NONE12'):
             this.mainAuthor = RegExp(`${data.person.pubName}*`)
-      console.log(this.mainAuthor )
       for(let SM of this.sMTypes){
         if (this.socialMedia[SM] !== '') {
           this.ShowSocial = true;
