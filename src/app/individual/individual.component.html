@@ -11,15 +11,14 @@
       </div>
       <div id="bottom">
         <br>
-          <div *ngIf="person.publicEmail"><a [href]="person.publicEmail">Email</a></div>
-          <div *ngIf="person.website"><a [href]="person.website">Web Page</a></div>
-          <div *ngIf="person.github"><a [href]="person.github">GitHub</a></div>
+          <div *ngIf="person.publicEmail"><a [href]="mail" target="_blank">Email</a></div>
+          <div *ngIf="person.website"><a [href]="person.website" target="_blank">Web Page</a></div>
+          <div *ngIf="person.github"><a [href]="person.github" target="_blank">GitHub</a></div>
           <div *ngIf="person.cvresume"><a [href]="person.cvresume">CV/Resume</a></div>
           <br>
           <div *ngIf="person.about"><b>About Me:</b> {{ person.about }}</div><br>
       </div>
 
-      <br>
     </div>
     <div style="clear: both;"></div>
     <hr>

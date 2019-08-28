@@ -22,6 +22,7 @@ export class IndividualComponent implements OnInit {
   awards: Award[];
   ShowSocial = false;
   mainAuthor: RegExp;
+  mail: string;
   constructor(private peopleserv: PeopleService,
               private route: ActivatedRoute) { }
 
@@ -32,9 +33,12 @@ export class IndividualComponent implements OnInit {
       this.projects = JSON.parse(data.person.projects);
       this.awards = JSON.parse(data.person.awards);
       this.publications = JSON.parse(data.person.publications);
+      if(data.person.publicEmail !== ''){
+        this.mail = `mailto:${data.person.publicEmail}`;
+      }
       data.person.pubName === '' ?
             this.mainAuthor = RegExp('NONE12'):
-            this.mainAuthor = RegExp(`${data.person.pubName}*`)
+            this.mainAuthor = RegExp(`${data.person.pubName}*`);
       for(let SM of this.sMTypes){
         if (this.socialMedia[SM] !== '') {
           this.ShowSocial = true;
