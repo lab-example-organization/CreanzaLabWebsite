@@ -1,4 +1,8 @@
 
+div#background {
+  background-color: rgb(132, 163, 189);
+  height: 100vh;
+}
 .bubble-pic {
   background-image: url('https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/234/2018/09/04094403/Alex-Surowiec.png');
   background-size: cover;

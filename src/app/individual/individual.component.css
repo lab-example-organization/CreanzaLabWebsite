@@ -1,6 +1,9 @@
 
 div#background {
   background-color: rgb(188, 221, 231);
+  min-height: 100vh;
+}
+div#center{
   display: flex;
   justify-content: center;
   padding: 15px;
