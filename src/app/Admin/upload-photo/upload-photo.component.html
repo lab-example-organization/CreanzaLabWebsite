@@ -1,7 +1,7 @@
 <form [formGroup]="uploadPhotosForm">
   
   <select #reset name="PhotoName" *ngIf="downloadPhotos$ | async as Photos" (change)="onNameChange($event.target.value)">
-      <option value="-1" selected>New Photo</option>
+      <option value="New Photo" selected>New Photo</option>
       <option *ngFor="let photo of Photos"
           [value] = photo.name> {{ photo.name}}     
         </option> 
@@ -13,7 +13,8 @@
   <p> Link: <input #link  type="file" (change)="onFile($event)"></p>
 
   <div *ngIf="photovariable">
-    <img [src]="photovariable.link">
+    <P>Current Photo:</P>
+    <img [src]="uploadPhotosForm.get('link').value">
   </div>
   
 

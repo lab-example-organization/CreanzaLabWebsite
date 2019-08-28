@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CRUDService } from '../Forms/crud.service';
 import { LabPhoto } from 'src/app/Classes/labPhoto';
-import { Observable, of, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-upload-photo',
   templateUrl: './upload-photo.component.html',
   styleUrls: ['./upload-photo.component.css']
 })
-export class UploadPhotoComponent implements OnInit, OnDestroy {
+export class UploadPhotoComponent implements OnInit {
 
   uploadPhotos$: Observable<LabPhoto>;
   uploadPhotosForm: FormGroup;
@@ -19,7 +19,6 @@ export class UploadPhotoComponent implements OnInit, OnDestroy {
   photovariable: string;
   @ViewChild('link') link: ElementRef;
   @ViewChild('reset') reset: HTMLSelectElement;
-  subscribe = Subscription.EMPTY;
 
   constructor(private fb: FormBuilder,
               private CRUD: CRUDService) { }
@@ -54,23 +53,22 @@ export class UploadPhotoComponent implements OnInit, OnDestroy {
                             this.onReset();
                           });
   }
-    onNameChange(thisevent: any) {
-    this.subscribe = this.CRUD.fetchTargetData(thisevent, 'name', 'groupPhotos').subscribe(photodata => {
-      this.uploadPhotosForm = this.CRUD.quickAssign(this.uploadPhotosForm, photodata);
-      this.photovariable = photodata.key;
-    });
-}
+  onNameChange(thisevent: string) {
+    if(thisevent === "New Photo"){
+      delete this.photovariable;
+      this.uploadPhotosForm = this.createForm();
+    }else{
+      this.CRUD.fetchTargetData(thisevent, 'name', 'groupPhotos').subscribe(photodata => {
+        this.uploadPhotosForm = this.CRUD.quickAssign(this.uploadPhotosForm, photodata);
+        this.photovariable = photodata.key;
+      }).unsubscribe;
+    }
+  }
 
-ngOnDestroy(){
-  this.subscribe.unsubscribe();
-}
   onDelete() {
-
     this.CRUD.deleteItem( [ this.uploadPhotosForm.controls.link.value],
       'groupPhotos', this.photovariable)
       .then(() => { this.message = 'Delete successful'; this.onReset(); } );
-
-
   }
 
   onReset() {
