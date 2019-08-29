@@ -9,10 +9,17 @@ Label {
     margin-left: 30px;
     margin-right: 10px;
     margin-bottom: 15px;
+}
+
+Label.radio {
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
     /* margin-top: 10px; */
 }
 
-input {
+input#title {
     width: 500px;
 }
 
@@ -50,4 +57,8 @@ div#WYSIWYG {
 }
 span#helptext {
     margin-left: 30px;
+}
+
+div#picker {
+    margin-left: 15px;
 }

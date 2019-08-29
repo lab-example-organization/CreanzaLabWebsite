@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatListModule, MatList } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
 
@@ -19,6 +19,7 @@ import { NewMemeberComponent } from '../Admin/Forms/new-memeber/new-memeber.comp
 import { EditRolesComponent } from '../Admin/Forms/edit-roles/edit-roles.component';
 import { EditIndividualComponent } from '../Admin/Forms/edit-individual/edit-individual.component';
 import { AddpubnamesComponent } from './Forms/addpubnames/addpubnames.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +41,6 @@ import { AddpubnamesComponent } from './Forms/addpubnames/addpubnames.component'
   imports: [
     CommonModule,
     ReactiveFormsModule,
-
     MatListModule,
     AdministrationRoutingModule
   ]

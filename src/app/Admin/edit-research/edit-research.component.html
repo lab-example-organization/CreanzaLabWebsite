@@ -1,4 +1,13 @@
-<form [formGroup]="ResearchForm">
+<div id="picker">
+    <h4>Pick Page to Edit:</h4>
+    <input type="radio" name="Page" (change)="onTypeChoice(true)" checked="true">
+    <label name="1" class="radio">Research </label> &nbsp;&nbsp;&nbsp;
+    <input type="radio" name="Page" (change)="onTypeChoice(false)">
+    <label name="2" class="radio">Contact</label><br>
+    
+</div>
+
+<form [formGroup]="pageForm">
   <label>Edit Main Text:</label> <br>
   <textarea formControlName="MainText" rows=25 cols=70></textarea><br>
   <label>Help:</label> <br>
@@ -12,44 +21,45 @@
       <li><b>Misc:</b>&lt;hr&gt;(line break), &lt;br&gt;(finish current line/return)</li>
   </ul>
   <label>WYSIWYG:</label> <br>
-  <div id="WYSIWYG" [innerHTML]="ResearchForm.get('MainText').value"></div>
+  <div id="WYSIWYG" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(pageForm.get('MainText').value)"></div>
   <br>
   <button type="submit"
-  [disabled]="!ResearchForm.controls.MainText.dirty"
-  (click)="SubmitResearch(false)">Accept</button>{{MessageTop}}
+  [disabled]="!pageForm.controls.MainText.dirty"
+  (click)="onSubmit(false)">Accept</button>{{ messageTop }}
   <br>
 
 
-  <hr>
 
-
-  <label>Edit Figures:</label> <br>
+  <div *ngIf="type === 'research'">
+      <hr>
+      <label>Edit Figures:</label> <br>
   
-  <div id="Title">
-    <select #reset name="FigureName" (change)="onNameChange($event.target.value)">
-      <option value="-1" selected>New Figure</option>
-      <option *ngFor="let figure of Figures, let i = index"
-          [value] = i> {{ figure.Name }}
-      </option>
-    </select>
-    <br><br>
-    <label>Title:</label> <input formControlName="Title"><br>
+      <div id="Title">
+        <select #reset name="FigureName" (change)="onNameChange($event.target.value)">
+          <option value="-1" selected>New Figure</option>
+          <option *ngFor="let figure of figures, let i = index"
+              [value] = i> {{ figure.Name }}
+          </option>
+        </select>
+        <br><br>
+        <label>Title:</label> <input formControlName="Title" id="title"><br>
+        
     
-
-    <label>Caption:</label><br>
-    <textarea rows=7 cols=70 formControlName="Description" wrap="hard"></textarea>
-  </div><br>
-  
-  
-  
-  <label>Image Upload:</label><input #image type="file" (change)="onFile($event)"><br>
-  <button type="submit"
-  [disabled]="!ResearchForm.valid"
-  (click)="SubmitResearch(true)">Accept</button>
-  
-  <button
-  [disabled]="!edit"
-  (click)="deleteResearch()">Delete</button> {{MessageBottom}}
+        <label>Caption:</label><br>
+        <textarea rows=7 cols=70 formControlName="Description" wrap="hard"></textarea>
+      </div><br>
+      
+      
+      
+      <label>Image Upload:</label><input #image type="file" (change)="onFile($event)"><br>
+      <button type="submit"
+      [disabled]="!pageForm.valid"
+      (click)="onSubmit(true)">Accept</button>
+      
+      <button
+      [disabled]="!edit"
+      (click)="onDelete()">Delete</button> {{ messageBottom }}    
+  </div>
 
 </form>
 <br><br>

@@ -4,9 +4,9 @@
         <div id="contact">
             <div *ngIf="contact$ | async as contact">
               <br>
-              <div class="contact" [innerHTML]="contact.mainText"></div>
+              <div class="contact"
+              [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(contact.mainText)"></div>
             </div>
-            <br>
         </div>
     </div>
     <br>
