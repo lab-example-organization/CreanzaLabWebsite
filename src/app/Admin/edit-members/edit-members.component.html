@@ -38,7 +38,12 @@
       <option *ngFor="let person of people; let i = index" [value]=i>
         {{ person.name }}
       </option>
-    </select><br><br>
+    </select>
+
+    <button id="kill" class="DANGER"
+    [disabled]="activePerson.name === ''"
+    >DELETE USER (Cannot be undone)</button>
+    <div style="clear: both"></div>
 
     <b>Edit Card:</b>
     <app-peopleupload *ngIf="activePerson"

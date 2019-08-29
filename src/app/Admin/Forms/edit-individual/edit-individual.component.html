@@ -35,7 +35,8 @@
         [formGroupName]="i">
         <b>Title {{ i+1 }}: </b> <input formControlName="title" type="text" [attr.disabled]="disable ? '' : null">
         <span *ngIf="i===0">
-            <button type="button" (click)="addProject(true)">+</button>
+            <button type="button" (click)="addProject(true)"
+            [disabled]="disable">+</button>
             <button type="button" (click)="addProject(false)"
                     [disabled] ="individualForm.controls.projects.length === 1">-</button>
           </span><br>
@@ -59,7 +60,8 @@
         <b>Title {{ i+1 }}: </b>
         <input formControlName="title" type="text" [attr.disabled]="disable ? '' : null">
         <span *ngIf="i===0">
-            <button type="button" (click)="addAward(true)">+</button>
+            <button type="button" (click)="addAward(true)"
+            [disabled]="disable">+</button>
             <button type="button" (click)="addAward(false)"
                     [disabled] ="individualForm.controls.awards.length === 1">-</button>
           </span><br>
@@ -79,6 +81,7 @@
       </div>
 
       <button type="submit"
+      [disabled]="disable"
       (click)="onSubmit()">Submit</button> {{ message }}
   </form>
   <br>

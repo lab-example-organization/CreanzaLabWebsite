@@ -20,7 +20,8 @@
       [formGroupName]="i">
         Author {{ i+1 }}: <input formControlName="name" type="text">
         <span *ngIf="i===0">
-        <button type="button" (click)="addAuthor(true)">+</button>
+        <button type="button" (click)="addAuthor(true)"
+        [disabled]="disabled">+</button>
         <button type="button" (click)="addAuthor(false)"
                 [disabled] ="publicationForm.controls.authors.length === 1">-</button>
       </span>
