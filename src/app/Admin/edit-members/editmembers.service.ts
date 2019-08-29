@@ -58,4 +58,8 @@ export class EditmembersService implements OnDestroy{
     this.activePerson.next(new Person);
   }
 
+  onDelete(image:string, key:string){
+    return this.CRUD.deleteItem([image],'people', key)
+  }
+
 }

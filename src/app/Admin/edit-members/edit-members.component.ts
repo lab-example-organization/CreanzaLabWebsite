@@ -69,4 +69,8 @@ export class EditMembersComponent implements OnInit, OnDestroy {
     blankPerson.publications = JSON.stringify([new Publication]);
     return blankPerson;
   }
+
+  onDelete(){
+    this.editmemberserv.onDelete(this.activePerson.portraitLink, this.key);
+  }
 }
