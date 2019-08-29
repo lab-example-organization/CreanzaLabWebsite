@@ -64,3 +64,13 @@ span#helptext {
 div#picker {
     margin-left: 15px;
 }
+
+div#imageWYSIWYG {
+    margin-left: 30px;
+}
+
+img {
+    object-fit: contain;
+    max-width: 600px;
+    max-height: 400px;
+}

@@ -48,6 +48,12 @@
         <label>Caption:</label><br>
         <textarea rows=7 cols=70 formControlName="Description" wrap="hard"></textarea>
       </div><br>
+
+      <div id="imageWYSIWYG" *ngIf="edit">
+          <P><b>Current Figure:</b></P>
+          <img [src]="pageForm.get('Image').value">
+          <br><br>
+      </div>
       
       
       

@@ -120,7 +120,7 @@ export class EditResearchComponent implements OnInit, OnDestroy {
     if (figIndex > -1) {
       this.pageForm.patchValue({Title: this.figures[figIndex].Name,
                                     Description: this.figures[figIndex].Description,
-                                    Image: true});
+                                    Image: this.figures[figIndex].Link});
       this.imageEvent = undefined;
       this.edit = true;
       this.editIndex = figIndex;
