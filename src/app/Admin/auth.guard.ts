@@ -32,10 +32,10 @@ export class AuthGuard implements CanActivate {
           if (path === 'edit') {
             if (user.roles[0]) { return true; }
           } else if (path === 'upload') {
-            if (user.roles[0]) { return true; }
+            if (user.roles[1]) { return true; }
             // change this to 1 once all the backend is prepared
           } else {
-            if (user.roles[0]) { return true; }
+            if (user.roles[2]) { return true; }
             // change this to 2 once all the backend is prepared
           }
         }
