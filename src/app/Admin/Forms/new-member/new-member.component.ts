@@ -6,11 +6,11 @@ import { Person, Project, Award } from 'src/app/Classes/person';
 import { SocialMedia } from 'src/app/Classes/socialMedia';
 
 @Component({
-  selector: 'app-new-memeber',
-  templateUrl: './new-memeber.component.html',
-  styleUrls: ['./new-memeber.component.css']
+  selector: 'app-new-member',
+  templateUrl: './new-member.component.html',
+  styleUrls: ['./new-member.component.css']
 })
-export class NewMemeberComponent implements OnInit {
+export class NewMemberComponent implements OnInit {
 
   newPersonForm = this.createNewForm();
   message: string;
