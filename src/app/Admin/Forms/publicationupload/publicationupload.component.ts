@@ -78,16 +78,22 @@ export class PublicationuploadComponent implements OnInit, OnChanges, OnDestroy 
   }
   createForm() {
     return this.fb.group({
+    type: 'article',
     authors: this.fb.array([this.fb.group({name: ''})]),
     year: ['', Validators.required],
     title: ['', Validators.required],
-    journal: ['', Validators.required],
+    journal: '',
+    book: '',
+    series: '',
+    editors: '',
     doi: '',
     issue: '',
     volume: '',
     first_page: '',
     last_page: '',
-    article_number: ''
+    article_number: '',
+    publisher: '',
+    city: '',
     });
   }
 

@@ -9,12 +9,21 @@
       <!-- {{ publication.authors.join(", ") }} -->
       ({{ publication.year }}). 
       {{ publication.title }}.
-      <i> {{ publication.journal }}</i>.
-      <span *ngIf="publication.issue">{{ publication.issue }}</span>
-      <span *ngIf="publication.volume">({{ publication.volume }})</span>
-      <span *ngIf="publication.first_page">: {{ publication.first_page }}-{{ publication.last_page }}</span>
-      <span *ngIf="publication.article_number">: #{{ publication.article_number }}</span>
-      
-      DOI: <a href="https://www.doi.org/{{ publication.doi}}" target="_blank">{{ publication.doi }}</a>
+      <span *ngIf="publication.type === 'chapter'">
+        In: <span *ngIf="publication.editors"> {{ publication.editors }} (eds)</span>
+        <i>{{ publication.book }}</i>.
+        <span *ngIf="publication.series"> {{ publication.series }}.</span>
+        {{ publication.publisher }}, {{ publication.city }}.
+      </span>
+
+      <span *ngIf="publication.type === 'article'">
+        <i> {{ publication.journal }}</i>.
+        <span *ngIf="publication.issue">{{ publication.issue }}</span>
+        <span *ngIf="publication.volume">({{ publication.volume }})</span>
+        <span *ngIf="publication.first_page">: {{ publication.first_page }}-{{ publication.last_page }} </span>
+        <span *ngIf="publication.article_number">: #{{ publication.article_number }} </span>
+        <span *ngIf="!publication.first_page && !publication.article_number">&nbsp;</span>
+      </span>
+      <span *ngIf="publication.doi">DOI: <a href="https://www.doi.org/{{ publication.doi}}" target="_blank">{{ publication.doi }}</a></span>
     </p>
   </div>

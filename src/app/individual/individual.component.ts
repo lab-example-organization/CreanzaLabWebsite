@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Person, Project, Award } from '../Classes/person';
-import { PeopleService } from '../people/people.service';
-import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { SocialMedia } from '../Classes/socialMedia';
 import { Publication } from '../Classes/publication';
@@ -23,8 +21,7 @@ export class IndividualComponent implements OnInit {
   ShowSocial = false;
   mainAuthor: RegExp;
   mail: string;
-  constructor(private peopleserv: PeopleService,
-              private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe((data: {person: Person}) => {
