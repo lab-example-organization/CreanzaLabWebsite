@@ -66,7 +66,7 @@ export class EditMembersComponent implements OnInit, OnDestroy {
     blankPerson.socialMedia = JSON.stringify(new SocialMedia);
     blankPerson.projects = JSON.stringify([new Project]);
     blankPerson.awards = JSON.stringify([new Award]);
-    blankPerson.publications = JSON.stringify([new Publication]);
+    blankPerson.publications = JSON.stringify([]);
     return blankPerson;
   }
 
