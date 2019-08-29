@@ -16,6 +16,7 @@ export class EditRolesComponent implements OnInit, OnDestroy {
   activeUser: any;
   activePerson: Person;
   rolesForm = this.createForm();
+  message: string;
   subscribe1: Subscription;
   subscribe2: Subscription;
 
@@ -64,7 +65,11 @@ export class EditRolesComponent implements OnInit, OnDestroy {
     this.activeUser.roles[2] = (this.rolesForm.controls.Admin.value === 'true' || this.rolesForm.controls.Admin.value === true);
     const key = this.activeUser.key;
     delete this.activeUser.key;
-    this.CRUD.editItem(this.activeUser, 'Users', key);
+    this.CRUD.editItem(this.activeUser, 'Users', key).then(() => {
+      this.message = 'Roles Updated!';
+      this.rolesForm = this.createForm();
+      setTimeout(() => { this.message = undefined; }, 3000);
+    } );
   }
 
   onRevoke(){
@@ -72,6 +77,11 @@ export class EditRolesComponent implements OnInit, OnDestroy {
     this.activePerson.email = 'REVOKED'
     const key = this.activePerson.key;
     delete this.activePerson.key;
-    this.CRUD.editItem(this.activePerson, 'people', key);
+    this.CRUD.editItem(this.activePerson, 'people', key)
+      .then(() => {
+        this.message = 'Login Priveledges Revoked.';
+        this.rolesForm = this.createForm();
+        setTimeout(() => { this.message = undefined; }, 3000);
+      } );
   }
 }

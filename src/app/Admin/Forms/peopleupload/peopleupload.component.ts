@@ -61,6 +61,7 @@ export class PeopleuploadComponent implements OnChanges {
     '/o/Profiles%2FIMG_20170622_142410.jpg?alt=media&token=e7b71794-442e-4869-910a-7cf81d3f00a7'){
       oldLink = ''
     }
+    delete editedInfo.key;
     return this.CRUD.editImages([`Profiles/${editedInfo.name}`], [this.imageEvent], [oldLink])
     .then(link => {
       editedInfo.portraitLink = link[0];

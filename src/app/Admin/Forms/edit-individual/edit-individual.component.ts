@@ -140,6 +140,8 @@ export class EditIndividualComponent implements OnInit, OnDestroy, OnChanges {
     editedInfo.showIndividual === 'true'?
       editedInfo.showIndividual = true:
       editedInfo.showIndividual = false;
+    delete editedInfo.key;
+    
      return this.CRUD.editImages([`CVs/${this.cvresumeTitle}`], [this.fileEvent], [this.OldInfo.cvresume])
      .then(link => {
        editedInfo.cvresume = link[0];
