@@ -12,6 +12,7 @@ div#outer {
   background-color: rgb(239, 243, 245);
   padding-top: 7px;
   max-width: 700px;
+  margin-bottom: 30px;
 }
 img#portrait {
   max-width: 300px;
