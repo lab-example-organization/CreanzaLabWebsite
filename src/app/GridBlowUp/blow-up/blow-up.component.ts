@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener,
-  ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
+  ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { GridBlowUpService } from '../grid-blow-up.service';

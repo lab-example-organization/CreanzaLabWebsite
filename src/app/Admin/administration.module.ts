@@ -15,7 +15,7 @@ import { EditPublicationsComponent } from './edit-publications/edit-publications
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { PeopleuploadComponent } from './Forms/peopleupload/peopleupload.component';
 import { PublicationuploadComponent } from './Forms/publicationupload/publicationupload.component';
-import { NewMemeberComponent } from '../Admin/Forms/new-memeber/new-memeber.component';
+import { NewMemberComponent } from './Forms/new-member/new-member.component';
 import { EditRolesComponent } from '../Admin/Forms/edit-roles/edit-roles.component';
 import { EditIndividualComponent } from '../Admin/Forms/edit-individual/edit-individual.component';
 import { AddpubnamesComponent } from './Forms/addpubnames/addpubnames.component';
@@ -33,7 +33,7 @@ import { AddpubnamesComponent } from './Forms/addpubnames/addpubnames.component'
     UploadPhotoComponent,
     PeopleuploadComponent,
     PublicationuploadComponent,
-    NewMemeberComponent,
+    NewMemberComponent,
     EditRolesComponent,
     EditIndividualComponent,
     AddpubnamesComponent

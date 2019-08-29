@@ -1,5 +1,5 @@
 <div id="outer">
-    <app-new-memeber></app-new-memeber>
+    <app-new-member></app-new-member>
     <hr>
 
 
@@ -21,7 +21,7 @@
         {{ user.name }}
       </option>
     </select>
-    <br><br>
+
     <app-edit-roles></app-edit-roles>
     <hr>
 
@@ -38,9 +38,15 @@
       <option *ngFor="let person of people; let i = index" [value]=i>
         {{ person.name }}
       </option>
-    </select><br><br>
+    </select>
 
-    <b>Edit Card:</b><br>
+    <button id="kill" class="DANGER"
+    [disabled]="activePerson.name === ''"
+    (click)="onDelete()"
+    >DELETE USER (Cannot be undone)</button>
+    <div style="clear: both"></div>
+
+    <b>Edit Card:</b>
     <app-peopleupload *ngIf="activePerson"
     [OldInfo]="activePerson"
     [Key]="key"

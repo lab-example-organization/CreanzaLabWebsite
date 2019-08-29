@@ -1,19 +1,27 @@
-<h3>Add/Remove Trainee Publication Name:</h3>
-(These are the underlined names on the Publications Page.)
-<br>
-<form [formGroup]="traineeForm">
-  <b>Add Name: </b> <input formControlName="Trainee">
-  <button [disabled]="!traineeForm.valid"
-          (click)="onSubmit()"
-          type="submit">Submit</button><br>
-<b>Remove Name: </b><select
-(change)="onSwitchUser($event.target.value)">
-  <option value="-1" selected>Select a name</option>
-  <option *ngFor="let trainee of trainees let i = index" [value]=i>
-    {{ trainee.name }}
-  </option>
-</select><button [disabled]="!deleteIndex"
-(click)="onDelete()"
->Delete</button> <br>
-{{Message}}
-</form>
+<div class="pushform">
+  <h3>Add/Remove Trainee Publication Name:</h3>
+  (These are the underlined names on the Publications Page.)
+  <br>
+  <form [formGroup]="traineeForm">
+    <b>Add Name: </b> <input formControlName="Trainee">
+    &nbsp;
+    <button [disabled]="!traineeForm.valid"
+            (click)="onSubmit()"
+            type="submit">Submit</button><br>
+  
+  
+  <b>Remove Name: </b><select
+  (change)="onSwitchUser($event.target.value)">
+    <option value="-1" selected>Select a name</option>
+    <option *ngFor="let trainee of trainees let i = index" [value]=i>
+      {{ trainee.name }}
+    </option>
+  </select>
+  
+  &nbsp;
+  <button [disabled]="!deleteIndex"
+  (click)="onDelete()"
+  >Delete</button> <br>
+  {{Message}}
+  </form>
+</div>

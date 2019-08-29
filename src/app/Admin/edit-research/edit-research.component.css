@@ -52,8 +52,10 @@ textarea {
 
 div#WYSIWYG {
     border: solid black 1px;
-    width: 550px;
-    margin-left: 80px;
+    width: 620px;
+    margin-left: 40px;
+    padding: 7px;
+    background-color: white;
 }
 span#helptext {
     margin-left: 30px;
@@ -61,4 +63,14 @@ span#helptext {
 
 div#picker {
     margin-left: 15px;
+}
+
+div#imageWYSIWYG {
+    margin-left: 30px;
+}
+
+img {
+    object-fit: contain;
+    max-width: 600px;
+    max-height: 400px;
 }

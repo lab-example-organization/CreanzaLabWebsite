@@ -26,12 +26,37 @@ div#googleBtn:disabled{
     background-image: url("../../../assets/images/g-disabled.png");
 }
 
-div.push {
-    margin-left: 30px;
+div#background {
+    background-color: rgb(132, 163, 189);
+    min-height: 100vh;
+    padding-bottom: 30px;
+}
+
+div#push {
+    padding-top: 10px;
+    margin-left: 25px;
+}
+div.push2 {
+    margin-left: 25px;
+    background-color: rgb(188, 221, 231);
+    display: inline-block;
+    padding: 10px;
 }
 div#help {
     max-width: 600px;
 }
 a {
+    color: rgb(12, 85, 78);
     margin-left: 30px;
+}
+
+a:hover {
+    color: rgb(90, 116, 113)
+}
+
+div#forms {
+    background-color: rgb(188, 221, 231);
+    max-width: 750px;
+    margin-left: 15px;
+    padding-right: 8px;
 }

@@ -1,4 +1,4 @@
-import { Injectable, OnInit, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { User } from 'src/app/Classes/user';
 import { Person } from 'src/app/Classes/person';
@@ -56,6 +56,10 @@ export class EditmembersService implements OnDestroy{
   undoActive(){
     this.activeUser.next(new User);
     this.activePerson.next(new Person);
+  }
+
+  onDelete(image:string, key:string){
+    return this.CRUD.deleteItem([image],'people', key)
   }
 
 }

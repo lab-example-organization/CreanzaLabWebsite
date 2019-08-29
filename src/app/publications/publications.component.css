@@ -6,6 +6,7 @@ div#background {
 div#outer {
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
 }
 div#inner {
     margin-left: 30px;

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { CRUDService } from '../crud.service';
