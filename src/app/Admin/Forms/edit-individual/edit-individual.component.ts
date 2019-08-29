@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy, OnChanges } from '@angular/core';
 import { SocialMedia } from 'src/app/Classes/socialMedia';
 import { CRUDService } from '../crud.service';
-import { FormBuilder, FormArray, Form } from '@angular/forms';
+import { FormBuilder, FormArray } from '@angular/forms';
 import { Award, Project } from 'src/app/Classes/person';
 import { PublicationService } from '../publicationupload/publication.service';
 import { Publication } from 'src/app/Classes/publication';
@@ -74,7 +74,6 @@ export class EditIndividualComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   populateForm(){
-    console.log(this.OldInfo);
     this.socialMediaArray = this.populateNewSocialMedia();
     this.awardsArray = this.fb.array([]);
     this.projectsArray = this.fb.array([]);
@@ -88,7 +87,6 @@ export class EditIndividualComponent implements OnInit, OnDestroy, OnChanges {
     projects.forEach(project => this.addProject(true, project.title, project.mainInfo, project.githubLink));
     this.cvresumeTitle = this.OldInfo.cvresumeTitle;
     this.individualForm.patchValue({showIndividual: this.OldInfo.showIndividual.toString()});
-    console.log(this.individualForm.value);
   }
   
   addProject(add: boolean, title: string= '', mainInfo: string = '', githubLink: string = '') {

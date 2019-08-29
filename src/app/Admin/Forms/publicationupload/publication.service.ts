@@ -2,7 +2,6 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Publication } from 'src/app/Classes/publication';
 import { CRUDService } from '../crud.service';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

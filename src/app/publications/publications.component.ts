@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Publication } from '../Classes/publication';
 import { PublicationsService } from './publications.service';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { auth } from 'firebase';
+
 @Component({
   selector: 'app-publications',
   templateUrl: './publications.component.html',
