@@ -36,7 +36,7 @@ div#push {
     padding-top: 10px;
     margin-left: 25px;
 }
-div#push2 {
+div.push2 {
     margin-left: 25px;
     background-color: rgb(188, 221, 231);
     display: inline-block;
@@ -56,7 +56,6 @@ a:hover {
 
 div#forms {
     background-color: rgb(188, 221, 231);
-    padding-top: 15px;
     max-width: 750px;
     margin-left: 15px;
     padding-right: 8px;

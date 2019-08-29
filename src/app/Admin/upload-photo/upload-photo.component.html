@@ -1,4 +1,4 @@
-<div *ngIf="downloadPhotos$ | async as Photos">
+<div *ngIf="downloadPhotos$ | async as Photos" class="pushform">
     <form [formGroup]="uploadPhotosForm">  
         <select #reset name="PhotoName" (change)="onNameChange($event.target.value)">
             <option value="New Photo" selected>New Photo</option>
@@ -15,23 +15,24 @@
         <div *ngIf="photovariable">
           <P>Current Photo:</P>
           <img [src]="uploadPhotosForm.get('link').value">
+          <br><br>
         </div>
         
       
         <button type="submit"
         [disabled]="(!uploadPhotosForm.valid || (photovariable !== undefined))"
-        (click)="onSubmit()">Submit</button> {{ message }}
-      
+        (click)="onSubmit()">Submit</button>
+        &nbsp;
         <button type="Update" 
         (click)="onUpdate()" 
         [disabled]="photovariable === undefined"
         >Update Pic
         </button>
-        
+        &nbsp;
         <button type = "Delete" 
         (click)="onDelete()"
         [disabled]="photovariable === undefined"
-        > Delete </button> 
+        > Delete </button> &nbsp; {{ message }}
       </form>
       <br>      
 </div>

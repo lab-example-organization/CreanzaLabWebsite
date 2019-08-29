@@ -1,71 +1,72 @@
-<div id="picker">
-    <h4>Pick Page to Edit:</h4>
-    <input type="radio" name="Page" (change)="onTypeChoice(true)" checked="true">
-    <label name="1" class="radio">Research </label> &nbsp;&nbsp;&nbsp;
-    <input type="radio" name="Page" (change)="onTypeChoice(false)">
-    <label name="2" class="radio">Contact</label><br>
-    
-</div>
-
-<form [formGroup]="pageForm">
-  <label>Edit Main Text:</label> <br>
-  <textarea formControlName="MainText" rows=25 cols=70></textarea><br>
-  <label>Help:</label> <br>
-  <span id="helptext">You can use all standard web tags.  You will most likely want:</span>
-  <ul>
-      <li><b>Textformating:</b> &lt;i&gt;, &lt;u&gt;, &lt;b&gt;</li>
-      <li><b>Headers:</b>&lt;h1&gt;,&lt;h2&gt;,&lt;h3&gt;,&lt;h4&gt;,&lt;h5&gt;</li>
-      <li><b>Links:</b>&lt;a href="link"&gt;how link should appear in text&lt;/a&gt;</li>
-      <li><b>Lists:</b>  &lt;ul&gt; (unordered list), &lt;ol&gt; (ordered list), &lt;li&gt; (list element)</li>
-      <li><b>Sections:</b> &lt;span&gt; (section with no return), &lt;div&gt; (complete section with return), &lt;p&gt; (paragraph, spaces between)</li>
-      <li><b>Misc:</b>&lt;hr&gt;(line break), &lt;br&gt;(finish current line/return)</li>
-  </ul>
-  <label>WYSIWYG:</label> <br>
-  <div id="WYSIWYG" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(pageForm.get('MainText').value)"></div>
-  <br>
-  <button type="submit"
-  [disabled]="!pageForm.controls.MainText.dirty"
-  (click)="onSubmit(false)">Accept</button>{{ messageTop }}
-  <br>
-
-
-
-  <div *ngIf="type === 'research'">
-      <hr>
-      <label>Edit Figures:</label> <br>
-  
-      <div id="Title">
-        <select #reset name="FigureName" (change)="onNameChange($event.target.value)">
-          <option value="-1" selected>New Figure</option>
-          <option *ngFor="let figure of figures, let i = index"
-              [value] = i> {{ figure.Name }}
-          </option>
-        </select>
-        <br><br>
-        <label>Title:</label> <input formControlName="Title" id="title"><br>
-        
-    
-        <label>Caption:</label><br>
-        <textarea rows=7 cols=70 formControlName="Description" wrap="hard"></textarea>
-      </div><br>
-
-      <div id="imageWYSIWYG" *ngIf="edit">
-          <P><b>Current Figure:</b></P>
-          <img [src]="pageForm.get('Image').value">
-          <br><br>
-      </div>
+<div class="pushform">
+  <div id="picker">
+      <h4>Pick Page to Edit:</h4>
+      <input type="radio" name="Page" (change)="onTypeChoice(true)" checked="true">
+      <label name="1" class="radio">Research </label> &nbsp;&nbsp;&nbsp;
+      <input type="radio" name="Page" (change)="onTypeChoice(false)">
+      <label name="2" class="radio">Contact</label><br>
       
-      
-      
-      <label>Image Upload:</label><input #image type="file" (change)="onFile($event)"><br>
-      <button type="submit"
-      [disabled]="!pageForm.valid"
-      (click)="onSubmit(true)">Accept</button>
-      
-      <button
-      [disabled]="!edit"
-      (click)="onDelete()">Delete</button> {{ messageBottom }}    
   </div>
 
-</form>
-<br><br>
+  <form [formGroup]="pageForm">
+    <label>Edit Main Text:</label> <br>
+    <textarea formControlName="MainText" rows=25 cols=70></textarea><br>
+    <label>Help:</label> <br>
+    <span id="helptext">You can use all standard web tags.  You will most likely want:</span>
+    <ul>
+        <li><b>Textformating:</b> &lt;i&gt;, &lt;u&gt;, &lt;b&gt;</li>
+        <li><b>Headers:</b>&lt;h1&gt;,&lt;h2&gt;,&lt;h3&gt;,&lt;h4&gt;,&lt;h5&gt;</li>
+        <li><b>Links:</b>&lt;a href="link"&gt;how link should appear in text&lt;/a&gt;</li>
+        <li><b>Lists:</b>  &lt;ul&gt; (unordered list), &lt;ol&gt; (ordered list), &lt;li&gt; (list element)</li>
+        <li><b>Sections:</b> &lt;span&gt; (section with no return), &lt;div&gt; (complete section with return), &lt;p&gt; (paragraph, spaces between)</li>
+        <li><b>Misc:</b>&lt;hr&gt;(line break), &lt;br&gt;(finish current line/return)</li>
+    </ul>
+    <label>WYSIWYG:</label> <br>
+    <div id="WYSIWYG" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(pageForm.get('MainText').value)"></div>
+    <br>
+    <button type="submit"
+    [disabled]="!pageForm.controls.MainText.dirty"
+    (click)="onSubmit(false)">Edit</button>{{ messageTop }}
+    <br>
+
+
+
+    <div *ngIf="type === 'research'">
+        <hr>
+        <label>Edit Figures:</label> <br>
+    
+        <div id="Title">
+          <select #reset name="FigureName" (change)="onNameChange($event.target.value)">
+            <option value="-1" selected>New Figure</option>
+            <option *ngFor="let figure of figures, let i = index"
+                [value] = i> {{ figure.Name }}
+            </option>
+          </select>
+          <br><br>
+          <label>Title:</label> <input formControlName="Title" id="title"><br>
+          
+      
+          <label>Caption:</label><br>
+          <textarea rows=7 cols=70 formControlName="Description" wrap="hard"></textarea>
+        </div><br>
+
+        <div id="imageWYSIWYG" *ngIf="edit">
+            <P><b>Current Figure:</b></P>
+            <img [src]="pageForm.get('Image').value">
+            <br><br>
+        </div>
+        
+        
+        
+        <label>Image Upload:</label><input #image type="file" (change)="onFile($event)"><br>
+        <button type="submit"
+        [disabled]="!pageForm.valid"
+        (click)="onSubmit(true)">Edit</button>
+        <button
+        [disabled]="!edit"
+        (click)="onDelete()">Delete</button> {{ messageBottom }}    
+    </div>
+
+  </form>
+  <br>
+</div>

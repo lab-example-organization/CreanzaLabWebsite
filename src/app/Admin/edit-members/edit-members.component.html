@@ -21,7 +21,7 @@
         {{ user.name }}
       </option>
     </select>
-    <br><br>
+
     <app-edit-roles></app-edit-roles>
     <hr>
 
@@ -40,7 +40,7 @@
       </option>
     </select><br><br>
 
-    <b>Edit Card:</b><br>
+    <b>Edit Card:</b>
     <app-peopleupload *ngIf="activePerson"
     [OldInfo]="activePerson"
     [Key]="key"

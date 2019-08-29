@@ -1,83 +1,85 @@
-<form [formGroup]="individualForm">
-  <b>Show Individual Page Button: </b>&nbsp;&nbsp;
-  <input type="radio" formControlName="showIndividual" name="showIndividual" value='true'>&nbsp;
-  <label name="show">Show </label> &nbsp;&nbsp;&nbsp;
-  <input type="radio" formControlName="showIndividual" name="showIndividual" value='false'>&nbsp;
-  <label name="show">Don't Show</label><br>
-  <hr>
-  <h4>Header:</h4>
-  <b>Department: </b>
-  <input class="long" formControlName="department"><br><br>
+<div class="pushform">
+  <form [formGroup]="individualForm">
+    <b>Show Individual Page Button: </b>&nbsp;&nbsp;
+    <input type="radio" formControlName="showIndividual" name="showIndividual" value='true'>&nbsp;
+    <label name="show">Show </label> &nbsp;&nbsp;&nbsp;
+    <input type="radio" formControlName="showIndividual" name="showIndividual" value='false'>&nbsp;
+    <label name="show">Don't Show</label><br>
+    <hr>
+    <h4>Header:</h4>
+    <b>Department: </b>
+    <input class="long" formControlName="department"><br><br>
 
-  <b>GitHub Account: </b>
-  <input class="long" formControlName="github"><br><br>
+    <b>GitHub Account: </b>
+    <input class="long" formControlName="github"><br><br>
 
-  <b>Personal Website: </b>
-  <input class="long" formControlName="website"><br><br>
+    <b>Personal Website: </b>
+    <input class="long" formControlName="website"><br><br>
 
-  <b>Public-Facing Email:
-  </b> <input class="long" formControlName="publicEmail"><br><br>
+    <b>Public-Facing Email:
+    </b> <input class="long" formControlName="publicEmail"><br><br>
 
-  <b>Publication Name: </b>
-  <input class="long" formControlName="pubName"><br>(To bold your name in publications; e.g. Robinson CM or Creanza N)<br><br>
-  
-  <b>CV or Resume: </b>
-  <input #file type="file" class="long" (change)="onFile($event)"><br>
-  
-  <b>Current Resume: </b> {{ cvresumeTitle }}<br>
-  (Whatever you name the original file is what other people will download it as!!!)<br><br>
-  <b>About Me: </b><br> <textarea class="long" formControlName="about" rows=4 cols=65></textarea> <br><br>
-  <hr>
-  <h4>Projects:</h4>
-  <div formArrayName="projects">
-      <p *ngFor="let group of individualForm.get('projects')['controls'], let i = index"
-      [formGroupName]="i">
-      <b>Title {{ i+1 }}: </b> <input formControlName="title" type="text" [attr.disabled]="disable ? '' : null">
-      <span *ngIf="i===0">
-          <button type="button" (click)="addProject(true)">+</button>
-          <button type="button" (click)="addProject(false)"
-                  [disabled] ="individualForm.controls.projects.length === 1">-</button>
-        </span><br>
-      <b>Main Text {{ i+1 }}: </b><br>
-      <textarea rows="6" cols="65" formControlName="mainInfo" [attr.disabled]="disable ? '' : null"></textarea><br>
-      <b>GitHub Repo {{ i+1 }}: </b> <input formControlName="githubLink" type="text" [attr.disabled]="disable ? '' : null">
-      </p>
-  
-  </div>
-  <hr>
-  <h4>Publications:</h4>
-  (Submittting a publication only adds it to your working data.  You have to submit the entire form to move your publications to the server!!!)
-  <app-publicationupload
-  [disabled]="disable"
-  ></app-publicationupload>
-  <hr>
-  <h4>Awards:</h4>
-  <div formArrayName="awards">
-      <p *ngFor="let group of individualForm.get('awards')['controls'], let i = index"
-      [formGroupName]="i">
-      <b>Title {{ i+1 }}: </b>
-      <input formControlName="title" type="text" [attr.disabled]="disable ? '' : null">
-      <span *ngIf="i===0">
-          <button type="button" (click)="addAward(true)">+</button>
-          <button type="button" (click)="addAward(false)"
-                  [disabled] ="individualForm.controls.awards.length === 1">-</button>
-        </span><br>
-        <b>Year Recieved {{ i+1 }}: </b>
-        <input formControlName="yearReceived" type="text" [attr.disabled]="disable ? '' : null"> 
-      </p>
-  <hr>
-  </div>
-
-  <h4>Social Media:</h4>
-    <div id="socialMedia" formArrayName="socialMedia">
-      <span *ngFor="let type of socialMediaArray.controls; let i = index"
-      [formGroupName]="i">
-        <b>{{ socialMediaArray.controls[i].value.media }}: </b>
-        <input class="long" formControlName="link" [attr.disabled]="disable ? '' : null"><br><br>
-      </span>
+    <b>Publication Name: </b>
+    <input class="long" formControlName="pubName"><br>(To bold your name in publications; e.g. Robinson CM or Creanza N)<br><br>
+    
+    <b>CV or Resume: </b>
+    <input #file type="file" class="long" (change)="onFile($event)"><br>
+    
+    <b>Current Resume: </b> {{ cvresumeTitle }}<br>
+    (Whatever you name the original file is what other people will download it as!!!)<br><br>
+    <b>About Me: </b><br> <textarea class="long" formControlName="about" rows=4 cols=65></textarea> <br><br>
+    <hr>
+    <h4>Projects:</h4>
+    <div formArrayName="projects">
+        <p *ngFor="let group of individualForm.get('projects')['controls'], let i = index"
+        [formGroupName]="i">
+        <b>Title {{ i+1 }}: </b> <input formControlName="title" type="text" [attr.disabled]="disable ? '' : null">
+        <span *ngIf="i===0">
+            <button type="button" (click)="addProject(true)">+</button>
+            <button type="button" (click)="addProject(false)"
+                    [disabled] ="individualForm.controls.projects.length === 1">-</button>
+          </span><br>
+        <b>Main Text {{ i+1 }}: </b><br>
+        <textarea rows="6" cols="65" formControlName="mainInfo" [attr.disabled]="disable ? '' : null"></textarea><br>
+        <b>GitHub Repo {{ i+1 }}: </b> <input formControlName="githubLink" type="text" [attr.disabled]="disable ? '' : null">
+        </p>
+    
+    </div>
+    <hr>
+    <h4>Publications:</h4>
+    (Submittting a publication only adds it to your working data.  You have to submit the entire form to move your publications to the server!!!)
+    <app-publicationupload
+    [disabled]="disable"
+    ></app-publicationupload>
+    <hr>
+    <h4>Awards:</h4>
+    <div formArrayName="awards">
+        <p *ngFor="let group of individualForm.get('awards')['controls'], let i = index"
+        [formGroupName]="i">
+        <b>Title {{ i+1 }}: </b>
+        <input formControlName="title" type="text" [attr.disabled]="disable ? '' : null">
+        <span *ngIf="i===0">
+            <button type="button" (click)="addAward(true)">+</button>
+            <button type="button" (click)="addAward(false)"
+                    [disabled] ="individualForm.controls.awards.length === 1">-</button>
+          </span><br>
+          <b>Year Recieved {{ i+1 }}: </b>
+          <input formControlName="yearReceived" type="text" [attr.disabled]="disable ? '' : null"> 
+        </p>
+    <hr>
     </div>
 
-    <button type="submit"
-    (click)="onSubmit()">Submit</button> {{ message }}
-</form>
-<br>
+    <h4>Social Media:</h4>
+      <div id="socialMedia" formArrayName="socialMedia">
+        <span *ngFor="let type of socialMediaArray.controls; let i = index"
+        [formGroupName]="i">
+          <b>{{ socialMediaArray.controls[i].value.media }}: </b>
+          <input class="long" formControlName="link" [attr.disabled]="disable ? '' : null"><br><br>
+        </span>
+      </div>
+
+      <button type="submit"
+      (click)="onSubmit()">Submit</button> {{ message }}
+  </form>
+  <br>
+</div>

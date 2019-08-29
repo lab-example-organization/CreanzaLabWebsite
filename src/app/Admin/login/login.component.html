@@ -8,7 +8,7 @@
         <!-- User NOT logged in -->
         <ng-template #guest>
             <br>
-                <div id="push">
+            <div class="push2">
                 <div id="help">
                     <u><h5>Creanza Lab members and alumni can modify their profiles here!</h5></u>
                     If you are new to the lab and do not yet have access, ask Nicole to add you.  She will just need a gmail account from you.
@@ -22,7 +22,7 @@
             <div id="push">
                 <div *ngIf="auth.user | async as user">
                     <h3>Welcome back, {{ user.name }}!</h3>
-                    <div id="push2">
+                    <div class="push2">
                             <b>What would you like to do today?</b><br>
                             <a routerLink='edit/card'>Edit my Person Card</a><br>
                             <a routerLink='edit/page'>Edit my User Page</a><br>
@@ -45,5 +45,5 @@
         <div id="forms">
             <router-outlet></router-outlet>
         </div>
-        </ng-template>
+    </ng-template>
 </div>
