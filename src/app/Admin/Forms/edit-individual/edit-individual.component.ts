@@ -64,7 +64,7 @@ export class EditIndividualComponent implements OnInit, OnDestroy, OnChanges {
       website: '',
       department: '',
       github: '',
-      showIndividual: false,
+      showIndividual: 'false',
       cvresumeTitle: this.cvresumeTitle,
       socialMedia: this.socialMediaArray,
       projects: this.projectsArray,
@@ -74,6 +74,7 @@ export class EditIndividualComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   populateForm(){
+    console.log(this.OldInfo);
     this.socialMediaArray = this.populateNewSocialMedia();
     this.awardsArray = this.fb.array([]);
     this.projectsArray = this.fb.array([]);
@@ -86,6 +87,8 @@ export class EditIndividualComponent implements OnInit, OnDestroy, OnChanges {
     const projects = <Project[]>JSON.parse(this.OldInfo.projects);
     projects.forEach(project => this.addProject(true, project.title, project.mainInfo, project.githubLink));
     this.cvresumeTitle = this.OldInfo.cvresumeTitle;
+    this.individualForm.patchValue({showIndividual: this.OldInfo.showIndividual.toString()});
+    console.log(this.individualForm.value);
   }
   
   addProject(add: boolean, title: string= '', mainInfo: string = '', githubLink: string = '') {
