@@ -24,14 +24,14 @@
             What would you like to do today?<br>
             <a routerLink='edit/card'>Edit my Person Card</a><br>
             <a routerLink='edit/page'>Edit my User Page</a><br>
-            <div *ngIf="user.roles[0]">
+            <div *ngIf="user.roles[1]">
                 <!-- change this to 1 once labphotos is complete! -->
-                <a routerLink='upload/labphotos'>Add New Lab Photo</a><br>
+                <a routerLink='upload/labphotos'>Edit Lab Photos</a><br>
             </div>
-            <div *ngIf="user.roles[0]">
+            <div *ngIf="user.roles[2]">
                 <!-- change this to 2 once research, members, and publications is complete! -->
                 <a routerLink='admin/research'>Edit Research/Contact Pages</a><br>
-                <a routerLink='admin/publications'>Edit Publications</a><br>
+                <a routerLink='admin/publications'>Edit Lab Publications</a><br>
                 <a routerLink='admin/members'>Edit Members</a><br>
             </div><br>
 

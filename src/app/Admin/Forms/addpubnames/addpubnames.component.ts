@@ -48,6 +48,11 @@ export class AddpubnamesComponent implements OnInit {
     });
   }
   onSwitchUser(index: number){
-    this.deleteIndex = index
+    if(index < 0){
+      delete this.deleteIndex;
+    }else{
+      this.deleteIndex = index;
+    }
+
   }
 }

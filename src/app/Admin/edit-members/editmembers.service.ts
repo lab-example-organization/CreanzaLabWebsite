@@ -1,5 +1,5 @@
-import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { User } from 'src/app/Classes/user';
 import { Person } from 'src/app/Classes/person';
 import { CRUDService } from '../Forms/crud.service';
@@ -8,23 +8,28 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class EditmembersService {
+export class EditmembersService implements OnDestroy{
 
   userData = new BehaviorSubject<User[]>([new User]);
   personData = new BehaviorSubject<Person[]>([new Person]);
   activeUser = new BehaviorSubject<User>(new User);
   activePerson =  new BehaviorSubject<Person>(new Person);
+  subscribe1: Subscription;
+  subscribe2: Subscription;
 
   constructor(private CRUD: CRUDService) {
-    CRUD.fetchAllData('Users').subscribe( users =>
-      this.userData.next(users)
-    )
+    this.subscribe1 = CRUD.fetchAllData('Users').subscribe( users =>
+      this.userData.next(users));
 
-    CRUD.fetchAllData('people').subscribe( person =>
-      this.personData.next(person)
-    )
+    this.subscribe2 = CRUD.fetchAllData('people').subscribe( person =>
+      this.personData.next(person));
   }
   
+  ngOnDestroy(){
+    this.subscribe1.unsubscribe();
+    this.subscribe2.unsubscribe();
+  }
+
   getAllUsers(){
     return this.userData;
   }
@@ -46,6 +51,11 @@ export class EditmembersService {
   updateActive(email: string){
     this.fetchUser(email).subscribe(user => this.activeUser.next(user));
     this.fetchPerson(email).subscribe(person => this.activePerson.next(person));
+  }
+
+  undoActive(){
+    this.activeUser.next(new User);
+    this.activePerson.next(new Person);
   }
 
 }

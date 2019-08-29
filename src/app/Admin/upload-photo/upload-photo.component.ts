@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CRUDService } from '../Forms/crud.service';
 import { LabPhoto } from 'src/app/Classes/labPhoto';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-upload-photo',
@@ -26,11 +26,6 @@ export class UploadPhotoComponent implements OnInit {
   ngOnInit() {
     this.uploadPhotosForm = this.createForm();
     this.downloadPhotos$ = this.CRUD.fetchAllData('groupPhotos');
-    // this.downloadPhotos$ = of([{name: "Fake_pic",
-    //                             date: "11/23/19",
-    //                             caption: "this is a test",
-    //                             link: "thisidjsopk//"}])
-
   }
 
   onFile(event: any) {
@@ -58,19 +53,22 @@ export class UploadPhotoComponent implements OnInit {
                             this.onReset();
                           });
   }
-    onNameChange(thisevent: any) {
-    this.CRUD.fetchTargetData(thisevent, 'name', 'groupPhotos').subscribe(photodata => {
-      this.uploadPhotosForm = this.CRUD.quickAssign(this.uploadPhotosForm, photodata);
-      this.photovariable = photodata.key;
-    });
-}
-  onDelete() {
+  onNameChange(thisevent: string) {
+    if(thisevent === "New Photo"){
+      delete this.photovariable;
+      this.uploadPhotosForm = this.createForm();
+    }else{
+      this.CRUD.fetchTargetData(thisevent, 'name', 'groupPhotos').subscribe(photodata => {
+        this.uploadPhotosForm = this.CRUD.quickAssign(this.uploadPhotosForm, photodata);
+        this.photovariable = photodata.key;
+      }).unsubscribe;
+    }
+  }
 
+  onDelete() {
     this.CRUD.deleteItem( [ this.uploadPhotosForm.controls.link.value],
       'groupPhotos', this.photovariable)
       .then(() => { this.message = 'Delete successful'; this.onReset(); } );
-
-
   }
 
   onReset() {

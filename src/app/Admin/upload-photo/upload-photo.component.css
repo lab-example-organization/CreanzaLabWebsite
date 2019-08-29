@@ -1,0 +1,14 @@
+p {
+    font-weight: bold;
+}
+
+select {
+    width: 500px;
+    white-space: normal;
+}
+
+img {
+    object-fit: contain;
+    max-width: 600px;
+    max-height: 400px;
+}

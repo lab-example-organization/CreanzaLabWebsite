@@ -1,28 +1,21 @@
-<mat-list role="list" *ngIf="uploadPhotos$ | async as Photos">
-  <mat-list-item role="listitem" *ngFor="let photo of Photos">
-    {{ photo.name }}
-    {{ photo.date }}
-    {{ photo.caption }}
-  </mat-list-item>
-</mat-list>
-
 <form [formGroup]="uploadPhotosForm">
-  <p> Photo Name: <input formControlName="name" type="text" > 
-    <select #reset name="PhotoName" *ngIf="downloadPhotos$ | async as Photos" (change)="onNameChange($event.target.value)">
-      <option value="" selected disabled>Please select an option...</option>
+  
+  <select #reset name="PhotoName" *ngIf="downloadPhotos$ | async as Photos" (change)="onNameChange($event.target.value)">
+      <option value="New Photo" selected>New Photo</option>
       <option *ngFor="let photo of Photos"
-          [value] = photo.name> {{ photo.name}}
-           
+          [value] = photo.name> {{ photo.name}}     
         </option> 
-    
-        
-      
+  </select><br><br>
+  <p> Photo Name: <input formControlName="name" type="text" > </p>
 
-    </select> </p>
+  <p> Date: <input formControlName="date" class="medium" type="text"></p>
+  <p> Caption: <textarea formControlName="caption" rows=2 cols=70></textarea> </p>
+  <p> Link: <input #link  type="file" (change)="onFile($event)"></p>
 
-  <p> Date: <input formControlName="date" type="text"></p>
-  <p> Caption: <input formControlName="caption" type="text"></p>
-  <p> Link: <input #link  type="file" (change)="onFile($event)"></p> 
+  <div *ngIf="photovariable">
+    <P>Current Photo:</P>
+    <img [src]="uploadPhotosForm.get('link').value">
+  </div>
   
 
   <button type="submit"
@@ -40,3 +33,4 @@
   [disabled]="photovariable === undefined"
   > Delete </button> 
 </form>
+<br>

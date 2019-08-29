@@ -1,54 +1,99 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy, OnChanges } from '@angular/core';
 import { SocialMedia } from 'src/app/Classes/socialMedia';
 import { CRUDService } from '../crud.service';
 import { FormBuilder, FormArray, Form } from '@angular/forms';
 import { Award, Project } from 'src/app/Classes/person';
+import { PublicationService } from '../publicationupload/publication.service';
+import { Publication } from 'src/app/Classes/publication';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-individual',
   templateUrl: './edit-individual.component.html',
   styleUrls: ['./edit-individual.component.css']
 })
-export class EditIndividualComponent implements OnInit {
+export class EditIndividualComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() OldInfo: any;
+  @Input() Key: string;
   sMTypes = Object.keys(new SocialMedia);
   message: string;
   
-  socialMediaArray: FormArray = this.populateNewSocialMedia();
+  socialMediaArray = this.populateNewSocialMedia();
   awardsArray = this.fb.array([]);
   projectsArray = this.fb.array([]);
   individualForm = this.makeForm();
+  publicationsArray: Publication[];
+  subscribe: Subscription;
+  disable: boolean
 
+  cvresumeTitle: string;
   fileEvent: any;
   @ViewChild('file') fileValue: ElementRef;
 
   constructor(private CRUD: CRUDService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private pubsserv: PublicationService) { }
 
   ngOnInit() {
-    this.individualForm = this.CRUD.quickAssign(this.individualForm, this.OldInfo);
-    this.individualForm.controls.socialMedia = this.populateSocialMedia();
-    const awards = <Award[]>JSON.parse(this.OldInfo.awards);
-    awards.forEach(award => this.addAward(true, award.title, award.yearReceived));
-    const projects = <Project[]>JSON.parse(this.OldInfo.projects);
-    projects.forEach(project => this.addProject(true, project.title, project.mainInfo));
+    this.subscribe = this.pubsserv.publicationList
+                      .subscribe(pubs => this.publicationsArray = pubs);
   }
-    makeForm(){
+
+  ngOnChanges(){
+    if(!this.Key){
+      this.individualForm.disable()
+      this.disable = true;
+    }else{
+      this.individualForm.enable();
+      this.disable = false;
+    }
+    this.populateForm();
+  }
+
+  ngOnDestroy(){
+    this.subscribe.unsubscribe();
+  }
+
+  makeForm(){
     return this.fb.group({
       publicEmail: '',
       pubName: '',
       cvresume: '',
-      socialMedia: this.socialMediaArray,//this.populateNewSocialMedia(),//this.fb.array([this.fb.group({name: ''})]),
+      about: '',
+      website: '',
+      department: '',
+      github: '',
+      showIndividual: 'false',
+      cvresumeTitle: this.cvresumeTitle,
+      socialMedia: this.socialMediaArray,
       projects: this.projectsArray,
       awards: this.awardsArray
     })
 
   }
+
+  populateForm(){
+    console.log(this.OldInfo);
+    this.socialMediaArray = this.populateNewSocialMedia();
+    this.awardsArray = this.fb.array([]);
+    this.projectsArray = this.fb.array([]);
+    this.individualForm = this.makeForm();
+    this.pubsserv.assignMaster(JSON.parse(this.OldInfo.publications));
+    this.individualForm = this.CRUD.quickAssign(this.individualForm, this.OldInfo);
+    this.individualForm.controls.socialMedia = this.populateSocialMedia();
+    const awards = <Award[]>JSON.parse(this.OldInfo.awards);
+    awards.forEach(award => this.addAward(true, award.title, award.yearReceived));
+    const projects = <Project[]>JSON.parse(this.OldInfo.projects);
+    projects.forEach(project => this.addProject(true, project.title, project.mainInfo, project.githubLink));
+    this.cvresumeTitle = this.OldInfo.cvresumeTitle;
+    this.individualForm.patchValue({showIndividual: this.OldInfo.showIndividual.toString()});
+    console.log(this.individualForm.value);
+  }
   
-  addProject(add: boolean, title: string= '', mainInfo: string = '') {
+  addProject(add: boolean, title: string= '', mainInfo: string = '', githubLink: string = '') {
     if (add) {
-      this.projectsArray.push(this.fb.group({title: title, mainInfo: mainInfo}));
+      this.projectsArray.push(this.fb.group({title: title, mainInfo: mainInfo, githubLink: githubLink}));
     } else {
       this.projectsArray.removeAt(this.projectsArray.length - 1);
     }
@@ -93,11 +138,17 @@ export class EditIndividualComponent implements OnInit {
     editedInfo.awards = this.format(this.awardsArray);
     editedInfo.projects = this.format(this.projectsArray);
     editedInfo.socialMedia = this.formatSM(editedInfo);
-    console.log(editedInfo);
-     return this.CRUD.editImages([`CVs/${this.OldInfo.name}`], [this.fileEvent], [this.OldInfo.cvresume])
+    editedInfo.publications = this.formatPubs();
+    editedInfo.cvresumeTitle = this.cvresumeTitle;
+    editedInfo.showIndividual === 'true'?
+      editedInfo.showIndividual = true:
+      editedInfo.showIndividual = false;
+    delete editedInfo.key;
+    
+     return this.CRUD.editImages([`CVs/${this.cvresumeTitle}`], [this.fileEvent], [this.OldInfo.cvresume])
      .then(link => {
        editedInfo.cvresume = link[0];
-       return this.CRUD.editItem(editedInfo, 'people', this.OldInfo.key);
+       return this.CRUD.editItem(editedInfo, 'people', this.Key);
      }).then(() => {
        this.message = 'submission successful!';
        this.onReset();
@@ -111,12 +162,14 @@ export class EditIndividualComponent implements OnInit {
 
   onFile(event: any) {
     this.fileEvent = event;
+    const filePath = event.target.value;
+    this.cvresumeTitle = filePath.substr(filePath.lastIndexOf('\\') + 1);
   }
 
   format(formArray: FormArray){
     let JSONed: any[] = [];
     formArray.value.forEach(element => JSONed.push(element));
-    return(JSON.stringify(JSONed));
+    return JSON.stringify(JSONed);
   }
 
   formatSM(data: any){
@@ -125,7 +178,15 @@ export class EditIndividualComponent implements OnInit {
       const values = <string[]>Object.values(element);
       Blank[values[0]] = values[1]
     });
-    return(JSON.stringify(Blank));
+    return JSON.stringify(Blank);
+  }
+
+  formatPubs(){
+    let pubArray = JSON.stringify(this.publicationsArray)
+    if(pubArray === "[{}]"){
+      pubArray = "[]";
+    }
+    return pubArray;
   }
 
 }

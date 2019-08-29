@@ -1,0 +1,16 @@
+option {
+    max-width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+select {
+    max-width: 500px;
+}
+
+p {
+    font-weight: bold;
+}
+
+span {
+    font-weight: normal;
+}

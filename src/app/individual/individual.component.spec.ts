@@ -17,26 +17,31 @@ describe('IndividualComponent', () => {
   const activatedRoute = new ActivatedRouteStub();
 
   const expectedPerson: Person = {
-    pubName: 'this is your pub name',
     description: 'This is the description of a person.',
+    startYear: '2018',
+    studying: 'This is the studying of a person.',
+    pronouns: 'These are the pronouns of a person',
+    portraitLink: 'This is the portrait link of a person.',
     endingYear: 'This is the ending year of a person.',
     name: 'This is the name of a person.',
     email: 'This is the email of a person.',
     publications: 'Publications',
     projectShort: 'This is the project of a person.',
-    projects: "lol",
+    projects: 'lewl',
     cvresume: 'Link to a CV',
     awards: 'First award',
-    startYear: '2017',
-    studying: 'This is the studying of a person.',
-    pronouns: 'These are the pronouns of a person',
-    portraitLink: 'This is the portrait link of a person.',
-    socialMedia: 'This is the social media for a person.',
-    publicEmail: 'This is a public facing email'
+    socialMedia: 'This is the social media of a person.',
+    pubName: 'bold me',
+    publicEmail: 'show me',
+    about: 'rambleing',
+    cvresumeTitle: 'title cv',
+    website: 'your website',
+    department: 'becase abigail',
+    github: 'code pusher'
   };
 
+
   const expectedSocialMedia: SocialMedia = {
-    Personal: 'lol oh lol',
     Android: 'This is where a person may put their android account.',
     Dribbble: 'This is where a person may put their dribbble account.',
     Facebook: 'This is where a person may put their facebook account.',

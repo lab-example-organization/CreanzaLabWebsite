@@ -7,7 +7,6 @@ export class SocialMedia {
     Google: string = '';
     Instagram: string = '';
     LinkedIn: string = '';
-    Personal: string = '';
     Pinterest: string = '';
     Reddit: string = '';
     RSS: string = '';

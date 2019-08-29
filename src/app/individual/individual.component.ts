@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Person, Project, Award } from '../Classes/person';
-import { PeopleService } from '../people/people.service';
-import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { SocialMedia } from '../Classes/socialMedia';
 import { Publication } from '../Classes/publication';
@@ -21,8 +19,9 @@ export class IndividualComponent implements OnInit {
   projects: Project[];
   awards: Award[];
   ShowSocial = false;
-  constructor(private peopleserv: PeopleService,
-              private route: ActivatedRoute) { }
+  mainAuthor: RegExp;
+  mail: string;
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe((data: {person: Person}) => {
@@ -30,9 +29,16 @@ export class IndividualComponent implements OnInit {
       this.socialMedia = JSON.parse(data.person.socialMedia);
       this.projects = JSON.parse(data.person.projects);
       this.awards = JSON.parse(data.person.awards);
-      //this.publications = JSON.parse(data.person.publications);
+      this.publications = JSON.parse(data.person.publications)
+      .sort((a,b) => (a.year > b.year ? -1 : a.year < b.year ? 1 : 0));
+      if(data.person.publicEmail !== ''){
+        this.mail = `mailto:${data.person.publicEmail}`;
+      }
+      data.person.pubName === '' ?
+            this.mainAuthor = RegExp('NONE12'):
+            this.mainAuthor = RegExp(`${data.person.pubName}*`);
       for(let SM of this.sMTypes){
-        if (typeof this.socialMedia[SM] !== null) {
+        if (this.socialMedia[SM] !== '') {
           this.ShowSocial = true;
         }
       }

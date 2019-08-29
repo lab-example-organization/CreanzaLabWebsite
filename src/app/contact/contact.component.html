@@ -1,0 +1,13 @@
+<div id="background">
+    <br>
+    <div id="outer">
+        <div id="contact">
+            <div *ngIf="contact$ | async as contact">
+              <br>
+              <div class="contact"
+              [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(contact.mainText)"></div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>

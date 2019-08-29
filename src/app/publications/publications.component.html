@@ -1,14 +1,22 @@
-<h3>Publications</h3>
-<hr>
-<div id="outer" role="list" *ngIf="publications$ | async as publications">
-  <app-display-pubs
-  [mainAuthor]="mainAuthor"
-  [subAuthors]="nicoleTrainees"
-  [publications]="publications"
-  ></app-display-pubs>
+<div id="background">
+  <br>
+    <div id="outer">      
+        <div id="inner" role="list" *ngIf="publications$ | async as publications">
+          <h3>Publications</h3>
+          <hr>
+
+          <app-display-pubs
+          [mainAuthor]="mainAuthor"
+          [subAuthors]="nicoleTrainees"
+          [publications]="publications"
+          ></app-display-pubs>
+          <hr>
+
+          <div id="contribute">
+            * = contributed equally <br>
+            <u>Underlined</u> = Nicole's Trainees
+          </div><br>
+        </div>
+    </div>
+    <br>
 </div>
-<hr>
-<div id="contribute">
-  * = contributed equally <br>
-  <u>Underlined</u> = Nicole's Trainees
-</div><br>

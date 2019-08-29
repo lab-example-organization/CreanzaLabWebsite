@@ -11,9 +11,9 @@ export class DisplayPubsComponent implements OnInit {
   constructor() { }
   
   @Input() mainAuthor: RegExp
-  @Input() subAuthors: RegExp[];
   @Input() publications: Publication[];
-
+  @Input() subAuthors: RegExp[] = [];
+  
   ngOnInit() {
   }
 

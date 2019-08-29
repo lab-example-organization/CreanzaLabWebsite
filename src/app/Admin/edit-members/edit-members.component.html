@@ -1,15 +1,22 @@
 <div id="outer">
     <app-new-memeber></app-new-memeber>
-
     <hr>
+
+
+
+
     <app-addpubnames></app-addpubnames>
     <hr>
-    <h3>Edit Member Roles: </h3>
-    (Members do not have roles until they have logged in once!)<br><br>
+
+
+
+
+    <h3>Edit Users Roles: </h3>
+    (Members do not become Users with roles until they have logged in once!)<br><br>
     <b>User: </b>
     <select
     (change)="onSwitchUser($event.target.value)">
-      <option value="" selected disabled>Please select an option...</option>
+      <option value="None" selected>Select a user</option>
       <option *ngFor="let user of users" [value]=user.email>
         {{ user.name }}
       </option>
@@ -17,11 +24,32 @@
     <br><br>
     <app-edit-roles></app-edit-roles>
     <hr>
+
+
+
+
     <h3>Edit Member Display: </h3>
-    (Remember that users can edit their own data.  The following sections exist only in case bad things happen.)<br>
+    (Remember that users can edit their own data.  The following sections exist only in case bad things happen.  Also note that the selected member resets when you submit edits to the Card or Page to make sure you are working with the most up-to-date information.)<br>
+    
+    <b>Member: </b>
+    <select
+    (change)="onSwitchMember($event.target.value)">
+      <option value="-1" selected>Select a lab member</option>
+      <option *ngFor="let person of people; let i = index" [value]=i>
+        {{ person.name }}
+      </option>
+    </select><br><br>
+
     <b>Edit Card:</b><br>
-    <app-peopleupload *ngIf="true"
-    [OldInfo]="person"
+    <app-peopleupload *ngIf="activePerson"
+    [OldInfo]="activePerson"
+    [Key]="key"
     ></app-peopleupload>
+
+
     <b>Edit Page:</b><br>
+    <app-edit-individual *ngIf="activePerson"
+    [OldInfo]="activePerson"
+    [Key]="key"
+    ></app-edit-individual>
 </div>
