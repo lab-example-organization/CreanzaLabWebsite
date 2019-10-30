@@ -12,6 +12,7 @@ div#outer{
   max-width: 1100px;
   display: flex;
   flex-flow: row;
+  justify-content: center;
   position: absolute;
   z-index: 1;
   flex-wrap: wrap;

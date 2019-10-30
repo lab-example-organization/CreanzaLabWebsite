@@ -1,6 +1,6 @@
 
 div#background {
-  background-color: rgb(132, 163, 189);
+  background-color: rgb(239, 243, 245);
   height: 100vh;
 }
 .bubble-pic {
@@ -18,13 +18,13 @@ div#background {
 }
 
 #outer{
-  background-color: rgb(132, 163, 189);
+  background-color: rgb(174, 174, 174);
 }
 .subouter {
   display: flex;
   /*max-width: 904px;*/
   flex-flow: row wrap;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: space-between;
   padding: 10px;
 }
@@ -41,7 +41,7 @@ mat-card {
   width: 350px;
   height: 600px;
   margin: 10px;
-  background-color: rgb(188, 221, 231);
+  background-color: rgb(239, 243, 245);
 }
 img {
   max-width: 250px;
@@ -101,7 +101,7 @@ a.navbar:active{
 
 h3 {
   padding-left: 30px;
-  color: azure;
+  color: rgb(0, 0, 0);
 }
 
 hr {

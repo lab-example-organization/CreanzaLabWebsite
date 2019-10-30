@@ -4,7 +4,7 @@ a.navbar {
     background-color: rgb(80, 138, 146);
     padding: .2em;
     color: whitesmoke;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     font-size: 25px;
     text-decoration:none;
     margin: .15em;
@@ -44,7 +44,7 @@ div#header {
     flex-flow: column;
 }
 h1 {
-    font-family: fantasy;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 50px;
     padding: 0px;
     margin: 0px;
