@@ -1,14 +1,6 @@
-
 div#background {
   background-color: rgb(239, 243, 245);
   height: 100vh;
-}
-.bubble-pic {
-  background-image: url('https://cdn.vanderbilt.edu/vu-wp0/wp-content/uploads/sites/234/2018/09/04094403/Alex-Surowiec.png');
-  background-size: cover;
-  display: inline-block;
-  right: 0;
-  position: absolute;
 }
 
 #header {
