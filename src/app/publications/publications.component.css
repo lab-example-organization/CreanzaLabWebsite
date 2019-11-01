@@ -6,7 +6,7 @@ div#background {
 div#outer {
     display: flex;
     justify-content: center;
-    font-family: sans-serif;
+    font-family: 'Lato', sans-serif;
     margin-bottom: 15px;
     margin-left: -30px;
 }
