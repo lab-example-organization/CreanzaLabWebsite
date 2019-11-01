@@ -1,5 +1,6 @@
 div#googleBtn{
     cursor: pointer;
+    font-family: sans-serif;
     height:60px;
     width:240px;
     background-size: contain;
@@ -8,55 +9,70 @@ div#googleBtn{
 
 div#googleBtn:hover{
     background-size: contain;
+    font-family: sans-serif;
     background-image: url("../../../assets/images/g-focus.png");
 }
 
 div#googleBtn:focus{
     background-size: contain;
+    font-family: sans-serif;
     background-image: url("../../../assets/images/g-focus.png");
 }
 
 div#googleBtn:active{
     background-size: contain;
+    font-family: sans-serif;
     background-image: url("../../../assets/images/g-press.png");
 }
 
 div#googleBtn:disabled{
     background-size: contain;
+    font-family: sans-serif;
     background-image: url("../../../assets/images/g-disabled.png");
 }
 
 div#background {
     background-color: rgb(174, 174, 174);
+    font-family: sans-serif;
     min-height: 100vh;
     padding-bottom: 30px;
 }
 
 div#push {
     padding-top: 10px;
+    font-family: sans-serif;
     margin-left: 25px;
 }
 div.push2 {
     margin-left: 25px;
+    font-family: sans-serif;
     background-color: rgb(239, 243, 245);
     display: inline-block;
     padding: 10px;
 }
 div#help {
     max-width: 600px;
+    font-family: sans-serif;
 }
 a {
     color: rgb(12, 85, 78);
+    font-family: sans-serif;
     margin-left: 30px;
+    font-size: 18px;
 }
 
 a:hover {
-    color: rgb(90, 116, 113)
+    color: rgb(90, 116, 113);
+    font-family: sans-serif;
 }
 
 div#forms {
     background-color: rgb(239, 243, 245);
+    font-family: sans-serif;
     max-width: 750px;
     margin-left: 15px;
     padding-right: 8px;
+}
+b {
+    font-size: 20px;
 }

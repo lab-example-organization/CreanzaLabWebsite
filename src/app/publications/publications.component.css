@@ -6,11 +6,13 @@ div#background {
 div#outer {
     display: flex;
     justify-content: center;
+    font-family: sans-serif;
     margin-bottom: 15px;
     margin-left: -30px;
 }
 div#inner {
     margin-left: 30px;
+    font-family: inherit;
     padding-left: 4em;
     padding-right: 1.2em;
     text-indent:-3em;
@@ -20,11 +22,13 @@ div#inner {
 
 div#contribute {
     padding: 0px;
+    font-family: inherit;
     margin-left: -30px;
     text-indent: 0px;
 }
 h3{
-    margin-left: 30px;
+    /* margin-left: 30px; */
+    font-family: inherit;
     margin-top: 25px;
 }
 

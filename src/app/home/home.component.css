@@ -18,11 +18,12 @@ div#background {
 }
 div#outer{
   max-width: 100%;
+  font-family: sans-serif;
   margin: auto;
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   /* position: absolute; */
   z-index: 1;
   flex-wrap: wrap;
@@ -62,6 +63,7 @@ div#containTwitter{
 }
 
 .lab-caption {
+  font-family: inherit;
   background-color: black;
 }
 img#carouselImg{

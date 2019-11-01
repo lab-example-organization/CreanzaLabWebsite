@@ -1,6 +1,7 @@
 
 div#background {
   background-color: rgb(174, 174, 174);
+  font-family: sans-serif;
   min-height: 100vh;
 }
 div#center{
