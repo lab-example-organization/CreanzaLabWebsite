@@ -1,4 +1,10 @@
-form{
-    border: 2px solid black;
-    padding: 7px;
+button#revoke {
+    float: right;
+    font-weight: bold;
+    max-width: 120px;
+}
+
+div#explain {
+    margin-left: 20px;
+    max-width: 600px;
 }

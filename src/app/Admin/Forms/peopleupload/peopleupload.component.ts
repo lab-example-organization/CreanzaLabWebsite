@@ -1,42 +1,35 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { CRUDService } from '../crud.service';
-import { AuthService } from '../../auth.service';
-import { Subscription } from 'rxjs';
+import { Person } from 'src/app/Classes/person';
 
 @Component({
   selector: 'app-peopleupload',
   templateUrl: './peopleupload.component.html',
   styleUrls: ['./peopleupload.component.css']
 })
-export class PeopleuploadComponent implements OnInit, OnDestroy {
+export class PeopleuploadComponent implements OnChanges {
 
-  @Input() existingPerson;
+  @Input() OldInfo: Person;
+  @Input() Key: string;
   positions: string[] = ['High-schooler', 'Undergraduate Student', 'Graduate Student', 'Post-Doc', 'PI', 'Alumni', 'Rotation Student'];
   personForm = this.createForm();
   imageEvent: any;
   @ViewChild('image') imageValue: ElementRef;
   message: string;
-  OldInfo: any;
-
-  stream: Subscription;
 
   constructor(private fb: FormBuilder,
-              private CRUD: CRUDService,
-              private auth: AuthService) { }
+              private CRUD: CRUDService) { }
 
-  ngOnInit() {
-    this.stream = this.auth.user.subscribe(user => {
-      this.CRUD.fetchIndivdualData(user, 'people').subscribe(u => {
-        this.OldInfo = u;
-        this.personForm = this.CRUD.quickAssign(this.personForm, u);
-      });
-    });
-  }
 
-  ngOnDestroy() {
-    this.stream.unsubscribe();
+  ngOnChanges(){
+    if(!this.Key){
+      this.personForm.disable();
+    }else{
+      this.personForm.enable();
+    }
+    this.personForm = this.CRUD.quickAssign(this.personForm, this.OldInfo);
   }
 
   createForm() {
@@ -45,9 +38,9 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
       description: ['Undergraduate', Validators.required],
       endingYear: ['Present', Validators.required],
       name: ['', Validators.required],
-      project: '',
+      projectShort: '',
       startYear: [Year, Validators.required],
-      studying: ['', Validators.required],
+      studying: '',
       pronouns: '',
       portraitLink: ''
     });
@@ -63,10 +56,15 @@ export class PeopleuploadComponent implements OnInit, OnDestroy {
     Object.keys(this.personForm.controls).forEach(key => {
       editedInfo[key] = this.personForm.controls[key].value;
     });
-    return this.CRUD.editImages([`Profiles/${editedInfo.name}`], [this.imageEvent], [this.OldInfo.portraitLink])
+    let oldLink = this.OldInfo.portraitLink
+    if(oldLink === 'https://firebasestorage.googleapis.com/v0/b/creanza-lab-208216.appspot.com/o/Profiles%2FIMG_20170622_142410.jpg?alt=media&token=2e1a64fc-9fa4-466d-a524-2152bfafbda8'){
+      oldLink = ''
+    }
+    delete editedInfo.key;
+    return this.CRUD.editImages([`Profiles/${editedInfo.name}`], [this.imageEvent], [oldLink])
     .then(link => {
       editedInfo.portraitLink = link[0];
-      return this.CRUD.editItem(editedInfo, 'people', this.OldInfo.key);
+      return this.CRUD.editItem(editedInfo, 'people', this.Key);
     }).then(() => {
       this.message = 'submission successful!';
       this.onReset();

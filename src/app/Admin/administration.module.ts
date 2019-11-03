@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatListModule, MatList } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
 
@@ -15,8 +15,11 @@ import { EditPublicationsComponent } from './edit-publications/edit-publications
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { PeopleuploadComponent } from './Forms/peopleupload/peopleupload.component';
 import { PublicationuploadComponent } from './Forms/publicationupload/publicationupload.component';
-import { NewMemeberComponent } from '../Admin/Forms/new-memeber/new-memeber.component';
+import { NewMemberComponent } from './Forms/new-member/new-member.component';
 import { EditRolesComponent } from '../Admin/Forms/edit-roles/edit-roles.component';
+import { EditIndividualComponent } from '../Admin/Forms/edit-individual/edit-individual.component';
+import { AddpubnamesComponent } from './Forms/addpubnames/addpubnames.component';
+
 
 @NgModule({
   declarations: [
@@ -28,19 +31,16 @@ import { EditRolesComponent } from '../Admin/Forms/edit-roles/edit-roles.compone
     EditMembersComponent,
     EditPublicationsComponent,
     UploadPhotoComponent,
-
     PeopleuploadComponent,
-
     PublicationuploadComponent,
-
-    NewMemeberComponent,
-
-    EditRolesComponent
+    NewMemberComponent,
+    EditRolesComponent,
+    EditIndividualComponent,
+    AddpubnamesComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-
     MatListModule,
     AdministrationRoutingModule
   ]

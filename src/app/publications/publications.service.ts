@@ -11,4 +11,7 @@ export class PublicationsService {
   getPublications() {
     return this.firebaseserv.returnCollect('publications');
   }
+  getTrainees() {
+    return this.firebaseserv.returnCollect('trainees');
+  }
 }

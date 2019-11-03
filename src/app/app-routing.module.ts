@@ -6,7 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { IndividualComponent } from './individual/individual.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { InteractiveProjectsComponent } from './interactive-projects/interactive-projects.component';
-import { visitAstChildren } from '@angular/compiler';
+import { ContactComponent } from './contact/contact.component';
+
 import { ResolverService } from './individual/resolver.service';
 import { ResearchComponent } from './research/research.component';
 
@@ -19,12 +20,13 @@ const routes: Routes = [
   {path: 'individual', component: IndividualComponent},
   {path: 'userinfo', component: UserInfoComponent},
   {path: 'interactive', component: InteractiveProjectsComponent},
-  {path: 'research', component: ResearchComponent}
+  {path: 'research', component: ResearchComponent},
+  {path: 'contact', component: ContactComponent}
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 

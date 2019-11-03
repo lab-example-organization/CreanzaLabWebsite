@@ -1,36 +1,75 @@
 
-<form [formGroup]="publicationForm">
+<div class="pushform">
+  <form [formGroup]="publicationForm">
 
-<div formArrayName="authors">
-  <p *ngFor="let group of publicationForm.get('authors')['controls'], let i = index"
-  [formGroupName]="i">
-    Author {{ i+1 }}: <input formControlName="name" type="text">
-  </p>
+  <select #reset  (change)="onNameChange($event.target.value)">
+        <option value="-1" selected>New Publication</option>
+        <option *ngFor="let pub of pubsList; let i = index"
+            [value] = i> {{ pub.title}}     
+          </option> 
+    </select><br><br>
 
+
+    <b>Publication Type: </b> <select formControlName="type">
+        <option selected="true" value="article">Article</option>
+        <option value="chapter">Book Chapter</option>
+    </select><br><br>
+
+    <div formArrayName="authors">
+      <p *ngFor="let group of publicationForm.get('authors')['controls'], let i = index"
+      [formGroupName]="i">
+        Author {{ i+1 }}: <input formControlName="name" type="text">
+        <span *ngIf="i===0">
+        <button type="button" (click)="addAuthor(true)"
+        [disabled]="disabled">+</button>
+        <button type="button" (click)="addAuthor(false)"
+                [disabled] ="publicationForm.controls.authors.length === 1">-</button>
+      </span>
+    </p>
+    </div>
+    <br>
+
+    <p> Year: <input formControlName="year" type="number"> </p>
+
+    <p> Title:<br> <textarea formControlName="title" rows=3 cols=50></textarea> </p>
+
+    <p> Journal: <input formControlName="journal" type="text" class="extralong"></p>
+    
+    <p> Book: <input formControlName="book" type="text" class="extralong"></p>
+
+    <p> Series: <input formControlName="series" type="text" class="extralong"></p>
+
+    <p> Editors: <input formControlName="editors" type="text" class="extralong"></p>
+
+    <p> DOI: <input formControlName="doi" type="text" class="long"><span> (don't add http://!)</span></p>
+
+    <p> Volume: <input formControlName="issue" type="number" ></p>
+
+    <p> Issue: <input formControlName="volume" type="number"></p>
+
+    <p> First Page: <input formControlName="first_page" type="text"></p>
+
+    <p> Last Page: <input formControlName="last_page" type="text"></p>
+
+    <p> Article Number: <input formControlName="article_number" type="text"></p>
+
+    <p> Publisher: <input formControlName="publisher" type="text" class="extralong"></p>
+
+    <p> City: <input formControlName="city" type="text" class="extralong"></p>
+
+    <button type="submit"
+    [disabled]="!publicationForm.valid || edit"
+    (click)="onSubmit(true)">Submit</button>
+    &nbsp;
+    <button
+    [disabled]="!publicationForm.valid || !edit"
+    (click)="onSubmit(false)">Edit</button>
+    &nbsp;
+    <button
+    [disabled]="!publicationForm.valid || !edit"
+    (click)="onDelete()">Delete</button>
+    {{ message }}
+  </form>
+
+  <br>
 </div>
-
-<button type="button" (click)="addAuthor(true)">+</button>
-<button type="button" (click)="addAuthor(false)">-</button>
-
-<p> Year: <input formControlName="year" type="number"> </p>
-
-<p> Title: <input formControlName="title" type="text"></p>
-
-<p> Journal: <input formControlName="journal" type="text"></p>
-
-<p> DOI: <input formControlName="doi" type="text"></p>
-
-<p> Issue: <input formControlName="issue" type="number" ></p>
-
-<p> Volume: <input formControlName="volume" type="number"></p>
-
-<p> First Page: <input formControlName="first_page" type="number"></p>
-
-<p> Last Page: <input formControlName="last_page" type="number"></p>
-
-<p> Article Number: <input formControlName="article_number" type="number"></p>
-
-<button type="submit"
-[disabled]="!publicationForm.valid"
-(click)="onSubmit()">Submit</button> {{ message }}
-</form>

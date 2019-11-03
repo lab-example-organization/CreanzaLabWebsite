@@ -1,21 +1,24 @@
+<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
-<mat-list role="list" *ngIf="publications$ | async as publications">
-  <mat-list-item role="listitem"  *ngFor="let publication of publications">
-    <div>
-      <span *ngFor="let author of publication.authors, let i = index"
-      [style.font-weight]="author == 'Creanza N' ? 'bold' : 'normal' ">
-        {{author}}<span id="comma"
-        *ngIf="i !== publication.authors.length-1">, </span>
-      </span>
-      <!-- {{ publication.authors.join(", ") }} -->
-      ({{ publication.year }}). 
-      {{ publication.title }}
-      <i> {{ publication.journal }} </i>
-      <span *ngIf="publication.issue !== undefined">{{ publication.issue }}</span>
-      <span *ngIf="publication.volume !== undefined">({{ publication.volume }})<span
-        *ngIf="publication.article_number !== undefined">:{{ publication.article_number }}</span>
-      </span>
-      DOI: <a href="https://www.doi.org/{{ publication.doi}}">{{ publication.doi }}</a>
+<div id="background">
+  <br>
+    <div id="outer">      
+        <div id="inner" role="list" *ngIf="publications$ | async as publications">
+          <h3>Publications</h3>
+          <hr>
+
+          <app-display-pubs
+          [mainAuthor]="mainAuthor"
+          [subAuthors]="nicoleTrainees"
+          [publications]="publications"
+          ></app-display-pubs>
+          <hr>
+
+          <div id="contribute">
+            * = contributed equally <br>
+            <u>Underlined</u> = Nicole's Trainees
+          </div><br>
+        </div>
     </div>
-  </mat-list-item>
-</mat-list>
+    <br>
+</div>

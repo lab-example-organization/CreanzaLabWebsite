@@ -1,3 +1,37 @@
-span#comma{
-    font-weight: normal;
+div#background {
+    background-color: rgb(174, 174, 174);
+    min-height: 100vh;
+  }
+
+div#outer {
+    display: flex;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 15px;
+    margin-left: -30px;
+}
+div#inner {
+    margin-left: 30px;
+    font-family: inherit;
+    padding-left: 4em;
+    padding-right: 1.2em;
+    text-indent:-3em;
+    max-width: 700px;
+    background-color: rgb(239, 243, 245);
+}
+
+div#contribute {
+    padding: 0px;
+    font-family: inherit;
+    margin-left: -30px;
+    text-indent: 0px;
+}
+h3{
+    /* margin-left: 30px; */
+    font-family: inherit;
+    margin-top: 25px;
+}
+
+hr {
+    margin-left: -40px;
 }

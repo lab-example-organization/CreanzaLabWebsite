@@ -1,17 +1,69 @@
-div#outer{
-    display: flex;
-    flex-flow: row;
+div#background {
+  content: "";
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  /* z-index: 0; */
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/creanza-lab-208216.appspot.com/o/Backgroundimages%2Fimage%20(1).png?alt=media&token=71cc185d-8538-4168-a76a-b189268ef1d4");
+  /* width: 100vw; */
+  /* height: 100vh; */
+  /* top: 0; */
+  /* position: fixed; */
+  filter: opacity(30%);
+  object-fit: contain;
 }
-
+div#outer{
+  max-width: 100%;
+  font-family: 'Lato', sans-serif;
+  margin: auto;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  /* position: absolute; */
+  z-index: 1;
+  flex-wrap: wrap;
+}
+div#joy {
+  margin: 25px;
+  margin-top: 10px;
+  width: 600px;
+  height: 470px;
+  background-color: rgb(49, 49, 49);
+}
+div#news{
+  margin: 25px;
+  margin-top: 10px;
+  width: 600px;
+  height: 400px;
+  background-color: rgb(49, 49, 49);
+  margin-bottom: 60px;
+}
+ngb-carousel {
+  padding-top:0px;
+}
+h3 {
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  color: azure;
+  padding: 7px;
+  margin-bottom:0px;
+}
 div#containTwitter{
-    display: inline-block;
-    height: 700px;
+    width: 400px;
+    height: 600px;
     overflow-y:scroll;
-    width:440px;
     margin:10px;
+    margin-left: 30px;
 }
 
 .lab-caption {
+  font-family: inherit;
   background-color: black;
 }
 img#carouselImg{
@@ -19,4 +71,20 @@ img#carouselImg{
   height: 400px;
   object-fit: contain;
   background-color: #363636
+}
+
+p {
+  color: whitesmoke;
+  padding-left: 15px;
+}
+a {
+  color: rgb(164, 214, 221);
+}
+
+a:hover {
+  color: rgb(205, 240, 245);
+}
+
+a:visited {
+  color: rgb(96, 170, 180);
 }

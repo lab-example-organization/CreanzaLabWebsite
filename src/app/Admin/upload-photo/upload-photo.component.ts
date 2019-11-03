@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CRUDService } from '../Forms/crud.service';
-import { UploadPhoto } from 'src/app/Classes/uploadPhoto';
-import { Observable, of } from 'rxjs';
+import { LabPhoto } from 'src/app/Classes/labPhoto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-upload-photo',
@@ -11,47 +11,40 @@ import { Observable, of } from 'rxjs';
 })
 export class UploadPhotoComponent implements OnInit {
 
-  uploadPhotos$: Observable<UploadPhoto>;
+  uploadPhotos$: Observable<LabPhoto>;
   uploadPhotosForm: FormGroup;
   message: string;
   eventdata: any;
-  downloadPhotos$: Observable<UploadPhoto[]>;
+  downloadPhotos$: Observable<LabPhoto[]>;
   photovariable: string;
   @ViewChild('link') link: ElementRef;
-  @ViewChild('reset') reset: HTMLSelectElement; 
+  @ViewChild('reset') reset: HTMLSelectElement;
 
   constructor(private fb: FormBuilder,
               private CRUD: CRUDService) { }
 
   ngOnInit() {
     this.uploadPhotosForm = this.createForm();
-    this.downloadPhotos$ = this.CRUD.fetchAllData('groupPhotos')
-    // this.downloadPhotos$ = of([{name: "Fake_pic", 
-    //                             date: "11/23/19", 
-    //                             caption: "this is a test", 
-    //                             link: "thisidjsopk//"}])
-
+    this.downloadPhotos$ = this.CRUD.fetchAllData('groupPhotos');
   }
 
   onFile(event: any) {
     this.eventdata = event;
-    this.uploadPhotosForm.patchValue({link: 'stufforsomehting'})
+    this.uploadPhotosForm.patchValue({link: 'stufforsomehting'});
   }
 
   onSubmit() {
     const newPhoto = Object.assign({}, this.uploadPhotosForm.value);
-    console.log(newPhoto);
     this.CRUD.uploadImages([`groupPhotos/${newPhoto.date}${newPhoto.name}`],
       [this.eventdata]).then(url => {
         newPhoto.link = url[0];
         this.CRUD.uploadItem(newPhoto, 'groupPhotos');
-      }).then(() => {this.message = 'Success!'; this.onReset()});
+      }).then(() => {this.message = 'Success!'; this.onReset(); });
   }
 
   onUpdate() {
     const newPhoto = Object.assign({}, this.uploadPhotosForm.value);
-    console.log(newPhoto);
-    this.CRUD.editImages([`groupPhotos/${newPhoto.date}${newPhoto.name}`], 
+    this.CRUD.editImages([`groupPhotos/${newPhoto.date}${newPhoto.name}`],
                           [this.eventdata], [newPhoto.link]).then(link => {
                             newPhoto.link = link[0];
                             return this.CRUD.editItem(newPhoto, 'groupPhotos', this.photovariable);
@@ -59,29 +52,23 @@ export class UploadPhotoComponent implements OnInit {
                             this.message = 'submission successful!';
                             this.onReset();
                           });
-    
-
   }
-  
-  onNameChange(thisevent: any){
-    console.log(thisevent);
-    this.CRUD.fetchTargetData(thisevent,'name','groupPhotos').subscribe(photodata => 
-      
-    {this.uploadPhotosForm = this.CRUD.quickAssign(this.uploadPhotosForm, photodata); 
-      this.photovariable = photodata.key
+  onNameChange(thisevent: string) {
+    if(thisevent === "New Photo"){
+      delete this.photovariable;
+      this.uploadPhotosForm = this.createForm();
+    }else{
+      this.CRUD.fetchTargetData(thisevent, 'name', 'groupPhotos').subscribe(photodata => {
+        this.uploadPhotosForm = this.CRUD.quickAssign(this.uploadPhotosForm, photodata);
+        this.photovariable = photodata.key;
+      }).unsubscribe;
     }
-    
-    )
-    console.log(this.uploadPhotosForm.value)
-}
+  }
+
   onDelete() {
-
-    this.CRUD.deleteItem([this.uploadPhotosForm.controls.link.value],
-      'groupPhotos',this.photovariable).then(() => {this.message = "Delete successful"; this.onReset()})
-    
-
-
-
+    this.CRUD.deleteItem( [ this.uploadPhotosForm.controls.link.value],
+      'groupPhotos', this.photovariable)
+      .then(() => { this.message = 'Delete successful'; this.onReset(); } );
   }
 
   onReset() {
@@ -89,7 +76,6 @@ export class UploadPhotoComponent implements OnInit {
     this.link.nativeElement.value = '';
     this.uploadPhotosForm = this.createForm();
     this.photovariable = undefined;
-    // this.reset.selectedIndex = 0;
   }
 
   createForm() {

@@ -1,0 +1,2 @@
+gcloud auth login
+gsutil cors set "D:\Documents\Angular\CreanzaLabWebSite\cors\cors.json" gs://creanza-lab-208216.appspot.com

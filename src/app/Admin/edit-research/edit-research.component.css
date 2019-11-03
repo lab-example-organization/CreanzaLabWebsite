@@ -1,0 +1,76 @@
+
+textarea {
+    margin: 30px;
+    margin-top: 0px;
+}
+
+Label {
+    font-weight: bold;
+    margin-left: 30px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+Label.radio {
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    /* margin-top: 10px; */
+}
+
+input#title {
+    width: 500px;
+}
+
+div#Title {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+button {
+    margin-left: 30px;
+}
+
+hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+select {
+    max-width:600px;
+    margin-left:30px;
+}
+option {
+    max-width:200px;
+    text-overflow: ellipsis;
+}
+
+textarea {
+    white-space: normal;
+}
+
+div#WYSIWYG {
+    border: solid black 1px;
+    width: 620px;
+    margin-left: 40px;
+    padding: 7px;
+    background-color: white;
+}
+span#helptext {
+    margin-left: 30px;
+}
+
+div#picker {
+    margin-left: 15px;
+}
+
+div#imageWYSIWYG {
+    margin-left: 30px;
+}
+
+img {
+    object-fit: contain;
+    max-width: 600px;
+    max-height: 400px;
+}

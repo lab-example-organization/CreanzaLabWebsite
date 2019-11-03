@@ -1,15 +1,58 @@
-a.navbar{
+a.navbar {
     display: inline-block;
     border: 1px solid black;
-    background-color: rgb(85, 85, 170);
-    padding: .3em;
+    background-color: rgb(80, 138, 146);
+    padding: .2em;
     color: whitesmoke;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
+    font-family: 'Lato', sans-serif;
+    font-size: 25px;
     text-decoration:none;
-    margin: .1em;
+    margin: .15em;
     white-space: nowrap;
 }
-hr{
+a.navbar:hover{
+    background-color: rgb(105, 164, 172);
+}
+a.navbar:active{
+    background-color: rgb(61, 69, 70);
+}
+
+hr {
     border: 2px solid black;
+    margin: 0px;
+    padding: 0px;
+}
+
+div#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(80, 138, 146);
+    color: azure;
+    z-index: 100;
+    margin: 0px;
+}
+div#header {
+    padding-left: 15px;
+    background-color: rgb(49, 49, 49);
+    color: azure;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-flow: column;
+}
+h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    padding: 0px;
+    margin: 0px;
+    padding-top: 10px;
+}
+div#footertext{
+    margin: 8px;
+    margin-left: 15px;
+    font-size: 10pt;
 }

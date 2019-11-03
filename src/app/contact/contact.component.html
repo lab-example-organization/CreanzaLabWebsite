@@ -1,0 +1,15 @@
+<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+<div id="background">
+    <br>
+    <div id="outer">
+        <div id="contact">
+            <div *ngIf="contact$ | async as contact">
+              <br>
+              <div class="contact"
+              [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(contact.mainText)"></div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>

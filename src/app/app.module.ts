@@ -24,11 +24,12 @@ import { HomeComponent } from './home/home.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { IndividualComponent } from './individual/individual.component';
 import { InteractiveProjectsComponent } from './interactive-projects/interactive-projects.component';
+import { ResearchComponent } from './research/research.component';
+import { DisplayPubsComponent } from './display-pubs/display-pubs.component';
+import { ContactComponent } from './contact/contact.component';
 
 import { AdministrationModule } from './Admin/administration.module';
-
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
-import { ResearchComponent } from './research/research.component';
 import { GridBlowUpModule } from './GridBlowUp/grid-blow-up.module';
 
 @NgModule({
@@ -41,6 +42,8 @@ import { GridBlowUpModule } from './GridBlowUp/grid-blow-up.module';
     IndividualComponent,
     InteractiveProjectsComponent,
     ResearchComponent,
+    DisplayPubsComponent,
+    ContactComponent,    
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,9 @@
+<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+<div id="background"></div>
 <div id="outer">
-  <div style="margin:25px;">
+  <div id="joy">
+      <h3>Lab Events and Joy</h3>
     <ngb-carousel *ngIf="images$ | async as images" [pauseOnHover]="true"
     [showNavigationIndicators]="false">
       <ng-template ngbSlide *ngFor="let image of images">
@@ -19,5 +23,18 @@
               width: 440,
               theme: 'dark'}"
     ></ngx-twitter-timeline>
+  </div>
+
+  <div id="news">
+    <h3>Creanza Lab Publicity</h3>
+    <p>
+        2018-08-21: <a href="https://www.nashvillepublicradio.org/post/listen-vanderbilt-researchers-mic-zebra-finches-study-how-humans-learn-talk#stream/0" target="_blank">Nashville NPR: Micing Finches to Understand Speech</a>
+    </p>
+    <p>
+        2018-04-04: <a href="https://www.youtube.com/watch?v=9Wsb_4C43t4" target="_blank">VU BreakThru Blog: Smallest Recording Studio in Nashville-Video</a>
+    </p>
+    <p>
+      2018-04-02: <a href="https://my.vanderbilt.edu/universityfundingprograms/2018/04/building-the-smallest-recording-studio-in-nashville/" target="_blank">VU BreakThru Blog: Smallest Recording Studio in Nashville</a>
+    </p>
   </div>
 </div>

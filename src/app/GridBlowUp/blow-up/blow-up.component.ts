@@ -1,8 +1,9 @@
 import { Component, OnInit, HostListener,
-  ViewChild, ElementRef, Input } from '@angular/core';
+  ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { GridBlowUpService } from '../grid-blow-up.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { GridBlowUpService } from '../grid-blow-up.service';
   styleUrls: ['./blow-up.component.css']
 })
 
-export class BlowUpComponent implements OnInit {
+export class BlowUpComponent implements OnInit, OnDestroy {
   index: number;
   array: any[];
 
@@ -19,15 +20,22 @@ export class BlowUpComponent implements OnInit {
   @ViewChild('right') right: ElementRef;
   @ViewChild('bigger') bigger: ElementRef;
   textHeight: number;
+  subscribe1: Subscription;
+  subscribe2: Subscription;
 
   constructor(private router: Router,
               private location: Location,
               private gridBlowUpService: GridBlowUpService) { }
 
   ngOnInit() {
-    this.gridBlowUpService.index.subscribe(temp => this.index = temp);
-    this.gridBlowUpService.figureArray.subscribe(temp => this.array = temp);
+    this.subscribe1 = this.gridBlowUpService.index.subscribe(temp => this.index = temp);
+    this.subscribe2 = this.gridBlowUpService.figureArray.subscribe(temp => this.array = temp);
     setTimeout(() => { this.onResize(); } , 10);
+  }
+
+  ngOnDestroy(){
+    this.subscribe1.unsubscribe();
+    this.subscribe2.unsubscribe();
   }
 
   onResize() {

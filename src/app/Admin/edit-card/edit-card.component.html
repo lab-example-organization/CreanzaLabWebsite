@@ -1,3 +1,5 @@
-eventually I will get the data
 
-<app-peopleupload></app-peopleupload>
+<app-peopleupload *ngIf="asyncReturn"
+[OldInfo]="person"
+[Key]="person.key"
+></app-peopleupload>

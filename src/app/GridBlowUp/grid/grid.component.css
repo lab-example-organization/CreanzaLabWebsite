@@ -1,7 +1,7 @@
 div#outer {
     display: flex;
     flex-flow: wrap;
-    justify-content: space-around;
+    justify-content: left;
 }
 
 div.item {
@@ -9,12 +9,12 @@ div.item {
     display: inline-block;
     flex-flow: column;
     min-width: 0px;
-    height: 260px;
+    height: 290px;
     overflow: hidden;
 }
 
 div.item:hover {
-    background-color: rgba(140,140,140,.8);
+    background-color: rgba(80, 138, 146, .35);;
 }
 
 div.item:active {
@@ -41,10 +41,10 @@ div.thumbtext {
     position: absolute;
     width: 100%;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Lucida Grande'; */
     font-size: 16px;
     font-weight: bold;
     white-space: wrap;
-    overflow: hidden;
-    height: 40px;
+    overflow: visible;
+    height: 70px;
 }

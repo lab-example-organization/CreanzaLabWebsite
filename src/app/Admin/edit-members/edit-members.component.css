@@ -1,0 +1,14 @@
+div#outer {
+    margin-left: 15px;
+}
+
+hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+button#kill {
+    width: 150px;
+    float: right;
+    margin-right: 20px;
+}
